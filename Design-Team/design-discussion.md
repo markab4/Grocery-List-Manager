@@ -12,8 +12,7 @@ some inconsistencies and unnecessary classes.
 \- The Database should not be part of the design as it describes a back end implementation.<br>
 <br>
 \+ All of the requirements are addressed.<br>
-\+ The extra methods included in the List and Item classes help in the team<br>
-   discussion to finalize the group design.
+\+ The extra methods included in the List and Item classes help in the team discussion to finalize the group design.
 
 ## Design 2
 ![markab4](../Design-Individual​/markab4/design.png)
@@ -54,8 +53,7 @@ requirements.
 \- ItemType should be a separate class to eliminate repetition.<br>
 <br>
 \+ Simple and easy to understand.<br>
-\+ ItemQuantity is implemented in the List class and allowed for an extended discussion.<br>
-   of the subject for the final design.<br>
+\+ ItemQuantity is implemented in the List class and allowed for an extended discussion of the subject for the final design.<br>
 
 
 ## Team Design

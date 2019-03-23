@@ -23,7 +23,7 @@ design flaws.
 <br><br>
 \- Some relationships were not implemented correctly.<br>
 \- The constructors and some attributes in GroceryList and ListHolder were contradicting.<br>
-<br><br>
+<br>
 \+ All the requirements are addressed.<br>
 \+ GroceryItemType class eliminates repetition of the type attribute.<br>
 \+ Quantity is set directly in the GroceryItem class.<br>

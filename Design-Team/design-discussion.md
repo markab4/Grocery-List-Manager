@@ -6,13 +6,13 @@
 
 Lynns design fulfills the requirements of the application but includes
 some inconsistencies and unnecessary classes.
-
+<br>
 \- The GroceryList should be a managing class for the lists and contains no attributes.<br>
-\- The HierarchicalList class is unnecessary since sorting is not part of the design.
-\- The Database should not be part of the design as it describes a back end implementation.
-
-\+ All of the requirements are addressed.
-\+ The extra methods included in the List and Item classes help in the team
+\- The HierarchicalList class is unnecessary since sorting is not part of the design.<br>
+\- The Database should not be part of the design as it describes a back end implementation.<br>
+<br>
+\+ All of the requirements are addressed.<br>
+\+ The extra methods included in the List and Item classes help in the team<br>
   discussion to finalize the group design.
 
 ## Design 2
@@ -20,13 +20,13 @@ some inconsistencies and unnecessary classes.
 
 Marks design fulfills the requirements of the application with minor
 design flaws. 
-
-\- Some relationships were not implemented correctly.
-\- The constructors and some attributes in GroceryList and ListHolder were contradicting.
-
-\+ All the requirements are addressed.
-\+ GroceryItemType class eliminates repetition of the type attribute.
-\+ Quantity is set directly in the GroceryItem class.
+<br>
+\- Some relationships were not implemented correctly.<br>
+\- The constructors and some attributes in GroceryList and ListHolder were contradicting.<br>
+<br>
+\+ All the requirements are addressed.<br>
+\+ GroceryItemType class eliminates repetition of the type attribute.<br>
+\+ Quantity is set directly in the GroceryItem class.<br>
 
 
 ## Design 3
@@ -34,13 +34,13 @@ design flaws.
 
 Seans design fulfills all the requirements of the application with 
 more classes than necessary.
-
-\- The User class should be considered as a List managment class
-\- The User class should not be connected with the Items in any way, only the List class.
-\- Some relationships between classes were not implemented correctly.
-
-\+ All the requirements are addressed.
-\+ Catalog eliminates repetition of the type attribute.
+<br>
+\- The User class should be considered as a List managment class.<br>
+\- The User class should not be connected with the Items in any way, only the List class.<br>
+\- Some relationships between classes were not implemented correctly.<br>
+<br>
+\+ All the requirements are addressed.<br>
+\+ Catalog eliminates repetition of the type attribute.<br>
 
 
 ## Design 4
@@ -48,14 +48,14 @@ more classes than necessary.
 
 Theofilos design focuses on minimal design but fails to address some 
 requirements.
-
-\- The groupByType and selectItem methods are not implemented.
-\- The ListManager and List classes should have an aggregate relationship.
-\- ItemType should be a separate class to eliminate repetition.
-
-\+ Simple and easy to understand.
-\+ ItemQuantity is implemented in the List class and allowed for an extended discussion
-  of the subject for the final design.
+<br>
+\- The groupByType and selectItem methods are not implemented.<br>
+\- The ListManager and List classes should have an aggregate relationship.<br>
+\- ItemType should be a separate class to eliminate repetition.<br>
+<br>
+\+ Simple and easy to understand.<br>
+\+ ItemQuantity is implemented in the List class and allowed for an extended discussion.<br>
+  of the subject for the final design.<br>
 
 
 ## Team Design

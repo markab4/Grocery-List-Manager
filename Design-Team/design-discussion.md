@@ -7,12 +7,12 @@
 Lynns design fulfills the requirements of the application but includes
 some inconsistencies and unnecessary classes.
 
-\- The GroceryList should be a managing class for the lists and contains no attributes.
-\- The HierarchicalList class is unnecessary since sorting is not part of the design.
-\- The Database should not be part of the design as it describes a back end implementation.
+>\- The GroceryList should be a managing class for the lists and contains no attributes.
+>\- The HierarchicalList class is unnecessary since sorting is not part of the design.
+>\- The Database should not be part of the design as it describes a back end implementation.
 
-\+ All of the requirements are addressed.
-\+ The extra methods included in the List and Item classes help in the team
+>\+ All of the requirements are addressed.
+>\+ The extra methods included in the List and Item classes help in the team
   discussion to finalize the group design.
 
 ## Design 2

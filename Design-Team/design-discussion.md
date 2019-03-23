@@ -9,7 +9,7 @@
 ## Design 2
 ![markab4](../Design-Individual​/markab4/design.png)
 
-[discuss its main pros and cons as they emerged during the team discussion]
+\+[discuss its main pros and cons as they emerged during the team discussion]
 
 
 

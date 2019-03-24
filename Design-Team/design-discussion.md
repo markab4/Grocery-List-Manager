@@ -56,6 +56,15 @@ requirements.
 \+ ItemQuantity is implemented in the List class and allowed for an extended discussion of the subject for the final design.<br>
 
 
+## Design 5
+![shakirkalavant](../Design-Individual​/shakirkalavant/design.png)
+
+Shakir's design ... 
+requirements.
+<br><br>
+\- No comments.<br>
+
+
 ## Team Design
 ![Team](design-team.png)
 

@@ -57,7 +57,7 @@ requirements.
 
 
 ## Design 5
-![shakirkalavant](../Design-Individual​/shakirkalavant/design.png)
+![shakirkalavant](../Design-Individual​/shakirkalavant/design.PNG)
 
 Shakir's design ... 
 requirements.

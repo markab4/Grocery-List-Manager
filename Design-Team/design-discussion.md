@@ -60,10 +60,14 @@ requirements.
 ## Design 5
 ![shakirkalavant](../Design-Individual​/shakirkalavant/design.PNG)
 
-Shakir's design ... 
-requirements. (not filled in yet)
+Shakir's design fulfills all the requirements of the application but includes unnecessary classes.
 <br><br>
-\- No comments.<br>
+\- The Cart, Address and Supplier does not need to be implemented.<br>
+\- The Database implemention should not be part of the design.<br>
+\- The User class should only manage the list.
+
+\+ All of the requirements are addressed.<br>
+\+ The database style of implemention allowed for an extended discussion of the subject for the final design.<br>
 
 ## Design 6
 ![Adnan](../Design-Individual​/adnansalimi100/design.png)

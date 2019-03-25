@@ -69,7 +69,12 @@ requirements.
 ![Team](design-team.png)
 
 [discuss the main commonalities and differences between this design and the individual ones, and concisely justify the main design decisions]
- 
+
+The main focus of our team design was to identify the common aspects of our individual designs and compare the different approaches to better understand the individual strengths and weaknesses of each design. The main common aspect of our final design and the individual one is the existence of a List class, an Item class and a Managing class. This allowed for a common understanding between the team members and their individual designs and made it clear that we are heading the right direction.<br><br>
+With universal agreement over these common three classes we were able to focus on the differences in our designs. For the first difference we had to decide on, Theofilos and Lynn designs has the quantity attribute of items that will be added in a list specified in the List class while Mark and Sean chose to represent the quantity of an item directly in the Item class and have the user only change the quantity from within the List class. Their approach was deemed a more viable approach since the quantity of an Item is an attribute of that item, not of the list.<br><br>
+The second difference was weather the Type of an item should be a separate class or an attribute of the Item class. Theofilos chose to represent it as an attribute, Mark created a separate class only for that type and with a “has a” relationship to the Item class, Lynn represented the type in the Item class but also involved the database from which the type is stored and Sean created a separate class but with the User class (managing class) having access to that Item type class. To eliminate repetition of the item type in each instance of the Item class, we chose to maintain Marks approach and create an ItemType class that only contains the type of an item and the quantity of that item in case a specific grocery item type has a quantity associated with it.<br><br>
+The last main difference was to decide whether any other classes were necessary to meet the requirements of the application, Lynn represented a database as well as a hierarchical list both of which were not necessary for the design. Sean created an extra class for items in a list, which we also decided is contradicting to the List class. Theofilos and Mark both had no unnecessary classes and the team agreed that the final design can consists of only four classes to meet the criteria and eliminate any ambiguity.<br><br>
+Lastly, we all discussed and agreed on the proper relationships between these four classes to finalize our class diagram.
 
 ## Summary
 

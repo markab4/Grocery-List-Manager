@@ -6,11 +6,12 @@
 
 Lynn's design fulfills the requirements of the application but includes
 some inconsistencies and unnecessary classes.
-<br><br>
+
 \- The GroceryList should be a managing class for the lists and contains no attributes.<br>
 \- The HierarchicalList class is unnecessary since sorting is not part of the design.<br>
 \- The Database should not be part of the design as it describes a back end implementation.<br>
-<br>
+
+
 \+ All of the requirements are addressed.<br>
 \+ The extra methods included in the List and Item classes help in the team discussion to finalize the group design.
 
@@ -19,10 +20,10 @@ some inconsistencies and unnecessary classes.
 
 Mark's design fulfills the requirements of the application with minor
 design flaws. 
-<br><br>
+
 \- Some relationships were not implemented correctly.<br>
-\- The constructors and some attributes in GroceryList and ListHolder were contradicting.<br>
-<br>
+\- The constructors and some attributes in GroceryList and ListHolder were contradicting.
+
 \+ All the requirements are addressed.<br>
 \+ GroceryItemType class eliminates repetition of the type attribute.<br>
 \+ Quantity is set directly in the GroceryItem class.<br>
@@ -33,11 +34,11 @@ design flaws.
 
 Sean's design fulfills all the requirements of the application with 
 more classes than necessary.
-<br><br>
+
 \- The User class should be considered as a List managment class.<br>
 \- The User class should not be connected with the Items in any way, only the List class.<br>
-\- Some relationships between classes were not implemented correctly.<br>
-<br>
+\- Some relationships between classes were not implemented correctly.
+
 \+ All the requirements are addressed.<br>
 \+ Catalog eliminates repetition of the type attribute.<br>
 
@@ -47,11 +48,11 @@ more classes than necessary.
 
 Theofilos' design focuses on minimal design but fails to address some 
 requirements.
-<br><br>
+
 \- The groupByType and selectItem methods are not implemented.<br>
 \- The ListManager and List classes should have an aggregate relationship.<br>
-\- ItemType should be a separate class to eliminate repetition.<br>
-<br>
+\- ItemType should be a separate class to eliminate repetition.
+
 \+ Simple and easy to understand.<br>
 \+ ItemQuantity is implemented in the List class and allowed for an extended discussion of the subject for the final design.<br>
 
@@ -63,6 +64,12 @@ Shakir's design ...
 requirements. (not filled in yet)
 <br><br>
 \- No comments.<br>
+
+## Design 6
+![Adnan](../Design-Individual​/adnansalimi100/design.png)
+
+Adnan [needs to list the pros and cons]
+
 
 
 ## Team Design
@@ -76,7 +83,7 @@ The second difference was weather the Type of an item should be a separate class
 
 The last main difference was to decide whether any other classes were necessary to meet the requirements of the application, Lynn represented a database as well as a hierarchical list both of which were not necessary for the design. Sean created an extra class for items in a list, which we also decided is contradicting to the List class. Theofilos and Mark both had no unnecessary classes and the team agreed that the final design can consists of only four classes to meet the criteria and eliminate any ambiguity.
 
-Lastly, we discussed and agreed on the proper relationships between these four classes to finalize our class diagram.
+Lastly, we discussed and agreed on the proper relationships between these four classes to finalize our class diagram and corrected the multiplicities of the relationships.
 
 ## Summary
 

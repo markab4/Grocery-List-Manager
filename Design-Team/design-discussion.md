@@ -68,8 +68,13 @@ requirements. (not filled in yet)
 ## Design 6
 ![Adnan](../Design-Individual​/adnansalimi100/design.png)
 
-Adnan [needs to list the pros and cons]
+Adnan's design ...
 
+\- itemManagement class may not have enough functions to function properly.<br>
+\- itemDB may not by able to perform a complex look up.<br>
+
+\+ Good use of relations to understand how classes work together.<br>
+\+ Uses only necessary classes without having excessive or redundant classes.<br>
 
 
 ## Team Design

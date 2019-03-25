@@ -73,9 +73,6 @@ requirements.
 
 ## Summary
 
-The process of selecting the final design wasn’t easy, all members of the team had different and valuable input from their perspective designs even though most of our designs were very similar.<br>
-The decision to select one design to act as our mainframe helped to narrow the teams vision of the application. The design was chosen by all members of the team based on which design closer resembled a concise and modular approach to the given requirements.<br>
+The process of selecting the final design wasn’t easy, all members of the team had different and valuable input from their perspective designs even though most of our designs were very similar.<br><br>
+The decision to select one design to act as our mainframe helped to narrow the teams vision of the application. The design was chosen by all members of the team based on which design closer resembled a concise and modular approach to the given requirements.<br><br>
 The teamwork for this project allowed all members of the team to showcase their different design approach and opinion on how they envisioned the final product. The constructive criticism among the team elevated the discussion to the direction of learning from our mistakes, better understanding other approaches via comparison with our own and a much better grasp of the concepts involved in a UML class diagram.
-
-
-[concisely summarize the lessons learnt in the process of discussing the designs, in terms of design, team work, and any other aspect that you consider relevant]

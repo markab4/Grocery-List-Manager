@@ -61,7 +61,7 @@ requirements.
 ![shakirkalavant](../Design-Individual​/shakirkalavant/design.PNG)
 
 Shakir's design fulfills all the requirements of the application but includes unnecessary classes.
-<br><br>
+
 \- The Cart, Address and Supplier does not need to be implemented.<br>
 \- The Database implemention should not be part of the design.<br>
 \- The User class should only manage the list.
@@ -72,13 +72,14 @@ Shakir's design fulfills all the requirements of the application but includes un
 ## Design 6
 ![Adnan](../Design-Individual​/adnansalimi100/design.png)
 
-Adnan's design ...
+Adnan's design did not fulfill all the requirements of the application, but showed a clear relationship between its classes.
 
-\- itemManagement class may not have enough functions to function properly.<br>
-\- itemDB may not by able to perform a complex look up.<br>
+\- ItemManagement class should instead be an ItemType class. <br>
+\- Items should be represented as a class and not as a DB. <br>
 
-\+ Good use of relations to understand how classes work together.<br>
-\+ Uses only necessary classes without having excessive or redundant classes.<br>
+
+\+ Classes are modular and show a minimalistic approach<br>
+\+ Methods and attributes have correct types
 
 
 ## Team Design

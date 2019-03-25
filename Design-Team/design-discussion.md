@@ -68,8 +68,6 @@ requirements. (not filled in yet)
 ## Team Design
 ![Team](design-team.png)
 
-[discuss the main commonalities and differences between this design and the individual ones, and concisely justify the main design decisions]
-
 The main focus of our team design was to identify the common aspects of our individual designs and compare the different approaches to better understand the individual strengths and weaknesses of each design. The main common aspect of our final design and the individual one is the existence of a List class, an Item class and a Managing class. This allowed for a common understanding between the team members and their individual designs and made it clear that we are heading the right direction.
 
 With unanimous agreement over these common three classes we were able to focus on the differences in our designs. For the first difference we decided on on, Theofilos' and Lynn's designs had the quantity attribute of items that will be added in a list specified in the List class while Mark and Sean chose to represent the quantity of an item directly in the Item class and have the user only change the quantity from within the List class. Their approach was deemed a more viable approach since the quantity of an Item is an attribute of that item, not of the List.

@@ -60,16 +60,26 @@ requirements.
 ## Design 5
 ![shakirkalavant](../Design-Individual​/shakirkalavant/design.PNG)
 
-Shakir's design ... 
-requirements. (not filled in yet)
-<br><br>
-\- No comments.<br>
+Shakir's design fulfills all the requirements of the application but includes unnecessary classes.
+
+\- The Cart, Address and Supplier does not need to be implemented.<br>
+\- The Database implemention should not be part of the design.<br>
+\- The User class should only manage the list.
+
+\+ All of the requirements are addressed.<br>
+\+ The database style of implemention allowed for an extended discussion of the subject for the final design.<br>
 
 ## Design 6
 ![Adnan](../Design-Individual​/adnansalimi100/design.png)
 
-Adnan [needs to list the pros and cons]
+Adnan's design did not fulfill all the requirements of the application, but showed a clear relationship between its classes.
 
+\- ItemManagement class should instead be an ItemType class. <br>
+\- Items should be represented as a class and not as a DB. <br>
+
+
+\+ Classes are modular and show a minimalistic approach<br>
+\+ Methods and attributes have correct types
 
 
 ## Team Design

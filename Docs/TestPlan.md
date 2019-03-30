@@ -25,7 +25,9 @@
 *Here you should discuss how you are going to select your test cases, that is, which black-box and/or white-box techniques you will use. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
 
 both black & white box techniques will be use for testing.
+
 white-box testing will be used on the unit, going through the code to see if each unit works fine.
+
 black-box testing will be used on the system and regression, includes if the program execute or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc (..?)
 
 
@@ -33,22 +35,26 @@ black-box testing will be used on the system and regression, includes if the pro
 
 *Define how you are going to assess the quality of your test cases. Typically, this involves some form of functional or structural coverage. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
 
-  to insure a list of good quality test cases, we need to select cases that covers every functions in the program, mean that every structure must execute at least once.(not sure if this is what the question asks.)
+  -to insure a list of good quality test cases, we need to select cases that covers every functions in the program, mean that every structure must execute at least once.(not sure if this is what the question asks.)
 
 ### 1.4 Bug Tracking
 
 *Describe how bugs and enhancement requests will be tracked.*
-  use bug tracking system such as Jira or the debug function on github.
+
+  -use bug tracking system such as Jira or the debug function on github.
 
 ### 1.5 Technology
 
 *Describe any testing technology you intend to use or build (e.g., JUnit, Selenium).*
- JUnit
+
+ -JUnit
 
 ## 2 Test Cases
 
 *This section should be the core of this document. You should provide a table of test cases, one per row. For each test case, the table should provide its purpose, the steps necessary to perform the test, the expected result, the actual result (to be filled later), pass/fail information (to be filled later), and any additional information you think is relevant.*
 
 Test Case #	|Purpose|	Steps to Complete|	Expected Result|	Actual Result	|Pass/Fail	| Additional Information
+
 1 |check if the program works | open the APP| the app should be display
+
 (need detail of the design...)

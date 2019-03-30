@@ -6,7 +6,7 @@
 
 ## 1 Use Case Diagram
 
-![Use Case Model](../Diagrams/User diagram.png) 
+![Use Case Model](370Spring19Team2/GroupProject/Docs/Diagrams/User Diagram.png) 
 
 ## 2 Use Case Descriptions
 

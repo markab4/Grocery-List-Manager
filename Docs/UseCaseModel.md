@@ -6,7 +6,7 @@
 
 ## 1 Use Case Diagram
 
-*This section should contain a use case diagram with all the actors and use cases for the system, suitably connected.*
+![UseCaseModel](370Spring19Team2/GroupProject/Docs/Diagrams/User Diagram.png) 
 
 ## 2 Use Case Descriptions
 

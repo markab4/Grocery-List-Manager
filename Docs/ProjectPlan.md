@@ -4,12 +4,12 @@
 
 ## Introduction
 
- Tired of doing grocery lists with pencil and paper and unhappy with each and every existing app for managing grocery lists​? Our product is *GroceryListManager​*, an application for managing grocery lists that works exactly the way you want it.
+ Tired of doing grocery lists with pencil and paper and unhappy with each and every existing app for managing grocery lists​? Our product is *GroceryListManager​*, an application for managing grocery lists that works exactly the way you want.
 
 ## Process Description
 
 ### Gather Requirements 
-- The core requirements have been set by users, as listed in the [Requirements Document](Requirements.md)
+- The core requirements have been set by users, as listed in the [Requirements Document](Requirements.md).
 - Exit criteria: Requirements understanding as evidenced by the fidelity of the primary [use cases](UseCaseModel.md).
 
 ### Analyze & Design 
@@ -22,8 +22,8 @@
 
 ### Implement
 - The part of the process where software engineers actually program the code for the *GroceryListManager*. Documentation is also done at this stage, as contained in the [User Manual](UserManual.md). We will be using Android Studio with Java to build the Android App, and GitHub to manage version control and to track and assign issues. We will also use the SQLite Database Management System.
-- Entrance criteria: the requirements are established and the software design documents are complete 
-- *Exit criteria: an initial version of the app released
+- Entrance criteria: the requirements are established and the software design documents are complete .
+- Exit criteria: an initial version of the app released.
 
 ### Test 
 - Ensure that defects are recognized as soon as possible, covered in greater detail in the [Test Plan](TestPlan.md). GitHub will be used to track bugs and there will be a heavy reliance on manual testing to ensure the user interface is bug-free and any errors are caught. Both actual Android devices as well as emulators will be used in testing.
@@ -43,9 +43,9 @@
 
 ### Roles
 
-- **Project Manager** -  in charge of the planning and execution of the project. Responsible for developing the software project plan, managing deliverables according to the software project plan, leading and managing the software project team, assigning tasks to project team members, and keeping everyone happy
+- **Project Manager** -  in charge of the planning and execution of the project. Responsible for developing the software project plan, managing deliverables according to the software project plan, leading and managing the software project team, assigning tasks to project team members, and keeping everyone happy.
 
-- **Database Administrator** - responsible for the organisation, storage and retrieval of the data. Designs, builds, and tests the database
+- **Database Administrator** - responsible for the organisation, storage and retrieval of the data. Designs, builds, and tests the database.
 
 - **Quality Assurance** - responsible for defining quality standards and metrics for the project, and ensuring all development tasks meet quality criteria through test planning, test execution, quality assurance and issue tracking.
 

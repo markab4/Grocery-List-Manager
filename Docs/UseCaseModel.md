@@ -1,6 +1,6 @@
 # Use Case Model
 
-**Author**: \<person or team name\>
+**Author**: \<Theofilos Papadopoulos\>
 
 ## 1 Use Case Diagram
 

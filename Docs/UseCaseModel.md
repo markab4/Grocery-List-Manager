@@ -6,7 +6,7 @@
 
 ## 1 Use Case Diagram
 
-![lynnHuangQ](../Diagrams/User diagram.png) 
+![Use Case Model](../Diagrams/User diagram.png) 
 
 ## 2 Use Case Descriptions
 

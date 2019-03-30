@@ -2,11 +2,11 @@
 
 **Author**: \<Theofilos Papadopoulos\>
 
-## 1 Use Case Diagram
+## Use Case Diagram
 
 ![UseModel](../Docs/Diagrams/User-DiagramOriginal.png) 
 
-## 2 Use Case Descriptions
+## Use Case Descriptions
 
 ### Use case #1 
 -	*Actor: User.

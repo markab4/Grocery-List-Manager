@@ -8,7 +8,7 @@
 
 - The unit testing will be performed by developers on every individual function of the application, in order to check if each unit is performed how the application is designed. The developer check for internal security holes and broken structured paths in the coding process. The developer will also check for the expected output. The developer will test each statement, object, and functions on an individual basis. The QA will be testing if queries from the database are correctly implemented
 
-- Integration testing will be performed to test that a system of multiple modules worked as expected..a
+- Integration testing will be performed to test that a system of multiple modules worked as expected
 
 - System testing will be used on the completed program, using an android phone, and check if the functions in the program match the users' requirements. The QA application as a whole. Verifying thorough testing of every input in the application to check for the desired outputs.
 
@@ -22,10 +22,12 @@
 
 - Black-box testing will be used on the system and regression, includes if the program executes or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc
 
+ - Most of the functions will be tested manually 
+
 
 ### 1.3 Adequacy Criterion
 
-- To ensure a list of good quality test cases, we need to select cases that cover every function in the application, mean that every structure must execute at least once. (not sure if this is what the question asks.)
+- To ensure a list of good quality test cases, we need to select cases that cover every function in the application, mean that every structure must execute at least once.
 
 ### 1.4 Bug Tracking
 
@@ -34,16 +36,15 @@
 ### 1.5 Technology
 
  - JUnit
- - Most of the functions will be tested manually 
 
 ## 2 Test Cases
 
 1 |check if the program works | open the APP| the app should be display
 
-2 |Add a new list| click "+" button on the right side| New list should be created| New list was added| Pass| 
+2 |Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created | New list is added | Pass| 
 
-3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu| Pass| There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.
+3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu | Pass | There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.
 
-4 | Add item to the list| In "Create a List" window, click on "ADD ITEMS" button. New windows that allow the user to select an item of their choice. Click on "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| Pass| There is another way to add an item to the list. while in the selected list. Click on "+" button on top of the screen, then item windows open's then select the item by clicking "+" button then Quantity window pops-up, then input the quantity then click "Confirm" button.
+4 | Add item to the list | In "Create a List" window, click on "ADD ITEMS" button. New windows that allow the user to select an item of their choice. Click on "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| Pass | There is another way to add an item to the list. while in the selected list. Click on "+" button on top of the screen, then item windows open's then select the item by clicking "+" button then Quantity window pops-up, then input the quantity then click "Confirm" button.
 
-5 | Change quantity| Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button| The quantity of the selected item will change| The quantity of the selected item changed| Pass|
+5 | Change quantity | Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button | The quantity of the selected item will change | The quantity of the selected item changed | Pass |

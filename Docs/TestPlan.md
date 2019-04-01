@@ -12,42 +12,44 @@
 
 *This section should provide details about your unit-, integration-, system-, and regression-testing strategies. In particular, it should discuss which activities you will perform as part of your testing process, and who will perform such activities.*
 
--the unit testing will be perform by developers on every individual function of the software, inorder to check if each unit is perfomed as how the software is designed.(a White-box Testing method is usually used to get the job done<--from google)
+-The unit testing will be perform by developers on every individual function of the application, inorder to check if each unit is perfomed as how the application is designed.The developer check for internal security holes and broken structured paths in the codeing process.The developer will also check for the expected output. The developer will test each statement, object, and functions on an individual basis.(a White-box Testing method is usually used to get the job done<--from google)//I think we need a tester to test each process or series of processes in the application.
 
 -(not sure for integration, maybe grouping up functions and testing new list?)
+-Integration testing will be performed to see if the application is compatible with other devices such as tablets, phones, etc. An task will be started on mobile and completed on a tablet and vice versa.
 
--system testing will be use on the completed program, using an android phone, and check if the functions in the program meet up to the expectations.(Usually, Black Box Testing method is used.<-- google)
+-System testing will be use on the completed program, using an android phone, and check if the functions in the program match the users' requirements. The QA application as a whole. Verifing thorough testing of every input in the application to check for the desired outputs.(Usually, Black Box Testing method is used.<-- google)
 
--regression testing will also be perform by developers, to make sure that the new code have no down side effect on the program. (fixing bugs? )
+-Regression testing will also be perform by developers, to make sure that the new code have no down side effect on the program. (fixing bugs? )// test changes to the code have no unexpected changes in the performace, inputs, or outputs.
 
 ### 1.2 Test Selection
 
 *Here you should discuss how you are going to select your test cases, that is, which black-box and/or white-box techniques you will use. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
 
-both black & white box techniques will be use for testing.
+-We will test using both black & white box techniques.
 
-white-box testing will be used on the unit, going through the code to see if each unit works fine.
+-White-box testing will be used on the unit, going through the code to see if each unit works fine.
 
-black-box testing will be used on the system and regression, includes if the program execute or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc (..?)
+-Black-box testing will be used on the system and regression, includes if the program execute or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc (..?)
 
 
 ### 1.3 Adequacy Criterion
 
 *Define how you are going to assess the quality of your test cases. Typically, this involves some form of functional or structural coverage. If you plan to use different techniques at different testing levels (e.g., unit and system), you should clarify that.*
 
-  -to insure a list of good quality test cases, we need to select cases that covers every functions in the program, mean that every structure must execute at least once.(not sure if this is what the question asks.)
+  -To ensure a list of good quality test cases, we need to select cases that covers every functions in the application, mean that every structure must execute at least once.(not sure if this is what the question asks.)
 
 ### 1.4 Bug Tracking
 
 *Describe how bugs and enhancement requests will be tracked.*
 
-  -use bug tracking system such as Jira or the debug function on github.
+  -We will be using bug tracking software Jira, bitbucket or the debug function on github. Where each issue will be ticketed and assigned to a developer with more features such as statuses, resolutions, and priorities.
 
 ### 1.5 Technology
 
 *Describe any testing technology you intend to use or build (e.g., JUnit, Selenium).*
 
  -JUnit
+ -Most of the will be done manually 
 
 ## 2 Test Cases
 
@@ -56,5 +58,8 @@ black-box testing will be used on the system and regression, includes if the pro
 Test Case #	|Purpose|	Steps to Complete|	Expected Result|	Actual Result	|Pass/Fail	| Additional Information
 
 1 |check if the program works | open the APP| the app should be display
-
+2 |Add a new list| click "+" button on the right side|
+3 | Delete existing list |  
+4 | Add item to the list| In "Create a List" window, click on "ADD ITEMS" button. New windowns that allows the user to select a items of their choice. Click "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | 
+5 | 
 (need detail of the design...)

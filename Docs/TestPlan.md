@@ -12,7 +12,7 @@
 
 - System testing will be used on the completed program, using an android phone, and check if the functions in the program match the users' requirements. The QA application as a whole. Verifying thorough testing of every input in the application to check for the desired outputs.
 
-- Regression testing will also be performed by developers, to make sure that the new code has no downside effect on the program. (fixing bugs? )// test changes to the code have no unexpected changes in the performance, inputs, or outputs.
+- Regression testing will also be performed by developers, to make sure that the new code has no downside effect on the program.
 
 ### 1.2 Test Selection
 
@@ -34,7 +34,7 @@
 ### 1.5 Technology
 
  - JUnit
- - Most of the functions will be done manually 
+ - Most of the functions will be tested manually 
 
 ## 2 Test Cases
 

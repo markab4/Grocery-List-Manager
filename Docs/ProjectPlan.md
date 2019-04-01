@@ -59,9 +59,12 @@
 
 ### Team Member Roles
 
-- **Mark Abramov** - Project Manager, Frontend Developer
-- **Wangqiong Huang** - Quality Assurance, Backend Developer
-- **Sean Rodriguez** - Technical Lead, Backend Developer
-- **Adnan Salimi** - UI/UX Developer
-- **Theofilos Papadopoulos** - Frontend Developer
-- **Shakirkhan Kalavant** - Database Administrator, Quality Assurance
+| Role      |   Team Member  |
+|-----------|----------------|
+|Project Manager | Mark Abramov
+|Database Administrator | Shakirkhan Kalavant
+|Quality Assurance | Wangqiong Huang, Shakirkhan Kalavant
+|Technical Lead | Sean Rodriguez
+|Backend Developer | Sean Rodriguez, Wangqiong Huang
+|Frontend Developer | Mark Abramov, Theofilos Papadopoulos
+|UI/UX Developer | Adnan Salimi, Theofilos Papadopoulos

@@ -40,12 +40,12 @@
 
 ## 2 Test Cases
 
-- 1 |check if the program works | open the APP| the app should be display
+1 |check if the program works | open the APP| the app should be display
 
-- 2 |Add a new list| click "+" button on the right side| New list should be created| New list was added| Pass| 
+2 |Add a new list| click "+" button on the right side| New list should be created| New list was added| Pass| 
 
-- 3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu| Pass| There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.
+3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu| Pass| There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.
 
-- 4 | Add item to the list| In "Create a List" window, click on "ADD ITEMS" button. New windowns that allows the user to select a items of their choice. Click "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item addded to "List Name"| Pass| There is another way to add item to the list. while in selected list. Click on "+" button on top of the screen, then item windows opens then select the item by clicking "+" button then Quantity windwow pops-up, then input the quantity then click "Confirm" button.
+4 | Add item to the list| In "Create a List" window, click on "ADD ITEMS" button. New windowns that allows the user to select a items of their choice. Click "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item addded to "List Name"| Pass| There is another way to add item to the list. while in selected list. Click on "+" button on top of the screen, then item windows opens then select the item by clicking "+" button then Quantity windwow pops-up, then input the quantity then click "Confirm" button.
 
-- 5 | Change quantity| Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button| The quantity of the selected item will change| The quantity of the selected item changed| Pass|
+5 | Change quantity| Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button| The quantity of the selected item will change| The quantity of the selected item changed| Pass|

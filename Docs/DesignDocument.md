@@ -32,8 +32,6 @@ Given the simplicity of the application, our application contains a straightforw
 
 ## 3 Low-Level Design
 
-*Describe the low-level design for each of the system components*
-
 ### 3.1 Class Diagram
 
 ![](../Design-Team/design-team.png)

@@ -41,6 +41,7 @@ Our class diagram shows the necessary functions and attributes of the classes re
 
 ## 4 User Interface Design
 The main wireframes for our app are:
+
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Launcher.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/List%20Contents.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Creating%20a%20List.jpg)

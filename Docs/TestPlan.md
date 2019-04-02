@@ -42,14 +42,13 @@
 ## 2 Test Cases
 |Test Case|Purpose|Steps| Expected Result | Actual Result |Pass/Fail|Additional Information|
 |:---|:---|:---|:---|:---|:---|:---|
-|1 | check if the program works | open the APP| the app should be display| | Pass | |
-|2 | Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created | New list is added | Pass| |
-|3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu | |Pass | There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.|
-|4 | Add item to the list | In "Create a List" window, click on "ADD ITEMS" button. New windows that allow the user to select an item of their choice. Click on "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| |Pass | There is another way to add an item to the list. while in the selected list. Click on "+" button on top of the screen, then item windows open's then select the item by clicking "+" button then Quantity window pops-up, then input the quantity then click "Confirm" button.|
-|5 | Change quantity | Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button | The quantity of the selected item will change | The quantity of the selected item changed | Pass | |
+|1 | check if the program works | open the APP| the app should be display| |  | |
+|2 | Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created |  | | |
+|3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu | | | There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.|
+|4 | Add item to the list | In "Create a List" window, click on "ADD ITEMS" button. New windows that allow the user to select an item of their choice. Click on "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| || There is another way to add an item to the list. while in the selected list. Click on "+" button on top of the screen, then item windows open's then select the item by clicking "+" button then Quantity window pops-up, then input the quantity then click "Confirm" button.|
+|5 | Change quantity | Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button | The quantity of the selected item will change | The quantity of the selected item changed |  | |
 |6|see if item can be check off|click on the box to check off the item|the box should be check off| | | |
-|7|Add item to a list|open a list, select an item to be add|the item should be show in the list after being added| | | |
-|8|delete item from a list|open a list, select an item to be delete| the item should disappear from the list| | | |
-|9|see if the list is saved automatically|open a list, add or delete an item,close the list, reopen it to see if the list is as same as last change|the list should appear as same as when it was closed| | | |
-|10|see if user can clear all the check off marks at once|click on the clear all button|the check mark should all be delete| | | |
-|11|see if the list can be rename|select a list, click on the name, rename it and save| the list should appear using its new name| | | |
+|7|delete item from a list|open a list, select an item to be delete| the item should disappear from the list| | | |
+|8|see if the list is saved automatically|open a list, add or delete an item,close the list, reopen it to see if the list is as same as last change|the list should appear as same as when it was closed| | | |
+|9|see if user can clear all the check off marks at once|click on the clear all button|the check mark should all be delete| | | |
+|10|see if the list can be rename|select a list, click on the name, rename it and save| the list should appear using its new name| | | |

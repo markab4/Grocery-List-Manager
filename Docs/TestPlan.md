@@ -39,9 +39,9 @@
 
 ## 2 Test Cases
 
-1 |check if the program works | open the APP| the app should be display
+1 | check if the program works | open the APP| the app should be display | Pass |
 
-2 |Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created | New list is added | Pass| 
+2 | Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created | New list is added | Pass| 
 
 3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu | Pass | There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.
 

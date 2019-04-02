@@ -40,7 +40,7 @@
  - Ranorex for GUI testing
 
 ## 2 Test Cases
-|Test Case|Purpose|Steps|Expected Result|Actual Result|Pass/Fail|Additional Information|
+|Test Case|Purpose|Steps| Expected Result | Actual Result |Pass/Fail|Additional Information|
 |:---|:---|:---|:---|:---|:---|:---|
 |1 | check if the program works | open the APP| the app should be display| | Pass | |
 |2 | Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created | New list is added | Pass| |

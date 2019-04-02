@@ -1,18 +1,18 @@
 # Test Plan
 
-**Author**: Shakirkhan Kalavant and Wangqiong Huang
+**Author**: Shakirkhan Kalavant and Wangqiong Huang, Assisted by Mark Abramov
 
 ## 1 Testing Strategy
 
 ### 1.1 Overall strategy
 
-- The unit testing will be performed by developers on every individual function of the application, in order to check if each unit is performed how the application is designed. The developer check for internal security holes and broken structured paths in the coding process. The developer will also check for the expected output. The developer will test each statement, object, and functions on an individual basis. The QA will be testing if queries from the database are correctly implemented
+- The unit testing will be first performed by developers on every individual function of the application, in order to check if each unit is performed the way the application is designed. The developer checks for internal security holes and broken structured paths in the coding process. In addition, the developer will also check for the expected output. The developer will test each statement, object, and functions on an individual basis. The QA will be be performing all the tests the developer does, plus their own set of tests, such as if queries from the database are correctly implemented.
 
-- Integration testing will be performed to test that a system of multiple modules worked as expected
+- Integration testing will be performed to test that a system of multiple modules worked as expected.
 
-- System testing will be used on the completed program, using an android phone, and check if the functions in the program match the users' requirements. The QA application as a whole. Verifying thorough testing of every input in the application to check for the desired outputs.
+- System testing will be used on the completed program, using an Android device, and check whether the functions in the program match the users' requirements. The QA also tests the application as a whole, verifying thorough testing of every input in the application to check for the desired outputs.
 
-- Regression testing will also be performed by developers, to make sure that the new code has no downside effect on the program.
+- Regression testing will also be performed as needed by developers, to make sure that the new code has no downside effect on the program.
 
 ### 1.2 Test Selection
 
@@ -20,35 +20,36 @@
 
 - White-box testing will be used on the unit, going through the code to see if each unit works fine.
 
-- Black-box testing will be used on the system and regression, includes if the program executes or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc
+- Black-box testing will be used on the system and regression, includes if the program executes or not, choosing valid and invalid inputs to check if the program works correctly, see if the selected function shows the expected output, and etc.
 
- - Most of the functions will be tested manually
+ - Most testing will be done manually.
 
 
 ### 1.3 Adequacy Criterion
 
-- To ensure a list of good quality test cases, we need to select cases that cover every function in the application, mean that every structure must execute at least once.
+- To ensure a list of good quality test cases, we will select cases that cover every function in the application, ie every structure must execute at least once.
 
 ### 1.4 Bug Tracking
 
-- We will be using bug tracking software Jira, bitbucket or the debug function on GitHub. Where each issue will be ticketed and assigned to a developer with more features such as statuses, resolutions, and priorities.
+- We will be using GitHub for issue tracking. Each issue will be ticketed and assigned to a developer with additional information such as statuses, resolutions, and priorities.
 
 ### 1.5 Technology
 
+Most testing will be done manually. As necessary, the following technologies shall be utilized:
  - JUnit
- - Robotium for android applications testing
+ - Robotium for Android applications testing
  - Ranorex for GUI testing
 
 ## 2 Test Cases
 |Test Case|Purpose|Steps| Expected Result | Actual Result |Pass/Fail|Additional Information|
 |:---|:---|:---|:---|:---|:---|:---|
-|1 | check if the program works | open the APP| the app should be display| |  | |
-|2 | Add a new list| click "+" button on the right side, new window will open and user inputs the list's name then click "Finish" button | New list should be created |  | | |
-|3 | Delete existing list | Select the list you want to delete then click on the "trash can" logo| Selected list was removed from main menu | | | There is another way to delete the list, while you are in the selected item by click on "Trash can" logo. confirmation window will pop-up.|
-|4 | Add item to the list | In "Create a List" window, click on "ADD ITEMS" button. New windows that allow the user to select an item of their choice. Click on "+" button on the right then in Quantity window input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| || There is another way to add an item to the list. while in the selected list. Click on "+" button on top of the screen, then item windows open's then select the item by clicking "+" button then Quantity window pops-up, then input the quantity then click "Confirm" button.|
-|5 | Change quantity | Select the list in which the item is. Click on the item. Quantity window will open and change quantity then click "Confirm" button | The quantity of the selected item will change | The quantity of the selected item changed |  | |
-|6|see if item can be check off|click on the box to check off the item|the box should be check off| | | |
-|7|delete item from a list|open a list, select an item to be delete| the item should disappear from the list| | | |
-|8|see if the list is saved automatically|open a list, add or delete an item,close the list, reopen it to see if the list is as same as last change|the list should appear as same as when it was closed| | | |
-|9|see if user can clear all the check off marks at once|click on the clear all button|the check mark should all be delete| | | |
-|10|see if the list can be rename|select a list, click on the name, rename it and save| the list should appear using its new name| | | |
+|1 | Test if program opens as expected and without crashing | Open the APP| The app should display without crashing| |  | |
+|2 | Test if user can add a new list| click "+" button on the right side, new screen will open and user inputs the list's name, then clicks "Finish" button | New list should be created |  | | |
+|3 | Test if user can delete existing list | Select the list you want to delete then click on the "trash can" icon| Selected list was removed from main menu | | | There is another way to delete the list, while you are in the selected item by clicking on "Trash can" logo. Confirmation modal will pop up.|
+|4 |Test if user can add item to the list | In "Create a List" screen, click on "ADD ITEMS" button. New screen that allows the user to select an item of their choice. Click on "+" button on the right then in Quantity screen input quantity and units, then click "Confirm" to add items. | Success message appeared on the bottom of the screen indicating "This item added to "List Name"| || There is another way to add an item to the list. While in the selected list, click on "+" button on top of the screen, then item screens open's then select the item by clicking "+" button then Quantity screen pops-up, then input the quantity, then click "Confirm" button.|
+|5 | Test if user can change quantity of an item on a list | Select the list in which the item is. Click on the item. Quantity screen will open and change quantity then click "Confirm" button | The quantity of the selected item will change | The quantity of the selected item changed |  | |
+|6|See if item can be checked off|Click on the box to check off the item|The box should be checked off| | | |
+|7|User is able to delete item from a list|Open a list, select an item to be deleted| The item should disappear from the list| | | |
+|8|See if the list is saved automatically|Open a list, add or delete an item, close the list, reopen it to see if the list is as same as last change|The list should appear as same as when it was closed| | | |
+|9|See if user can clear all the check off marks at once|Click on the clear all button|There should be no check marks on the list| | | |
+|10|See if the list can be renamed|Select a list, click on the name, rename it and save| The list should appear using its new name| | | |

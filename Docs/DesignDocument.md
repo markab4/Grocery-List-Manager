@@ -1,14 +1,12 @@
 # Design Document
 
-**Author**: Adnan Salimi, Sean Rodriguez
+**Author**: Adnan Salimi, Sean Rodriguez. Revised by Mark Abramov.
 
 ## 1 Design Considerations
 
-The subsections below describe the issues that need to be addressed or resolved prior to or while completing the design, as well as issues that may influence the design process.
-
 ### 1.1 Assumptions
 
-We assume users of this application will be accessing the application with Android devices with Android API 25. The software will be dependent on the Nougat API and may not run optimally on older versions of Android. However, the specs of the application may allow for older devices to use the application without any significant issues. The software will be developed using Java and will be dependent on a SQLite Database.
+We assume users of this application will be accessing the application with Android devices with Android API 25. The software will be dependent on the Nougat API and may not run optimally on older versions of Android. However, the specs of the application may allow for older devices to use the application without any significant issues. The software will be developed using Java and will implement the SQLite DBMS.
 
 ### 1.2 Constraints
 
@@ -16,11 +14,9 @@ The application will not be run on a server-side database. Rather, it will be ru
 
 ### 1.3 System Environment
 
-The system must be able to operate with a device which is capable of receiving input by touch. The device running the application must have enough RAM to be able to run the application without any issues. In order to have persistent data, the system requires the program to have an embedded SQLite database to store user information, such as lists and items.
+This application will only be developed for Android mobile phone devices (not tablets). The system must be able to operate with a device which is capable of receiving input by touch. The device running the application must have enough RAM to be able to run the application without any issues. In order to have persistent data, the system requires the program to have an embedded SQLite database to store user information, such as lists and items. 
 
 ## 2 Architectural Design
-
-The architecture provides the high-level design view of a system and provides a basis for more detailed design work. These subsections describe the top-level components of the system you are building and their relationships.
 
 ### 2.1 Component Diagram
 
@@ -32,7 +28,7 @@ Our system contains four classes which will work together to provide the full fu
 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Deployment_Diagram.png)
 
-Given the simplicity of the applcation, our application contains a simple design which requires a user interface that displays the ability to create, modify, and view lists. From here, users will then be able to manage their lists and whatever items they may contain. The applications functionality ties to the applications SQLite database, which will allow for persistence as to save the users changes or modifications.
+Given the simplicity of the application, our application contains a straightforward design which requires a user interface that displays the ability to create, modify, and view lists. From here, users will then be able to manage their lists and whatever items they may contain. The applications functionality ties to the applications SQLite database, which will allow for persistence as to save the users changes or modifications.
 
 ## 3 Low-Level Design
 
@@ -40,20 +36,16 @@ Given the simplicity of the applcation, our application contains a simple design
 
 ### 3.1 Class Diagram
 
-*class diagram to be placed here shortly*
-
+![](../Design-Team/design-team.png)
 Our class diagram shows the necessary functions and attributes of the classes required for our system to function as intended. A ListHolder class may contain many GroceryLists. The GroceryList class shares a many-to-many relationship with the item class, as there can be many instances of items in many lists. 
 
-### 3.2 Other Diagrams
-
-*<u>Optionally</u>, you can decide to describe some dynamic aspects of your system using one or more behavioral diagrams, such as sequence and state diagrams.*
-
 ## 4 User Interface Design
+The main wireframes for our app are:
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Launcher.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/List%20Contents.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Creating%20a%20List.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Search%20for%20Item.jpg)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/New%20Item.jpg)
 
-[Link to Mockup Folder](https://github.com/qc-se-spring2019/370Spring19Team2/tree/master/GroupProject/Docs/Diagrams/Mockup)
+[The complete set of mockups for our app can be found here](https://github.com/qc-se-spring2019/370Spring19Team2/tree/master/GroupProject/Docs/Diagrams/Mockup)
 

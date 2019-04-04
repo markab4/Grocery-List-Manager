@@ -1,57 +1,159 @@
 package edu.qc.seclass.glm;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
+/**
+ * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
 public class MainActivity extends AppCompatActivity {
 
     Button addButton;
+    Button deleteButton;
+    Button editButton;
     ListView listView;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Link XML to Java variables
+        // Link XML Views to Java
         // addButton = (Button) findViewById(R.id.addButton);
-        // listView = (listView) findViewById(R.id.listView);
+        // listView = (ListView) findViewById(R.id.listView);
+        // deleteButton = (Button) findViewById(R.id.deleteButton);
+        // editButton = (Button) findViewById(R.id.editButton);
 
-        // Fetch list names from database
-
-        // For each list, append View to ListView
-            // Display list name
-                // On Click, open ListActivity
-                // On Hold, activate selection mode
-                    // Edit Action (removed from ActionBar if more than one list is selected)
-                        // Opens renameList dialog (function)
-                            // Input for new list name
-                            // Accept Button - Updates database
-                            // Cancel Button
-                    // Delete Action
-                        // Opens "Are You Sure" dialog (function)
-                            // Text warning
-                            // Accept Button
-                            // Cancel Button
-
-        // Add onClickListener for addButton
-        addButton.setOnClickListener(new View.OnClickListener() {
+        // Set OnClickListeners for all action bar buttons
+        editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // Open createList dialog (function)
-                    // Input for list name
-                    // Cancel Button
-                    // Accept Button
-                        // Updates database
-                    // Add items to list Button
-                        // Updates database
-                        // Goes to AddItemActivity
+                renameListDialog(savedInstanceState, 0);
             }
         });
 
+        deleteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteDialog(savedInstanceState, null);
+            }
+        });
+
+
+        addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                createListDialog(savedInstanceState);
+            }
+        });
+
+        // TODO Fetch list names from database
+        // TODO For each list, append View to ListView
+    }
+
+    /**
+     * Creates a dialog box to create a new list
+     * @param savedInstanceState
+     * @return the dialog box that was created
+     */
+    public Dialog createListDialog(Bundle savedInstanceState) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Create a new list");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_create_list, null));
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Save input into database
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Return to MainActivity
+            }
+        });
+
+        builder.setNeutralButton("Add Items", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Save input into database, go to AddItemActivity
+            }
+        });
+
+        return builder.create();
+    }
+
+    /**
+     * Creates a dialog box to rename the given list
+     * @param savedInstanceState
+     * @param listID The ID of the list in the database being renamed
+     * @return The dialog box that was created
+     */
+    public Dialog renameListDialog(Bundle savedInstanceState, int listID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Rename list");
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_create_list, null));
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Save input into database
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Return to MainActivity
+            }
+        });
+
+        return builder.create();
+    }
+
+    /**
+     * Creates a dialog box to delete the selected lists from the database
+     * @param savedInstanceState
+     * @param listIDs The IDs of the lists in the database being deleted
+     * @return The dialog box that was created
+     */
+    public Dialog deleteDialog(Bundle savedInstanceState, ArrayList<Integer> listIDs) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Delete list(s)");
+        builder.setMessage("The lists selected will be deleted. The list(s) will not be able to be recovered after this");
+
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Delete list from database
+            }
+        });
+
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO Return to MainActivity
+            }
+        });
+
+        return builder.create();
     }
 }

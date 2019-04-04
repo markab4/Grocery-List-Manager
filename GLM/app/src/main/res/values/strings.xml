@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Grocery List Manager</string>
+    <!-- TODO: Remove all string literals in application, add string here and reference accordingly -->
 </resources>

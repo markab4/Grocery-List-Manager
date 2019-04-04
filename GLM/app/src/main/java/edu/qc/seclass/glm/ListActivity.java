@@ -18,6 +18,8 @@ import android.widget.ListView;
 
 public class ListActivity extends AppCompatActivity {
 
+    private int ID;
+
     private ListView listView;
     private Button addButton;
     private Button deleteButton;

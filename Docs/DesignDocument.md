@@ -37,6 +37,10 @@ Given the simplicity of the application, our application contains a straightforw
 ![](../Design-Team/design-team.png)
 Our class diagram shows the necessary functions and attributes of the classes required for our system to function as intended. A ListHolder class may contain many GroceryLists. The GroceryList class shares a many-to-many relationship with the item class, as there can be many instances of items in many lists. 
 
+### 3.2 Database Diagram
+![](../Docs/Diagrams/DB_UML.PNG)
+Our Database diagram shows the necessary tables and their relationships for our database component.
+
 ## 4 User Interface Design
 The main wireframes for our app are:
 

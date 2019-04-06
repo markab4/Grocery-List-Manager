@@ -1,0 +1,14 @@
+[
+    {
+        "Id" : "01",
+        "Name" : "CoCo Puffs",
+        "Brand" : "Kellogs",
+        "Price": 5.54
+    },
+    {
+        "Id" : "02",
+        "Name" : "Lucky Puffs",
+        "Brand" : "ShairKellogs",
+        "Price": 15.54
+    }
+]

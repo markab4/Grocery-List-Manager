@@ -8,6 +8,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView rvLists;
     private List<GroceryList> lists;
     private DatabaseHelper dbHelper;
+    GroceryListsAdapter adapter;
 
 
     @Override
@@ -32,36 +38,48 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rvLists = findViewById(R.id.rvLists);
-        lists =  new ArrayList<>();
-        dbHelper = new DatabaseHelper(this);
+        lists = new ArrayList<>();
+        dbHelper = new DatabaseHelper(MainActivity.this);
 
         // Refactoring needed
         List<Long> listIds = dbHelper.getAllListIDs();
         for(int i = 0; i < listIds.size(); i++) {
-            lists.add(new GroceryList(dbHelper.getListNameByID(listIds.get(i))));
+            System.out.println(i);
+            lists.add(new GroceryList(
+                    listIds.get(i),
+                    dbHelper.getListNameByID(listIds.get(i))));
         }
 
-        GroceryListsAdapter adapter = new GroceryListsAdapter(lists);
+        adapter = new GroceryListsAdapter(lists);
         rvLists.setAdapter(adapter);
         rvLists.setLayoutManager(new LinearLayoutManager(this));
+
+        // TODO: Set OnClickListener for clicking on list name
+        // TODO: Remove checkboxes in view and reveal when a list is selected
     }
 
     /**
      * Creates a dialog box to create a new list
-     * @param savedInstanceState
      * @return the dialog box that was created
      */
-    private Dialog createListDialog(Bundle savedInstanceState) {
+    private Dialog createListDialog() {
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.create_list_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_create_list, null));
+        final View dialogLayout = inflater.inflate(R.layout.dialog_create_list,null);
+        builder.setView(dialogLayout);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Save input into database
+
+                dbHelper = new DatabaseHelper(MainActivity.this);
+                EditText input = dialogLayout.findViewById(R.id.new_list_name);
+
+                dbHelper.createNewList(input.getText().toString());
+                adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
         });
@@ -85,11 +103,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to rename the given list
-     * @param savedInstanceState
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
-    private Dialog renameListDialog(Bundle savedInstanceState, int listID) {
+    private Dialog renameListDialog(int listID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rename_list_title);
 
@@ -116,11 +133,10 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to delete the selected lists from the database
-     * @param savedInstanceState
      * @param listIDs The IDs of the lists in the database being deleted
      * @return The dialog box that was created
      */
-    private Dialog deleteDialog(Bundle savedInstanceState, ArrayList<Integer> listIDs) {
+    private Dialog deleteDialog(ArrayList<Integer> listIDs) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.delete_lists_title);
         builder.setMessage(R.string.delete_lists_message);
@@ -141,5 +157,24 @@ public class MainActivity extends AppCompatActivity {
         });
 
         return builder.create();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                createListDialog().show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -2,29 +2,44 @@ package edu.qc.seclass.glm;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
+ *              Mark Abramov <markabramov01@gmail.com>
  * @version     1.0
  * @since       1.0
  */
 
 public class MainActivity extends AppCompatActivity {
 
+    private RecyclerView rvLists;
+    private List<GroceryList> dummyLists;
+
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        rvLists = findViewById(R.id.rvLists);
+        dummyLists = Arrays.asList(
+                new GroceryList("Walmart Cart"),
+                new GroceryList("Costco List"),
+                new GroceryList("Amazon Wishlist"));
+        GroceryListsAdapter adapter = new GroceryListsAdapter(dummyLists);
+        rvLists.setAdapter(adapter);
+        rvLists.setLayoutManager(new LinearLayoutManager(this));
+
 
         // TODO: Fetch list names from database
         // TODO: For each list, append View to ListView

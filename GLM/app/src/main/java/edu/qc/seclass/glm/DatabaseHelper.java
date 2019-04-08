@@ -9,16 +9,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "GroceryList.db";
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
         // Present in future updates
     }
 
     @Override
-    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL(GroceryListContract.SQL_CREATE_ENTRIES);
 
+        // Import default rows
+        // db.insert()
     }
+
+    // TODO: Implement database helper functions
+    // Get all list names
+    // Get items in list ID
+    // Get item types
+    // Get items with item type ID
 }

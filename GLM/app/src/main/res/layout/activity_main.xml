@@ -8,13 +8,13 @@
     tools:context=".MainActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:layout_width="408dp"
-        android:layout_height="609dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:background="@android:color/background_light"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.571"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:listitem="@layout/recycler_view_main_lists" />

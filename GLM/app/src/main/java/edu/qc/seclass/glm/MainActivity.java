@@ -10,7 +10,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +22,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private RecyclerView rvLists;
-    private List<GroceryList> dummyLists;
+    private List<GroceryList> lists;
+    private DatabaseHelper dbHelper;
 
 
     @Override
@@ -32,17 +32,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         rvLists = findViewById(R.id.rvLists);
-        dummyLists = Arrays.asList(
-                new GroceryList("Walmart Cart"),
-                new GroceryList("Costco List"),
-                new GroceryList("Amazon Wishlist"));
-        GroceryListsAdapter adapter = new GroceryListsAdapter(dummyLists);
+        lists =  new ArrayList<>();
+        dbHelper = new DatabaseHelper(this);
+
+        // Refactoring needed
+        List<Long> listIds = dbHelper.getAllListIDs();
+        for(int i = 0; i < listIds.size(); i++) {
+            lists.add(new GroceryList(dbHelper.getListNameByID(listIds.get(i))));
+        }
+
+        GroceryListsAdapter adapter = new GroceryListsAdapter(lists);
         rvLists.setAdapter(adapter);
         rvLists.setLayoutManager(new LinearLayoutManager(this));
-
-
-        // TODO: Fetch list names from database
-        // TODO: For each list, append View to ListView
     }
 
     /**

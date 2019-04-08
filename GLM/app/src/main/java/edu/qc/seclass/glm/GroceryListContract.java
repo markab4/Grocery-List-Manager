@@ -5,46 +5,51 @@ import android.provider.BaseColumns;
 public final class GroceryListContract {
 
     public static final String SQL_CREATE_ENTRIES =
-            String.format(
-                    "CREATE  TABLE %s (" +
-                                "%s INTEGER PRIMARY KEY," +
-                                "%s TEXT" +
-                            ");" +
-                            "CREATE TABLE %s (" +
-                                "%s INTEGER PRIMARY KEY," +
-                                "%s TEXT" +
-                            ");" +
-                            "CREATE TABLE %s (" +
-                                "%s INTEGER PRIMARY KEY," +
-                                "%s INTEGER," +
-                                "%s TEXT," +
-                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
-                            ");" +
-                            "CREATE TABLE %s (" +
-                                "%s INTEGER PRIMARY KEY," +
-                                "%s TEXT" +
-                            ");" +
-                            "CREATE TABLE %s (" +
-                                "%s INTEGER PRIMARY KEY," +
-                                "%s REAL," +
-                                "%s INTEGER," +
-                                "%s INTEGER," +
-                                "%s INTEGER," +
-                                "FOREIGN KEY (%s) REFERENCES %s(%s)," +
-                                "FOREIGN KEY (%s) REFERENCES %s(%s)," +
-                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
-                            ");",
+//            String.format(
+//                            "CREATE TABLE %s (" +
+//                                "%s INTEGER PRIMARY KEY," +
+//                                "%s TEXT" +
+//                            ");" +
+//                            "CREATE TABLE %s (" +
+//                                "%s INTEGER PRIMARY KEY," +
+//                                "%s TEXT" +
+//                            ");" +
+//                            "CREATE TABLE %s (" +
+//                                "%s INTEGER PRIMARY KEY," +
+//                                "%s INTEGER," +
+//                                "%s TEXT," +
+//                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+//                            ");" +
+//                            "CREATE TABLE %s (" +
+//                                "%s INTEGER PRIMARY KEY," +
+//                                "%s TEXT" +
+//                            ");" +
+//                            "CREATE TABLE %s (" +
+//                                "%s INTEGER PRIMARY KEY," +
+//                                "%s REAL," +
+//                                "%s INTEGER," +
+//                                "%s INTEGER," +
+//                                "%s INTEGER," +
+//                                "FOREIGN KEY (%s) REFERENCES %s(%s)," +
+//                                "FOREIGN KEY (%s) REFERENCES %s(%s)," +
+//                                "FOREIGN KEY (%s) REFERENCES %s(%s)" +
+//                            ");",
+//
+//                    ItemType.TABLE_NAME, ItemType._ID, ItemType.COLUMN_NAME,
+//                    UnitType.TABLE_NAME, UnitType._ID, UnitType.COLUMN_NAME,
+//                    Item.TABLE_NAME, Item._ID, Item.COLUMN_TYPE_ID, Item.COLUMN_NAME,
+//                    Item.COLUMN_TYPE_ID, ItemType.TABLE_NAME, ItemType._ID,
+//                    GroceryList.TABLE_NAME, GroceryList._ID, GroceryList.COLUMN_NAME,
+//                    ListItem.TABLE_NAME, ListItem._ID, ListItem.COLUMN_QUANTITY, ListItem.COLUMN_UNIT_TYPE_ID, ListItem.COLUMN_ITEM_ID, ListItem.COLUMN_LIST_ID,
+//                    ListItem.COLUMN_UNIT_TYPE_ID, UnitType.TABLE_NAME, UnitType._ID,
+//                    ListItem.COLUMN_ITEM_ID, Item.TABLE_NAME, Item._ID,
+//                    ListItem.COLUMN_LIST_ID, GroceryList.TABLE_NAME, GroceryList._ID
+//            );
 
-                    ItemType.TABLE_NAME, ItemType._ID, ItemType.COLUMN_NAME,
-                    UnitType.TABLE_NAME, UnitType._ID, UnitType.COLUMN_NAME,
-                    Item.TABLE_NAME, Item._ID, Item.COLUMN_TYPE_ID, Item.COLUMN_NAME,
-                    Item.COLUMN_TYPE_ID, ItemType.TABLE_NAME, ItemType._ID,
-                    GroceryList.TABLE_NAME, GroceryList._ID, GroceryList.COLUMN_NAME,
-                    ListItem.TABLE_NAME, ListItem._ID, ListItem.COLUMN_QUANTITY, ListItem.COLUMN_UNIT_TYPE_ID, ListItem.COLUMN_ITEM_ID, ListItem.COLUMN_LIST_ID,
-                    ListItem.COLUMN_UNIT_TYPE_ID, UnitType.TABLE_NAME, UnitType._ID,
-                    ListItem.COLUMN_ITEM_ID, Item.TABLE_NAME, Item._ID,
-                    ListItem.COLUMN_LIST_ID, GroceryList.TABLE_NAME, GroceryList._ID
-            );
+            String.format("CREATE TABLE %s (" +
+                            "%s INTEGER PRIMARY KEY," +
+                            "%s TEXT" +  ");",
+                    GroceryList.TABLE_NAME, GroceryList._ID, GroceryList.COLUMN_NAME);
 
     private GroceryListContract() {}
 

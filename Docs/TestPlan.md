@@ -43,7 +43,7 @@ Most testing will be done manually. As necessary, the following technologies sha
 ## 2 Test Cases
 |Test Case|Purpose|Steps| Expected Result | Actual Result |Pass/Fail|Additional Information|
 |:---|:---|:---|:---|:---|:---|:---|
-|1 | Test if program opens as expected and without crashing | Open the APP| The app should display without crashing| |  | |
+|1 | Test if program opens as expected and without crashing | Open the APP| The app should display without crashing|The app opens as expected|Pass | |
 |2 | Test if user can add a new list| click "+" button on the right side, new screen will open and user inputs the list's name, then clicks "Finish" button | New list should be created |  | | |
 |3 | Test if user can delete existing list | Select the list you want to delete then click on the "trash can" icon| Selected list was removed from main menu | | | There is another way to delete the list, while you are in the selected item by clicking on "Trash can" logo. Confirmation modal will pop up.|
 |4 |Verify if the list can be renamed|Select a list, click on the name, rename it and save| The list should appear using its new name| | | |

@@ -1,4 +1,19 @@
 <resources>
     <string name="app_name">Grocery List Manager</string>
     <!-- TODO: Remove all string literals in application, add string here and reference accordingly -->
+    <string name="create_list_title">Create a new list</string>
+    <string name="rename_list_title">Rename list</string>
+    <string name="delete_lists_title">Delete list(s)</string>
+    <string name="delete_list_title">Delete list</string>
+    <string name="quantity_title">Change Quantity</string>
+
+    <string name="delete_lists_message">The lists selected will be deleted. The list(s) will not be able to be recovered after this</string>
+    <string name="delete_list_message">The list will be deleted. The list will not be able to be recovered after this</string>
+
+    <string name="confirm_message">OK</string>
+    <string name="cancel_message">Cancel</string>
+    <string name="add_item_message">Add Items</string>
+
+    <string name="list_name_input">Enter list name</string>
+    <string name="quantity_input">Enter quantity</string>
 </resources>

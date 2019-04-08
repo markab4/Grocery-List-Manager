@@ -21,44 +21,10 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button addButton;
-    private Button deleteButton;
-    private Button editButton;
-    private ListView listView;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        // Link XML Views to Java
-        // addButton = findViewById(R.id.addButton);
-        // listView = findViewById(R.id.listView);
-        // deleteButton = findViewById(R.id.deleteButton);
-        // editButton = findViewById(R.id.editButton);
-
-        // Set OnClickListeners for all action bar buttons
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                renameListDialog(savedInstanceState, 0);
-            }
-        });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteDialog(savedInstanceState, null);
-            }
-        });
-
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createListDialog(savedInstanceState);
-            }
-        });
 
         // TODO: Fetch list names from database
         // TODO: For each list, append View to ListView
@@ -80,13 +46,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: Save input into database
+                dialog.dismiss();
             }
         });
 
         builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to MainActivity
+                dialog.dismiss();
             }
         });
 
@@ -116,14 +83,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Save input into database
+                // TODO: Update database
+                dialog.dismiss();
             }
         });
 
-        builder.setNegativeButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to MainActivity
+                dialog.dismiss();
             }
         });
 
@@ -145,22 +113,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: Delete list from database
+                dialog.dismiss();
             }
         });
 
         builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to MainActivity
+                dialog.dismiss();
             }
         });
 
         return builder.create();
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu (Menu menu) {
-        getMenuInflater().inflate(R.menu.mymenu, menu);
-        return true;
     }
 }

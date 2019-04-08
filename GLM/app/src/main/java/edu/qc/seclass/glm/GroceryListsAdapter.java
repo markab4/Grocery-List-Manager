@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * @author      Mark Abramov <markabramov01@gmail.com>
+ *
+ * @version     1.0
+ * @since       1.0
+ */
+
 public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.Adapter<GroceryListsAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -38,7 +45,7 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.grocery_list_dispay, parent, false);
+        View contactView = inflater.inflate(R.layout.grocery_list_display, parent, false);
         // Return a new holder instance
         return new ViewHolder(contactView);
     }

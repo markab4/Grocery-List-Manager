@@ -11,7 +11,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".AddItemActivity"></activity>
         <activity android:name=".ListActivity" />
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/main_activity_label">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

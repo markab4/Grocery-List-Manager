@@ -58,6 +58,7 @@ You can clear all check boxes from a list by selecting the three dotted button a
 >I created a list and created new items, but I do not want to have to create these items every time when I shop. Will my items remain in the system?
 
 When you create a new item, it is stored in the applications database, so you will not have to create that item again.
+
 <br>
 
 >Can I have two lists with the same items?

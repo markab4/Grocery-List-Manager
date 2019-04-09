@@ -1,6 +1,7 @@
 # User Manual
 **Author**: Adnan Salimi, Revised by Mark Abramov
 
+Welcome to our Android Grocery List Manager application! This user guide will help you get started in using our application to help you shop for groceries more efficiently using our application to help you keep track of your lists, and the various items you shop for on a day to day basis.
 
 ## Contents
 * [Getting Started](#getting-started)
@@ -14,10 +15,6 @@
 * [Renaming a List](#renaming-a-list)
 * [Checking Off Items](#checking-off-items)
 * [Frequently Asked Questions](#frequently-asked-questions)
-
-**Author**: Adnan Salimi, Revised by Mark Abramov
-
-Welcome to our Android Grocery List Manager application! This user guide will help you get started in using our application to help you shop for groceries more efficiently using our application to help you keep track of your lists, and the various items you shop for on a day to day basis.
 
 ## Getting Started
 After intially loading up the GLM application, you will be taken to the launcher menu. This menu will display your current lists, of which you currently have none. To create a new list, press the + icon located at the top right of the screen. You will now begin creating your first list.

@@ -1,6 +1,6 @@
 # Test Plan
 
-**Author**: Shakirkhan Kalavant and Wangqiong Huang, Assisted by Mark Abramov
+**Author**: Wangqiong Huang, Assisted by Mark Abramov and Shakirkhan Kalavant.
 
 ## 1 Testing Strategy
 
@@ -43,10 +43,9 @@ Most testing will be done manually. As necessary, the following technologies sha
 
 
 ## 2 Test Cases
-Legend:
- 
+#### Legend:
 Pass ![#c5f015](https://placehold.it/15/c5f015/000000?text=+)
- 
+
 Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
  
 |Test Case|Purpose|Steps| Expected Result | Actual Result |Pass/Fail|Additional Information|
@@ -60,9 +59,9 @@ Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)
 |7|User is able to delete item from a list|Open a list, select an item to be deleted| The item should disappear from the list|Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)| |
 |8 |Test if user can change quantity of an item on a list | Select the list in which the item is. Click on the item. Quantity screen will open and change quantity then click "Confirm" button | The quantity of the selected item will change | Not implemented |Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | | 
 |9|Verify if user can add by picking item from a hierarchical list |Open the hierarchical list, pick an item, add it to the list|the item should appear in the list | Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | 
-|10|Verify if an item can be find by its type and name| Go to add, select the type, and pick the item by its name|The user should be able to find what they are looking for| Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)| |
+|10|Verify if an item can be found by its type and name| Go to add, select the type, and pick the item by its name|The user should be able to find what they are looking for| Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+)| |
 |11|Verify if user can find item by typing its name|Go to add, type and search the name of the item| The item that user is looking for should appear and possible to be add in to the list| Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | |
-|12|Verify if an item which is not in the hierachical list can be add into it|Go to add, type in an item is not in the hierachical list, click on the add item to add it into the list| The item should be add into the hierachical list| Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | |
+|12|Verify if an item which is not in the hierarchical list can be add into it|Go to add, type in an item is not in the hierachical list, click on the add item to add it into the list| The item should be add into the hierachical list| Not implemented | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | |
 |13|Verify if the list is saved automatically|Open a list, add or delete an item, close the list, reopen it to see if the list is as same as last change|The list should appear as same as when it was closed| It did autosave the list of Grocery Lists when app was closed | Pass ![#c5f015](https://placehold.it/15/c5f015/000000?text=+) | |
 |14|Verify if item can be checked off|Click on the box to check off the item|The box should be checked off| There are no items yet to be checked off. | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | |
 |15|Verify if user can clear all the check off marks at once|Click on the clear all button|There should be no check marks on the list| Not implemented. | Fail ![#f03c15](https://placehold.it/15/f03c15/000000?text=+) | |

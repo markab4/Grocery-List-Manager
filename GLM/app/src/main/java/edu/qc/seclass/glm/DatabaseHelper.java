@@ -120,12 +120,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getColumnIndexOrThrow(GroceryListContract.GroceryList.COLUMN_NAME));
     }
 
-    public void createNewList(String name) {
+    public long createNewList(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
-
         ContentValues values = new ContentValues();
         values.put(GroceryListContract.GroceryList.COLUMN_NAME, name);
-        db.insert(GroceryListContract.GroceryList.TABLE_NAME, null, values);
+        return db.insert(GroceryListContract.GroceryList.TABLE_NAME, null, values);
     }
 
     // Get items in list ID

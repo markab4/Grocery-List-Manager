@@ -11,10 +11,10 @@ package edu.qc.seclass.glm;
 public class GroceryList {
     private String listName;
     private boolean isSelected;
-    private long ID;
+    private long groceryListId;
 
     public GroceryList(Long ID, String name){
-        this.ID = ID;
+        this.groceryListId = ID;
         this.listName = name;
         this.isSelected = false;
     }

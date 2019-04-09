@@ -58,6 +58,7 @@ public class MainActivity extends AppCompatActivity {
         // TODO: Remove checkboxes in view and reveal when a list is selected
     }
 
+
     /**
      * Creates a dialog box to create a new list
      * @return the dialog box that was created
@@ -77,8 +78,9 @@ public class MainActivity extends AppCompatActivity {
 
                 dbHelper = new DatabaseHelper(MainActivity.this);
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
-
-                dbHelper.createNewList(input.getText().toString());
+                String listName = input.getText().toString();
+                long id = dbHelper.createNewList(listName);
+                lists.add(new GroceryList(id, listName));
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
@@ -155,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
-
         return builder.create();
     }
 

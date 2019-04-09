@@ -8,8 +8,7 @@ Welcome to our Android Grocery List Manager application. This user guide will he
 
 ## Introduction
 
-After intially loading up the GLM application, you will be taken to the launcher menu. This menu will display your current lists, of which you currently have none. To create a new list, press the 
-+ icon located at the top right of the screen. You will now begin creating your first list.
+After intially loading up the GLM application, you will be taken to the launcher menu. This menu will display your current lists, of which you currently have none. To create a new list, press the + icon located at the top right of the screen. You will now begin creating your first list.
 
 ## Creating a List
 

@@ -27,6 +27,23 @@
         android:title="Edit List"
         app:showAsAction="always">
 
+        <item
+            android:title="Rename List"
+            android:id="@+id/renameList">
+
+        </item>
+        <item
+            android:title="Group By Type"
+            android:id="@+id/groupByTpe">
+
+        </item>
+        <item
+            android:id="@+id/clearChecks"
+            android:checkable="false"
+            android:title="Clear Checkboxes">
+
+        </item>
+
     </item>
 
 </menu>

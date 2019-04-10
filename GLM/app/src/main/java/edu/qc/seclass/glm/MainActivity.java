@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
- *              Mark Abramov <markabramov01@gmail.com>
- * @version     1.0
- * @since       1.0
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
+ * Mark Abramov <markabramov01@gmail.com>
+ * @version 1.0
+ * @since 1.0
  */
 
 public class MainActivity extends AppCompatActivity {
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Refactoring needed
         List<Long> listIds = dbHelper.getAllListIDs();
-        for(int i = 0; i < listIds.size(); i++) {
+        for (int i = 0; i < listIds.size(); i++) {
             System.out.println(i);
             lists.add(new GroceryList(
                     listIds.get(i),
@@ -54,13 +54,25 @@ public class MainActivity extends AppCompatActivity {
         rvLists.setAdapter(adapter);
         rvLists.setLayoutManager(new LinearLayoutManager(this));
 
-        // TODO: Set OnClickListener for clicking on list name
-        // TODO: Remove checkboxes in view and reveal when a list is selected
+        rvLists.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, rvLists ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        GroceryList selectedList = lists.get(position);
+                        selectedList.setSelected(!selectedList.isSelected());
+                        adapter.notifyItemChanged(position);
+                    }
+
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
     }
 
 
     /**
      * Creates a dialog box to create a new list
+     *
      * @return the dialog box that was created
      */
     private Dialog createListDialog() {
@@ -69,13 +81,12 @@ public class MainActivity extends AppCompatActivity {
         builder.setTitle(R.string.create_list_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogLayout = inflater.inflate(R.layout.dialog_create_list,null);
+        final View dialogLayout = inflater.inflate(R.layout.dialog_create_list, null);
         builder.setView(dialogLayout);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
                 dbHelper = new DatabaseHelper(MainActivity.this);
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
@@ -105,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to rename the given list
+     *
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
@@ -135,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to delete the selected lists from the database
+     *
      * @param listIDs The IDs of the lists in the database being deleted
      * @return The dialog box that was created
      */

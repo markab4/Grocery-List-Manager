@@ -45,9 +45,9 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
         LayoutInflater inflater = LayoutInflater.from(context);
 
         // Inflate the custom layout
-        View contactView = inflater.inflate(R.layout.grocery_list_display, parent, false);
+        View groceryListView = inflater.inflate(R.layout.grocery_list_display, parent, false);
         // Return a new holder instance
-        return new ViewHolder(contactView);
+        return new ViewHolder(groceryListView);
     }
 
     @Override

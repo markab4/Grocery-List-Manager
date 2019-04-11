@@ -2,6 +2,7 @@ package edu.qc.seclass.glm;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         lists = new ArrayList<>();
         dbHelper = new DatabaseHelper(MainActivity.this);
 
-        // Refactoring needed
+        // Could need refactoring
         List<Long> listIds = dbHelper.getAllListIDs();
         for (int i = 0; i < listIds.size(); i++) {
             System.out.println(i);
@@ -62,13 +63,16 @@ public class MainActivity extends AppCompatActivity {
         rvLists.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, rvLists ,new RecyclerItemClickListener.OnItemClickListener() {
                     @Override public void onItemClick(View view, int position) {
-                        GroceryList selectedList = lists.get(position);
-                        selectedList.setSelected(!selectedList.isSelected());
-                        adapter.notifyItemChanged(position);
+                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+                        listIntent.setAction(Intent.ACTION_SEND);
+                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+                        startActivity(listIntent);
                     }
 
                     @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
+                        GroceryList selectedList = lists.get(position);
+                        selectedList.setSelected(!selectedList.isSelected());
+                        adapter.notifyItemChanged(position);
                     }
                 })
         );
@@ -113,6 +117,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: Save input into database, go to AddItemActivity
+                dbHelper = new DatabaseHelper(MainActivity.this);
+                EditText input = dialogLayout.findViewById(R.id.new_list_name);
+                String listName = input.getText().toString();
+                long id = dbHelper.createNewList(listName);
+                lists.add(new GroceryList(id, listName));
+                adapter.notifyDataSetChanged();
+
+                Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
+                addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
+                startActivity(addItemIntent);
             }
         });
 
@@ -125,7 +139,7 @@ public class MainActivity extends AppCompatActivity {
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
-    private Dialog renameListDialog(int listID) {
+    private Dialog renameListDialog(long listID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rename_list_title);
 
@@ -156,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
      * @param listIDs The IDs of the lists in the database being deleted
      * @return The dialog box that was created
      */
-    private Dialog deleteDialog(ArrayList<Integer> listIDs) {
+    private Dialog deleteDialog(ArrayList<Long> listIDs) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.delete_lists_title);
         builder.setMessage(R.string.delete_lists_message);

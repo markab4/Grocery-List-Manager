@@ -35,7 +35,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(GroceryListContract.SQL_CREATE_ENTRIES);
+        for(int i = 0; i < GroceryListContract.SQL_CREATE_ENTRIES.length; i++) {
+            db.execSQL(GroceryListContract.SQL_CREATE_ENTRIES[i]);
+        }
     }
 
     /**
@@ -105,5 +107,26 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(GroceryListContract.GroceryList.COLUMN_NAME, name);
         return db.insert(GroceryListContract.GroceryList.TABLE_NAME, null, values);
     }
+
+    public void renameListByID(Long id, String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GroceryListContract.GroceryList.COLUMN_NAME, name);
+
+        String selection = GroceryListContract.GroceryList._ID + " = ?";
+        String[] selectionArgs = { id.toString() };
+
+        db.update(GroceryListContract.GroceryList.TABLE_NAME, values, selection, selectionArgs);
+    }
+
+    public void deleteListByID(Long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String selection = GroceryListContract.GroceryList._ID + " = ?";
+        String[] selectionArgs = { id.toString() };
+
+        db.delete(GroceryListContract.GroceryList.TABLE_NAME, selection, selectionArgs);
+    }
+
+
 
 }

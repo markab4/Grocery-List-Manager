@@ -65,12 +65,41 @@ public class AddItemActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to ListActivity
+                dialog.dismiss();
             }
         });
 
         return builder.create();
     }
 
+    /**
+     * Creates a dialog box to select the quantity
+     * @param savedInstanceState
+     * @param itemID The ID of the item that the quantity is being changed
+     * @return The dialog box that was created
+     */
+    private Dialog newItemDialog(Bundle savedInstanceState, int itemID) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.new_item_title);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_new_item, null));
+
+        builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // TODO: Create new item, refresh list
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        return builder.create();
+    }
 
 }

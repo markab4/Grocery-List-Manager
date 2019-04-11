@@ -23,7 +23,7 @@
     <item
 
         android:id="@+id/action_dots"
-        android:icon="@mipmap/ic_dots"
+        android:icon="@mipmap/ic_dots_white"
         android:title="Edit List"
         app:showAsAction="always">
 

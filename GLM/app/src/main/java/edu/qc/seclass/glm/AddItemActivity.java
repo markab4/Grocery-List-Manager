@@ -25,29 +25,10 @@ import android.widget.ListView;
 
 public class AddItemActivity extends AppCompatActivity {
 
-    private int ID;
-    private ListView listView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-
-        // Link XML views to Java
-        // listView = findViewById(R.id.listView);
-
-        // Search bar
-            // Onchange?
-                // Search database for item (simple linear search with all lowercase filtering)
-
-        // Get categories from database
-        // Populate listView
-            // Category
-                // OnClick
-                    // Get items from category
-                    // Populate List View
-                    // Add plus button at the end
-                        // Opens quantity dialog
     }
 
     /**
@@ -66,8 +47,7 @@ public class AddItemActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Change quantity in the database, return to AddItemActivity
-                // TODO: Display Snackbar to show success of item being added to the correct list
+                // TODO: Add item and quantity to the database
             }
         });
 

@@ -11,7 +11,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".AddItemActivity"
-            android:label="@string/add_item_activity_label"></activity>
+            android:label="@string/add_item_activity_label"
+            android:windowSoftInputMode="adjustPan|adjustResize"></activity>
         <activity
             android:name=".ListActivity"
             android:label="@string/list_activity_label"></activity>

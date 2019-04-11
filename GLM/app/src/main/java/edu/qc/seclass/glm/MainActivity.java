@@ -96,12 +96,15 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                dbHelper = new DatabaseHelper(MainActivity.this);
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
-                long id = dbHelper.createNewList(listName);
-                lists.add(new GroceryList(id, listName));
-                adapter.notifyDataSetChanged();
+
+                if(!listName.isEmpty()) {
+                    long id = dbHelper.createNewList(listName);
+                    lists.add(new GroceryList(id, listName));
+                    adapter.notifyDataSetChanged();
+                }
+
                 dialog.dismiss();
             }
         });
@@ -116,17 +119,18 @@ public class MainActivity extends AppCompatActivity {
         builder.setNeutralButton(R.string.add_item_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Save input into database, go to AddItemActivity
-                dbHelper = new DatabaseHelper(MainActivity.this);
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
-                long id = dbHelper.createNewList(listName);
-                lists.add(new GroceryList(id, listName));
-                adapter.notifyDataSetChanged();
 
-                Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
-                addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
-                startActivity(addItemIntent);
+                if(!listName.isEmpty()) {
+                    long id = dbHelper.createNewList(listName);
+                    lists.add(new GroceryList(id, listName));
+                    adapter.notifyDataSetChanged();
+
+                    Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
+                    addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
+                    startActivity(addItemIntent);
+                }
             }
         });
 

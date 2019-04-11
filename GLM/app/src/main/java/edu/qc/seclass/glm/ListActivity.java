@@ -12,6 +12,14 @@ import android.widget.ListView;
 
 /**
  * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
+ *
+ * List Activity class users are able to view the items in their list. Users can checkoff a list,
+ * update the quantity of a item, add/delete items, group by category, and clear all checkboxes.
+ * Users can move back to MainActivity by using the back button on the action menu. Users can go to
+ * the AddItemActivity when clicking the add items button on the action menu.
+ *
+ * IMPORTANT: An ID of a list should be supplied when entering this activity.
+ *
  * @version     1.0
  * @since       1.0
  */

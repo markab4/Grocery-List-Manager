@@ -12,6 +12,10 @@ import java.util.List;
 
 /**
  * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
+ *
+ * Utility class that allows developer to interface with the database using defined functions to
+ * query and update the database.
+ *
  * @version     1.0
  * @since       1.0
  */

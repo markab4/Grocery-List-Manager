@@ -4,6 +4,9 @@ package edu.qc.seclass.glm;
  * @author      Mark Abramov <markabramov01@gmail.com>
  *              Sean Rodriguez <sean.rodriguez@outlook.com>
  *
+ * Class to store the ID, and name of a list, list should be able to be checked.
+ * Used for Lists in MainActivity
+ *
  * @version     1.0
  * @since       1.0
  */

@@ -2,6 +2,18 @@ package edu.qc.seclass.glm;
 
 import android.provider.BaseColumns;
 
+/**
+ * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
+ *
+ * Utility Class used to define the schema of the database. Included are SQL queries to create the
+ * database on newly installed applications, and classes of each table in the database. Do not
+ * create a column for ID. BaseColumns has a variable, _id, that will auto-increment when a new
+ * row is added to the table.
+ *
+ * @version     1.0
+ * @since       1.0
+ */
+
 public final class GroceryListContract {
 
     public static final String SQL_CREATE_ENTRIES =

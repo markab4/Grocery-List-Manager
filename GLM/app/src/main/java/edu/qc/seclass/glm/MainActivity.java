@@ -20,6 +20,11 @@ import java.util.List;
 /**
  * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * Mark Abramov <markabramov01@gmail.com>
+ *
+ * Main Activity class where the user will be able to create new list, rename lists and delete lists
+ * through the use of Dialog boxes. User should be able to enter the AddItemActivity from
+ * New List Dialog box, or enter the ListActivity from clicking on a list.
+ *
  * @version 1.0
  * @since 1.0
  */

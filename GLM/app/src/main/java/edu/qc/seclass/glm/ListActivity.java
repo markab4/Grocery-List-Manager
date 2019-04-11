@@ -26,50 +26,10 @@ import android.widget.ListView;
 
 public class ListActivity extends AppCompatActivity {
 
-    private int ID;
-
-    private ListView listView;
-    private Button addButton;
-    private Button deleteButton;
-    private Button menuButton;
-
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-
-        // Link XML Views to Java
-        // listView = findViewById(R.id.listView);
-        // addButton = findViewById(R.id.addButton);
-        // deleteButton = findViewById(R.id.deleteButton);
-        // menuButton = findViewById(R.id.menuButton);
-
-        // TODO: Fetch list items from database
-        // TODO: Populate listView with each item
-            // Item:
-                // Checkbox:
-                    // Onclick, toggle boolean, save into database
-                // Item:
-                    // Onclick, toggle boolean, save into database
-                    // OnHold, enter delete mode
-                // Quantity:
-                    // Onclick, open Quantity Dialog
-                        // Confirm - Update database
-                        // Cancel
-
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Go to addItem Activity
-            }
-        });
-
-        deleteButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                deleteDialog(savedInstanceState, 0);
-            }
-        });
     }
 
     /**
@@ -93,7 +53,7 @@ public class ListActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to ListActivity
+                dialog.dismiss();
             }
         });
 
@@ -123,7 +83,7 @@ public class ListActivity extends AppCompatActivity {
         builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Return to ListActivity
+                dialog.dismiss();
             }
         });
 

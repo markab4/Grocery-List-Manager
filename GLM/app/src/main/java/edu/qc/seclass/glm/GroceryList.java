@@ -14,16 +14,20 @@ package edu.qc.seclass.glm;
 public class GroceryList {
     private String listName;
     private boolean isSelected;
-    private long groceryListId;
+    private long ID;
 
     public GroceryList(Long ID, String name){
-        this.groceryListId = ID;
+        this.ID = ID;
         this.listName = name;
         this.isSelected = false;
     }
 
     public String getListName() {
         return listName;
+    }
+
+    public long getListID() {
+        return ID;
     }
 
     public void setListName(String listName) {

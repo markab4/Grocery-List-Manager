@@ -51,6 +51,46 @@ public final class GroceryListContract {
 
     };
 
+    public static final String[] DEFAULT_UNIT_TYPES = {
+            "Pounds",
+            "Ounces",
+            "Grams",
+            "Milligrams",
+            "Liters",
+            "Milliliters",
+            "Gallons",
+            "Quarts",
+            "Pints",
+            "Teaspoons",
+            "Tablespoons",
+            "Units",
+            "Boxes",
+            "Bags"
+    };
+
+    public static final String[] DEFAULT_ITEM_TYPES = {
+            "Fruits",
+            "Vegetables",
+            "Grains",
+            "Dairy",
+            "Meat",
+            "Drinks",
+            "Seafood"
+    };
+
+    public static final String[] DEFAULT_ITEMS = {
+            "Apples",
+            "Bananas",
+            "Pizza",
+            "Apple Juice",
+            "Milk",
+            "Peas",
+            "Chicken",
+            "Water"
+    };
+
+
+
     private GroceryListContract() {}
 
     public static class ItemType implements BaseColumns {
@@ -59,7 +99,7 @@ public final class GroceryListContract {
     }
 
     public static class UnitType implements BaseColumns {
-        public static final String TABLE_NAME = "UnitTypeId";
+        public static final String TABLE_NAME = "UnitType";
         public static final String COLUMN_NAME = "Name";
     }
 

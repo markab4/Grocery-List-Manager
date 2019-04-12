@@ -143,17 +143,22 @@ public class MainActivity extends AppCompatActivity {
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
-    private Dialog renameListDialog(long listID) {
+    private Dialog renameListDialog(final long listID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rename_list_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_create_list, null));
+        final View dialogLayout = inflater.inflate(R.layout.dialog_create_list, null);
+        builder.setView(dialogLayout);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Update database
+                EditText input = dialogLayout.findViewById(R.id.new_list_name);
+
+                dbHelper.renameListByID(listID, input.getText().toString());
+                // TODO: Update RecyclerView
+                adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
         });
@@ -174,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
      * @param listIDs The IDs of the lists in the database being deleted
      * @return The dialog box that was created
      */
-    private Dialog deleteDialog(ArrayList<Long> listIDs) {
+    private Dialog deleteDialog(final ArrayList<Long> listIDs) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.delete_lists_title);
         builder.setMessage(R.string.delete_lists_message);
@@ -182,7 +187,11 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Delete list from database
+                for(int i = 0; i < listIDs.size(); i++) {
+                    dbHelper.deleteListByID(listIDs.get(i));
+                    lists.remove(i);
+                }
+                adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
         });

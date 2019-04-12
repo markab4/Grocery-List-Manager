@@ -21,11 +21,10 @@ import java.util.List;
 /**
  * @author Sean Rodriguez <sean.rodriguez@outlook.com>
  * Mark Abramov <markabramov01@gmail.com>
- *
+ * <p>
  * Main Activity class where the user will be able to create new list, rename lists and delete lists
  * through the use of Dialog boxes. User should be able to enter the AddItemActivity from
  * New List Dialog box, or enter the ListActivity from clicking on a list.
- *
  * @version 1.0
  * @since 1.0
  */
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvLists = findViewById(R.id.rvLists);
+        rvLists = findViewById(R.id.rvItemTypes);
         lists = new ArrayList<>();
         dbHelper = new DatabaseHelper(MainActivity.this);
 
@@ -61,15 +60,17 @@ public class MainActivity extends AppCompatActivity {
         rvLists.setLayoutManager(new LinearLayoutManager(this));
 
         rvLists.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, rvLists ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                new RecyclerItemClickListener(this, rvLists, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
                         listIntent.setAction(Intent.ACTION_SEND);
                         listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
                         startActivity(listIntent);
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         GroceryList selectedList = lists.get(position);
                         selectedList.setSelected(!selectedList.isSelected());
                         adapter.notifyItemChanged(position);
@@ -99,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
 
-                if(!listName.isEmpty()) {
+                if (!listName.isEmpty()) {
                     long id = dbHelper.createNewList(listName);
                     lists.add(new GroceryList(id, listName));
                     adapter.notifyDataSetChanged();
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
 
-                if(!listName.isEmpty()) {
+                if (!listName.isEmpty()) {
                     long id = dbHelper.createNewList(listName);
                     lists.add(new GroceryList(id, listName));
                     adapter.notifyDataSetChanged();
@@ -188,10 +189,10 @@ public class MainActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                for(int i = 0; i < listIDs.size(); i++) {
+                for (int i = 0; i < listIDs.size(); i++) {
                     dbHelper.deleteListByID(listIDs.get(i));
-                    for(int j = 0; j < lists.size(); j++) {
-                        if(lists.get(j).getListID() == listIDs.get(i)) {
+                    for (int j = 0; j < lists.size(); j++) {
+                        if (lists.get(j).getListID() == listIDs.get(i)) {
                             lists.remove(j);
                         }
                     }
@@ -228,25 +229,25 @@ public class MainActivity extends AppCompatActivity {
                 ArrayList<Long> selectedList = new ArrayList();
                 int index = -1;
 
-                for(int i = 0; i < lists.size(); i++) {
-                    if(lists.get(i).isSelected()) {
+                for (int i = 0; i < lists.size(); i++) {
+                    if (lists.get(i).isSelected()) {
                         selectedList.add(lists.get(i).getListID());
-                        if(selectedList.size() == 1) index = i;
+                        if (selectedList.size() == 1) index = i;
                         else break;
                     }
                 }
 
-                if(selectedList.size() == 1)
+                if (selectedList.size() == 1)
                     renameListDialog(selectedList.get(0), index).show();
 
                 return true;
             case R.id.action_delete:
                 ArrayList<Long> selectedLists = new ArrayList();
-                for(int i = 0; i < lists.size(); i++) {
-                    if(lists.get(i).isSelected())
+                for (int i = 0; i < lists.size(); i++) {
+                    if (lists.get(i).isSelected())
                         selectedLists.add(lists.get(i).getListID());
                 }
-                if(selectedLists.size() >= 1)
+                if (selectedLists.size() >= 1)
                     deleteDialog(selectedLists).show();
                 return true;
             default:

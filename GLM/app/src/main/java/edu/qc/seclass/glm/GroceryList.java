@@ -1,7 +1,7 @@
 package edu.qc.seclass.glm;
 
 /**
- * @author      Mark Abramov <markabramov01@gmail.com>
+ * @author Mark Abramov <markabramov01@gmail.com>
  *              Sean Rodriguez <sean.rodriguez@outlook.com>
  *
  * Class to store the ID, and name of a list, list should be able to be checked.

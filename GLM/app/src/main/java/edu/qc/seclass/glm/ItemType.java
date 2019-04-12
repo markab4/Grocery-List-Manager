@@ -1,13 +1,12 @@
 package edu.qc.seclass.glm;
 
 /**
- * @author          Mark Abramov <markabramov01@gmail.com>
- *                  Sean Rodriguez <sean.rodriguez@outlook.com>
- *
- * Class contains the name of the item type and it's corresponding id from the database
- *
- * @version     1.0
- * @since       1.0
+ * @author Mark Abramov <markabramov01@gmail.com>
+ * Sean Rodriguez <sean.rodriguez@outlook.com>
+ * <p>
+ * Class contains the name of the item type and its corresponding id from the database
+ * @version 1.0
+ * @since 1.0
  */
 
 public class ItemType {

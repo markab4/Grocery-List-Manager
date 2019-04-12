@@ -2,36 +2,78 @@ package edu.qc.seclass.glm;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.View;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
- * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
- *
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
+ * <p>
  * Add Item Activity class allows users to navigate through item types and see the items under a
  * specific item type. Users can add items to the List that they entered from and select a quantity
  * and unit type from a dialog box. Users can search for a specific item using the search box. Users
  * can create a new item using the add button on the action menu, and be prompted with a 'New Item'
  * Dialog box.
- *
+ * <p>
  * IMPORTANT: An ID of a list should be supplied when entering this activity.
- *
- * @version     1.0
- * @since       1.0
+ * @version 1.0
+ * @since 1.0
  */
 
 public class AddItemActivity extends AppCompatActivity {
+
+    List<ItemType> itemTypes;
+    ItemTypeAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+        // Lookup the recyclerview in activity layout
+        RecyclerView rvItemTypes = (RecyclerView) findViewById(R.id.rvItemTypes);
+
+        // Initialize item types
+        itemTypes = new ArrayList<>(Arrays.asList(
+                new ItemType((long) 1234, "Fruit"),
+                new ItemType((long) 1738, "Vegetables"),
+                new ItemType((long) 6969, "Personal Care")));
+        adapter = new ItemTypeAdapter(itemTypes);
+        rvItemTypes.setAdapter(adapter);
+        rvItemTypes.setLayoutManager(new LinearLayoutManager(this));
+
+        rvItemTypes.addOnItemTouchListener(
+                new RecyclerItemClickListener(this, rvItemTypes, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        // do whatever you want to do on item click
+//                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+//                        listIntent.setAction(Intent.ACTION_SEND);
+//                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+//                        startActivity(listIntent);
+                    }
+
+                    @Override
+                    public void onLongItemClick(View view, int position) {
+                        // do whatever you want to do on long item click
+//                        GroceryList selectedList = lists.get(position);
+//                        selectedList.setSelected(!selectedList.isSelected());
+//                        adapter.notifyItemChanged(position);
+                    }
+                })
+        );
     }
 
     /**
      * Creates a dialog box to select the quantity
+     *
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
@@ -61,6 +103,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to select the quantity
+     *
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */

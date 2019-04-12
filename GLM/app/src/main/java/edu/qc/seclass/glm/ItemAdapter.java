@@ -11,6 +11,12 @@ import android.widget.TextView;
 
 import java.util.List;
 
+/**
+ * @author      Mark Abramov <markabramov01@gmail.com>
+ * @version     1.0
+ * @since       1.0
+ */
+
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {

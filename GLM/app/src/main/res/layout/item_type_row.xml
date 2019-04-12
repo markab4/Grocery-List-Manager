@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -9,22 +10,21 @@
     android:paddingBottom="10dp"
     >
 
-    <CheckBox
-        android:id="@+id/cbItemTypeSelected"
-        android:layout_width="36dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="5dp"
-        android:checked="false"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp" />
-
     <TextView
         android:id="@+id/tvItemTypeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="10dp"
+        android:paddingLeft="20dp"
         android:textSize="18sp"
         tools:text="Cereal" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="10dp"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:visibility="visible"
+        app:srcCompat="@android:drawable/ic_media_play" />
 
 </LinearLayout>

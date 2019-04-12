@@ -14,22 +14,21 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 /**
- * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
- *
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>
+ * Mark Abramov <markabramov01@gmail.com>
+ * <p>
  * List Activity class users are able to view the items in their list. Users can checkoff a list,
  * update the quantity of a item, add/delete items, group by category, and clear all checkboxes.
  * Users can move back to MainActivity by using the back button on the action menu. Users can go to
  * the AddItemActivity when clicking the add items button on the action menu.
- *
+ * <p>
  * IMPORTANT: An ID of a list should be supplied when entering this activity.
- *
- * @version     1.0
- * @since       1.0
+ * @version 1.0
+ * @since 1.0
  */
 
 public class ListActivity extends AppCompatActivity {
@@ -52,18 +51,19 @@ public class ListActivity extends AppCompatActivity {
 //                    dbHelper.getListNameByID(listIds.get(i))));
 //        }
         items = Arrays.asList(
-                    new GroceryItem(new Item(1, "Coco Puffs", 2, "Grains"), 2, "boxes"),
-                    new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
-                    new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
-                );
+                new GroceryItem(new Item(1, "Coco Puffs", 2, "Grains"), 2, "boxes"),
+                new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
+                new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
+        );
 
         adapter = new ItemAdapter(items);
         rvItemList.setAdapter(adapter);
         rvItemList.setLayoutManager(new LinearLayoutManager(this));
 
         rvItemList.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, rvItemList ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
+                new RecyclerItemClickListener(this, rvItemList, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
                         // do whatever you want to do on item click
 //                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
 //                        listIntent.setAction(Intent.ACTION_SEND);
@@ -71,7 +71,8 @@ public class ListActivity extends AppCompatActivity {
 //                        startActivity(listIntent);
                     }
 
-                    @Override public void onLongItemClick(View view, int position) {
+                    @Override
+                    public void onLongItemClick(View view, int position) {
                         // do whatever you want to do on long item click
 //                        GroceryList selectedList = lists.get(position);
 //                        selectedList.setSelected(!selectedList.isSelected());
@@ -83,8 +84,9 @@ public class ListActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to delete the list from the database
+     *
      * @param savedInstanceState
-     * @param listID The ID of the list being deleted from the database
+     * @param listID             The ID of the list being deleted from the database
      * @return The dialog box that was created
      */
     private Dialog deleteDialog(Bundle savedInstanceState, int listID) {
@@ -111,8 +113,9 @@ public class ListActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to select the quantity
+     *
      * @param savedInstanceState
-     * @param itemID The ID of the item that the quantity is being changed
+     * @param itemID             The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
     private Dialog quantityDialog(Bundle savedInstanceState, int itemID) {

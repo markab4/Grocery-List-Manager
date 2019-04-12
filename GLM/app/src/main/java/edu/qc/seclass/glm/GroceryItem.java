@@ -1,42 +1,53 @@
 package edu.qc.seclass.glm;
 
-public class GroceryItem extends ItemType {
+/**
+ * @author          Mark Abramov <markabramov01@gmail.com>
+ *                  Sean Rodriguez <sean.rodriguez@outlook.com>
+ *
+ * Class contains item, quantity, unit type and a flag if the item is checked off
+ *
+ * @version     1.0
+ * @since       1.0
+ */
+
+public class GroceryItem {
     private int quantity;
-    private String itemName;
+    private String unitType;
     private boolean isChecked;
+    private Item item;
+
+    public GroceryItem(Item item, int quantity, String unitType) {
+        this.item = item;
+        this.quantity = quantity;
+        this.unitType = unitType;
+        this.isChecked = false;
+    }
+
+    public Item getItem() {
+        return item;
+    }
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public String getUnitType() {
+        return unitType;
     }
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public boolean isChecked() {
-        return isChecked;
+    public void setUnitType(String unitType) {
+        this.unitType = unitType;
     }
 
     public void setChecked(boolean checked) {
         isChecked = checked;
     }
 
-    public GroceryItem(String itemName, int quantity) {
-        super();
-        this.quantity = quantity;
-        this.itemName = itemName;
-        this.isChecked = false;
-    }
-
-    public GroceryItem(String itemName){
-        this(itemName, 1);
+    public boolean isChecked() {
+        return isChecked;
     }
 }

@@ -1,8 +1,8 @@
 package edu.qc.seclass.glm;
 
 /**
- * @author          Mark Abramov <markabramov01@gmail.com>
- *                  Sean Rodriguez <sean.rodriguez@outlook.com>
+ * @author      Mark Abramov <markabramov01@gmail.com>
+ *              Sean Rodriguez <sean.rodriguez@outlook.com>
  *
  * Class contains the id and name of the item, and the item type of the item
  *

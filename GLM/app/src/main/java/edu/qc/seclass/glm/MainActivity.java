@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
-    private Dialog renameListDialog(final long listID) {
+    private Dialog renameListDialog(final long listID, final int index) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rename_list_title);
 
@@ -157,7 +157,8 @@ public class MainActivity extends AppCompatActivity {
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
 
                 dbHelper.renameListByID(listID, input.getText().toString());
-                // TODO: Update RecyclerView
+                lists.get(index).setListName(input.getText().toString());
+
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
@@ -189,7 +190,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 for(int i = 0; i < listIDs.size(); i++) {
                     dbHelper.deleteListByID(listIDs.get(i));
-                    lists.remove(i);
+                    for(int j = 0; j < lists.size(); j++) {
+                        if(lists.get(j).getListID() == listIDs.get(i)) {
+                            lists.remove(j);
+                        }
+                    }
                 }
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
@@ -218,6 +223,31 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add:
                 createListDialog().show();
+                return true;
+            case R.id.action_edit:
+                ArrayList<Long> selectedList = new ArrayList();
+                int index = -1;
+
+                for(int i = 0; i < lists.size(); i++) {
+                    if(lists.get(i).isSelected()) {
+                        selectedList.add(lists.get(i).getListID());
+                        if(selectedList.size() == 1) index = i;
+                        else break;
+                    }
+                }
+
+                if(selectedList.size() == 1)
+                    renameListDialog(selectedList.get(0), index).show();
+
+                return true;
+            case R.id.action_delete:
+                ArrayList<Long> selectedLists = new ArrayList();
+                for(int i = 0; i < lists.size(); i++) {
+                    if(lists.get(i).isSelected())
+                        selectedLists.add(lists.get(i).getListID());
+                }
+                if(selectedLists.size() >= 1)
+                    deleteDialog(selectedLists).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

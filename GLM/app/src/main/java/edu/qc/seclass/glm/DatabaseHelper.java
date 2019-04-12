@@ -35,8 +35,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        // Executes all the SQL statements in SQL_CREATE_ENTRIES
         for(int i = 0; i < GroceryListContract.SQL_CREATE_ENTRIES.length; i++) {
             db.execSQL(GroceryListContract.SQL_CREATE_ENTRIES[i]);
+        }
+
+        // Insert all the values in DEFAULT_ITEM_TYPES
+        for(int i = 0; i < GroceryListContract.DEFAULT_ITEM_TYPES.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put(GroceryListContract.ItemType.COLUMN_NAME,
+                    GroceryListContract.DEFAULT_ITEM_TYPES[i]);
+            db.insert(GroceryListContract.ItemType.TABLE_NAME, null, values);
+        }
+
+        // Insert all the values in DEFAULT_UNIT_TYPES
+        for(int i = 0; i < GroceryListContract.DEFAULT_UNIT_TYPES.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put(GroceryListContract.UnitType.COLUMN_NAME,
+                    GroceryListContract.DEFAULT_UNIT_TYPES[i]);
+            db.insert(GroceryListContract.UnitType.TABLE_NAME, null, values);
         }
     }
 
@@ -101,6 +118,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 cursor.getColumnIndexOrThrow(GroceryListContract.GroceryList.COLUMN_NAME));
     }
 
+    /**
+     * Creates a new list inside of GroceryList table
+     * @param name The name of list being created
+     * @return The ID of the list that was created
+     */
     public long createNewList(String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -108,6 +130,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return db.insert(GroceryListContract.GroceryList.TABLE_NAME, null, values);
     }
 
+    /**
+     * Renames the list with the specified ID
+     * @param id The ID of the list being modified
+     * @param name The new name of the list
+     */
     public void renameListByID(Long id, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -119,6 +146,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(GroceryListContract.GroceryList.TABLE_NAME, values, selection, selectionArgs);
     }
 
+    /**
+     * Deletes the list with the specified ID
+     * @param id The ID of the list being deleted
+     */
     public void deleteListByID(Long id) {
         SQLiteDatabase db = this.getWritableDatabase();
         String selection = GroceryListContract.GroceryList._ID + " = ?";
@@ -127,6 +158,107 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(GroceryListContract.GroceryList.TABLE_NAME, selection, selectionArgs);
     }
 
+    /**
+     * Gets all item types from the database
+     * @return A List of ItemType objects
+     */
+    public List getAllItemTypes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                GroceryListContract.ItemType.COLUMN_NAME
+        };
 
+        Cursor cursor = db.query(
+                GroceryListContract.ItemType.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        List itemTypes = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long id = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType._ID));
+            String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType.COLUMN_NAME));
+            itemTypes.add(new ItemType(id, name));
+        }
+
+        return itemTypes;
+    }
+
+    /**
+     * Get the name of the item type with the specified ID
+     * @param itemTypeID The id of the item type
+     * @return The name of the item type
+     */
+    public String getItemTypeByID(Long itemTypeID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                GroceryListContract.ItemType.COLUMN_NAME
+        };
+
+        String selection = GroceryListContract.ItemType._ID + " = ?";
+        String[] selectionArgs = { Long.toString(itemTypeID) };
+
+        Cursor cursor = db.query(
+                GroceryListContract.ItemType.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        cursor.moveToNext();
+        return cursor.getString(
+                cursor.getColumnIndexOrThrow(GroceryListContract.ItemType.COLUMN_NAME));
+    }
+
+    /**
+     * Get all item from the specified itemTypeID
+     * @param itemTypeID The item type id, that all items should be
+     * @return A list of items with the specified itemTypeID
+     */
+    public List getItemsFromItemTypeID(long itemTypeID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                GroceryListContract.Item.COLUMN_NAME,
+                GroceryListContract.Item.COLUMN_TYPE_ID
+        };
+
+        String selection = GroceryListContract.Item.COLUMN_TYPE_ID + " = ?";
+        String[] selectionArgs = { Long.toString(itemTypeID) };
+
+        Cursor cursor = db.query(
+                GroceryListContract.Item.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        List items = new ArrayList<>();
+        while(cursor.moveToNext()) {
+            long id = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType._ID));
+            String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType.COLUMN_NAME));
+            long typeID = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType._ID));
+            items.add(new Item(id, name, new ItemType(typeID, getItemTypeByID(typeID))));
+        }
+
+        return items;
+    }
 
 }

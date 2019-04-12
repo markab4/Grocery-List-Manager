@@ -51,11 +51,11 @@ public class ListActivity extends AppCompatActivity {
 //                    listIds.get(i),
 //                    dbHelper.getListNameByID(listIds.get(i))));
 //        }
-        items = new ArrayList<>(Arrays.asList(
-                    new GroceryItem("Coco Puffs"),
-                    new GroceryItem("Bananas", 3),
-                    new GroceryItem("Eggs", 12)
-                ));
+        items = Arrays.asList(
+                    new GroceryItem(new Item(1, "Coco Puffs", 2, "Grains"), 2, "boxes"),
+                    new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
+                    new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
+                );
 
         adapter = new ItemAdapter(items);
         rvItemList.setAdapter(adapter);

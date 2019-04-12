@@ -6,7 +6,6 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.widget.ListView;
 
 /**
  * @author      Sean Rodriguez <sean.rodriguez@outlook.com>
@@ -33,7 +32,6 @@ public class AddItemActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to select the quantity
-     * @param savedInstanceState
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
@@ -63,11 +61,10 @@ public class AddItemActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to select the quantity
-     * @param savedInstanceState
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
-    private Dialog newItemDialog(Bundle savedInstanceState, int itemID) {
+    private Dialog newItemDialog(int itemID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //builder.setTitle(R.string.new_item_title);
 

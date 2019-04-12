@@ -89,8 +89,6 @@ public final class GroceryListContract {
             "Water"
     };
 
-
-
     private GroceryListContract() {}
 
     public static class ItemType implements BaseColumns {

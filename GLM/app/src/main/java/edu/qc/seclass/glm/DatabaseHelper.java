@@ -85,6 +85,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             itemIds.add(itemId);
         }
 
+        cursor.close();
         return itemIds;
     }
 
@@ -114,8 +115,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         cursor.moveToNext();
-        return cursor.getString(
+        String listName = cursor.getString(
                 cursor.getColumnIndexOrThrow(GroceryListContract.GroceryList.COLUMN_NAME));
+
+        cursor.close();
+        return listName;
     }
 
     /**
@@ -188,6 +192,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             itemTypes.add(new ItemType(id, name));
         }
 
+        cursor.close();
         return itemTypes;
     }
 
@@ -217,8 +222,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         );
 
         cursor.moveToNext();
-        return cursor.getString(
+        String itemTypeName = cursor.getString(
                 cursor.getColumnIndexOrThrow(GroceryListContract.ItemType.COLUMN_NAME));
+
+        cursor.close();
+        return itemTypeName;
     }
 
     /**
@@ -258,6 +266,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             items.add(new Item(id, name, new ItemType(typeID, getItemTypeByID(typeID))));
         }
 
+        cursor.close();
         return items;
     }
 

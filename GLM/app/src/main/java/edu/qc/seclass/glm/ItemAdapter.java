@@ -45,11 +45,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
         // Set item views based on your views and data model
         TextView textView = viewHolder.tvItemName;
-        textView.setText(item.getItemName());
+        textView.setText(item.getItem().getName());
         CheckBox cbSelected = viewHolder.cbSelected;
         cbSelected.setChecked(item.isChecked());
         TextView tvQuantity = viewHolder.tvQuantity;
-        String quantity = String.format("%d %s", item.getQuantity(), item.getQuantityType());
+        String quantity = String.format("%d %s", item.getQuantity(), item.getUnitType());
         tvQuantity.setText(quantity);
     }
 

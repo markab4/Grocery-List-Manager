@@ -8,7 +8,6 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp"
     >
-
     <CheckBox
         android:id="@+id/cbItemSelected"
         android:layout_width="36dp"

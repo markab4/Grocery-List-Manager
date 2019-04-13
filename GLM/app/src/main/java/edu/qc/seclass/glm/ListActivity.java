@@ -13,7 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.CheckBox;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,7 +35,7 @@ import java.util.List;
 
 public class ListActivity extends AppCompatActivity {
     private RecyclerView rvItemList;
-    private List<GroceryItem> items;
+    private List<GroceryItem> items; //
     private DatabaseHelper dbHelper;
     ItemAdapter adapter;
 
@@ -69,6 +71,7 @@ public class ListActivity extends AppCompatActivity {
 //                        listIntent.setAction(Intent.ACTION_SEND);
 //                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
 //                        startActivity(listIntent);
+                        boolean checked = ((CheckBox) view).isChecked();
                     }
 
                     @Override
@@ -77,6 +80,7 @@ public class ListActivity extends AppCompatActivity {
 //                        GroceryList selectedList = lists.get(position);
 //                        selectedList.setSelected(!selectedList.isSelected());
 //                        adapter.notifyItemChanged(position);
+
                     }
                 })
         );
@@ -141,7 +145,7 @@ public class ListActivity extends AppCompatActivity {
 
         return builder.create();
     }
-
+    //cbItemSelected
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -158,6 +162,18 @@ public class ListActivity extends AppCompatActivity {
                 addItemIntent.putExtra(Intent.EXTRA_TEXT, 0);
                 startActivity(addItemIntent);
                 return true;
+            //Sets checked to false
+            case R.id.clearChecks:
+
+                for(int i = 0; i < items.size(); i++) {
+                    GroceryItem selectedItem = items.get(i);
+                    selectedItem.setChecked(false);
+                    adapter.notifyItemChanged(i);
+                }
+        // case R.id.action_delete:
+        // case R.id.groupByTpe:
+        // case R.id.renameList:
+
             default:
                 return super.onOptionsItemSelected(item);
         }

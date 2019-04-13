@@ -105,6 +105,12 @@ public class MainActivity extends AppCompatActivity {
                     lists.add(new GroceryList(id, listName));
                     adapter.notifyDataSetChanged();
                 }
+                else{ //Maybe throw a toast
+                    listName = "My Grocery List";
+                    long id = dbHelper.createNewList(listName);
+                    lists.add(new GroceryList(id, listName));
+                    adapter.notifyDataSetChanged();
+                }
 
                 dialog.dismiss();
             }
@@ -131,6 +137,17 @@ public class MainActivity extends AppCompatActivity {
                     Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
                     addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
                     startActivity(addItemIntent);
+                }
+                else { //If the user does not specify a name before selecting add items, then a list with the name "New List" will be generated.
+                    listName = "My Grocery List";
+                    long id = dbHelper.createNewList(listName);
+                    lists.add(new GroceryList(id, listName));
+                    adapter.notifyDataSetChanged();
+
+                    Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
+                    addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
+                    startActivity(addItemIntent);
+
                 }
             }
         });

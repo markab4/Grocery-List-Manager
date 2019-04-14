@@ -119,6 +119,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                 Toast.makeText(v.getContext(), "Checked!", Toast.LENGTH_SHORT).show();
                 selectedItem.setChecked(!selectedItem.isChecked());
             }
+            notifyDataSetChanged();
             listenerRef.get().onPositionClicked(getAdapterPosition());
         }
 

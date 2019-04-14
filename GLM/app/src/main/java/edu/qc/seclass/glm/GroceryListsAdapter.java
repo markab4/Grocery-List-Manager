@@ -7,9 +7,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
@@ -20,26 +21,12 @@ import java.util.List;
 
 public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.Adapter<GroceryListsAdapter.ViewHolder> {
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    private final ClickListener listener;
+    private final List<GroceryList> mGroceryLists;
 
-        public TextView tvGroceryListName;
-        public CheckBox cbIsSelected;
-        public ImageView ivDecreaseQuantity, ivIncreaseQuantity;
-
-
-        public ViewHolder(@NonNull View itemView) {
-            super(itemView);
-            tvGroceryListName = itemView.findViewById(R.id.tvGroceryListName);
-            cbIsSelected = itemView.findViewById(R.id.cbSelected);
-            ivDecreaseQuantity = itemView.findViewById(R.id.ivDecreaseQuantity);
-            ivIncreaseQuantity = itemView.findViewById(R.id.ivIncreaseQuantity);
-        }
-    }
-
-    private List<GroceryList> mGroceryLists;
-
-    public GroceryListsAdapter(List<GroceryList> groceryLists) {
+    public GroceryListsAdapter(List<GroceryList> groceryLists, ClickListener clickListener) {
         mGroceryLists = groceryLists;
+        listener = clickListener;
     }
 
     @NonNull
@@ -51,7 +38,7 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
         // Inflate the custom layout
         View groceryListView = inflater.inflate(R.layout.grocery_list_display, parent, false);
         // Return a new holder instance
-        return new ViewHolder(groceryListView);
+        return new ViewHolder(groceryListView, listener);
     }
 
     @Override
@@ -64,11 +51,49 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
         textView.setText(groceryList.getListName());
         CheckBox checkBox = viewHolder.cbIsSelected;
         checkBox.setChecked(groceryList.isSelected());
-
     }
 
     @Override
     public int getItemCount() {
         return mGroceryLists.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+        public TextView tvGroceryListName;
+        public CheckBox cbIsSelected;
+        private WeakReference<ClickListener> listenerRef;
+
+
+        public ViewHolder(@NonNull View itemView, ClickListener listener) {
+            super(itemView);
+
+            listenerRef = new WeakReference<>(listener);
+            tvGroceryListName = itemView.findViewById(R.id.tvGroceryListName);
+            cbIsSelected = itemView.findViewById(R.id.cbSelected);
+
+            itemView.setOnClickListener(this);
+            tvGroceryListName.setOnClickListener(this);
+            cbIsSelected.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            GroceryList selectedList = mGroceryLists.get(getAdapterPosition());
+            if (v.getId() == cbIsSelected.getId()) {
+                Toast.makeText(v.getContext(), "Checked!", Toast.LENGTH_SHORT).show();
+                selectedList.setSelected(!selectedList.isSelected());
+                notifyDataSetChanged();
+            } else if (v.getId() == tvGroceryListName.getId()) {
+                listenerRef.get().switchActivities(getAdapterPosition());
+            }
+            listenerRef.get().onPositionClicked(getAdapterPosition());
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            listenerRef.get().onLongClicked(getAdapterPosition());
+            return true;
+        }
     }
 }

@@ -8,6 +8,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Sean Rodriguez <sean.rodriguez@outlook.com>
- * Mark Abramov <markabramov01@gmail.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>, Mark Abramov <markabramov01@gmail.com>
  * <p>
  * Main Activity class where the user will be able to create new list, rename lists and delete lists
  * through the use of Dialog boxes. User should be able to enter the AddItemActivity from
@@ -55,28 +55,47 @@ public class MainActivity extends AppCompatActivity {
                     dbHelper.getListNameByID(listIds.get(i))));
         }
 
-        adapter = new GroceryListsAdapter(lists);
+        adapter = new GroceryListsAdapter(lists, new ClickListener() {
+
+            @Override
+            public void onPositionClicked(int position) {
+                Log.d("MAIN ACTIVITY", "on position clicked " + position);
+            }
+
+            @Override
+            public void onLongClicked(int position) {
+                Log.d("MAIN ACTIVITY", "on long clicked " + position);
+            }
+
+            @Override
+            public void switchActivities(int position) {
+                Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+                listIntent.setAction(Intent.ACTION_SEND);
+                listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+                startActivity(listIntent);
+            }
+        });
         rvLists.setAdapter(adapter);
         rvLists.setLayoutManager(new LinearLayoutManager(this));
 
-        rvLists.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, rvLists, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-                        listIntent.setAction(Intent.ACTION_SEND);
-                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-                        startActivity(listIntent);
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        GroceryList selectedList = lists.get(position);
-                        selectedList.setSelected(!selectedList.isSelected());
-                        adapter.notifyItemChanged(position);
-                    }
-                })
-        );
+//        rvLists.addOnItemTouchListener(
+//                new RecyclerItemClickListener(this, rvLists, new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+//                        listIntent.setAction(Intent.ACTION_SEND);
+//                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+//                        startActivity(listIntent);
+//                    }
+//
+//                    @Override
+//                    public void onLongItemClick(View view, int position) {
+//                        GroceryList selectedList = lists.get(position);
+//                        selectedList.setSelected(!selectedList.isSelected());
+//                        adapter.notifyItemChanged(position);
+//                    }
+//                })
+//        );
     }
 
 
@@ -100,18 +119,10 @@ public class MainActivity extends AppCompatActivity {
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
 
-                if (!listName.isEmpty()) {
-                    long id = dbHelper.createNewList(listName);
-                    lists.add(new GroceryList(id, listName));
-                    adapter.notifyDataSetChanged();
-                }
-                else{ //Maybe throw a toast
-                    listName = "My Grocery List";
-                    long id = dbHelper.createNewList(listName);
-                    lists.add(new GroceryList(id, listName));
-                    adapter.notifyDataSetChanged();
-                }
-
+                if (listName.isEmpty()) listName = "My Grocery List";
+                long id = dbHelper.createNewList(listName);
+                lists.add(new GroceryList(id, listName));
+                adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
         });
@@ -129,26 +140,15 @@ public class MainActivity extends AppCompatActivity {
                 EditText input = dialogLayout.findViewById(R.id.new_list_name);
                 String listName = input.getText().toString();
 
-                if (!listName.isEmpty()) {
-                    long id = dbHelper.createNewList(listName);
-                    lists.add(new GroceryList(id, listName));
-                    adapter.notifyDataSetChanged();
+                if (listName.isEmpty()) listName = "My Grocery List";
 
-                    Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
-                    addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
-                    startActivity(addItemIntent);
-                }
-                else { //If the user does not specify a name before selecting add items, then a list with the name "New List" will be generated.
-                    listName = "My Grocery List";
-                    long id = dbHelper.createNewList(listName);
-                    lists.add(new GroceryList(id, listName));
-                    adapter.notifyDataSetChanged();
+                long id = dbHelper.createNewList(listName);
+                lists.add(new GroceryList(id, listName));
+                adapter.notifyDataSetChanged();
 
-                    Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
-                    addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
-                    startActivity(addItemIntent);
-
-                }
+                Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
+                addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
+                startActivity(addItemIntent);
             }
         });
 

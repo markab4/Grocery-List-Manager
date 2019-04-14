@@ -60,12 +60,16 @@ public class ListActivity extends AppCompatActivity {
             @Override
             public void onPositionClicked(int position) {
                 Log.d("LIST ACTIVITY", "on position clicked " + position);
-                adapter.notifyItemChanged(position);
             }
 
             @Override
             public void onLongClicked(int position) {
                 Log.d("LIST ACTIVITY", "on long clicked " + position);
+            }
+
+            @Override
+            public void switchActivities(int position) {
+
             }
         });
         rvItemList.setAdapter(adapter);
@@ -154,6 +158,7 @@ public class ListActivity extends AppCompatActivity {
 
         return builder.create();
     }
+
     //cbItemSelected
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -173,7 +178,7 @@ public class ListActivity extends AppCompatActivity {
                 return true;
             //Sets all checks to false
             case R.id.clearChecks:
-                for(int i = 0; i < items.size(); i++) {
+                for (int i = 0; i < items.size(); i++) {
                     GroceryItem selectedItem = items.get(i);
                     selectedItem.setChecked(false);
                     adapter.notifyItemChanged(i);

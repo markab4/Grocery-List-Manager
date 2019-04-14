@@ -13,13 +13,12 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * @author      Mark Abramov <markabramov01@gmail.com>
- *
- * @version     1.0
- * @since       1.0
+ * @author Mark Abramov <markabramov01@gmail.com>
+ * @version 1.0
+ * @since 1.0
  */
 
-public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.Adapter<GroceryListsAdapter.ViewHolder>{
+public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.Adapter<GroceryListsAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
@@ -34,13 +33,12 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
             cbIsSelected = itemView.findViewById(R.id.cbSelected);
             ivDecreaseQuantity = itemView.findViewById(R.id.ivDecreaseQuantity);
             ivIncreaseQuantity = itemView.findViewById(R.id.ivIncreaseQuantity);
-
         }
     }
 
     private List<GroceryList> mGroceryLists;
 
-    public GroceryListsAdapter(List<GroceryList> groceryLists){
+    public GroceryListsAdapter(List<GroceryList> groceryLists) {
         mGroceryLists = groceryLists;
     }
 

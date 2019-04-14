@@ -15,9 +15,9 @@ import java.lang.ref.WeakReference;
 import java.util.List;
 
 /**
- * @author      Mark Abramov <markabramov01@gmail.com>
- * @version     1.0
- * @since       1.0
+ * @author Mark Abramov <markabramov01@gmail.com>
+ * @version 1.0
+ * @since 1.0
  */
 
 // Create the basic adapter extending from RecyclerView.Adapter
@@ -100,19 +100,24 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
             ivIncreaseQuantity.setOnClickListener(this);
             ivDecreaseQuantity.setOnClickListener(this);
+            cbSelected.setOnClickListener(this);
 
         }
+
         // onClick Listener for view
         @Override
         public void onClick(View v) {
             GroceryItem selectedItem = mGroceryItems.get(getAdapterPosition());
-            if(v.getId() == ivDecreaseQuantity.getId()){
+            if (v.getId() == ivDecreaseQuantity.getId()) {
                 Toast.makeText(v.getContext(), "Decrease Quantity", Toast.LENGTH_SHORT).show();
                 selectedItem.setQuantity(selectedItem.getQuantity() - 1);
 
             } else if (v.getId() == ivIncreaseQuantity.getId()) {
                 Toast.makeText(v.getContext(), "Increase Quantity", Toast.LENGTH_SHORT).show();
                 selectedItem.setQuantity(selectedItem.getQuantity() + 1);
+            } else if (v.getId() == cbSelected.getId()){
+                Toast.makeText(v.getContext(), "Checked!", Toast.LENGTH_SHORT).show();
+                selectedItem.setChecked(!selectedItem.isChecked());
             }
             listenerRef.get().onPositionClicked(getAdapterPosition());
         }

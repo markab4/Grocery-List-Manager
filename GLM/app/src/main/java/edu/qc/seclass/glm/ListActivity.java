@@ -171,18 +171,13 @@ public class ListActivity extends AppCompatActivity {
                 addItemIntent.putExtra(Intent.EXTRA_TEXT, 0);
                 startActivity(addItemIntent);
                 return true;
-            //Sets checked to false
+            //Sets all checks to false
             case R.id.clearChecks:
-
                 for(int i = 0; i < items.size(); i++) {
                     GroceryItem selectedItem = items.get(i);
                     selectedItem.setChecked(false);
                     adapter.notifyItemChanged(i);
                 }
-        // case R.id.action_delete:
-        // case R.id.groupByTpe:
-        // case R.id.renameList:
-
             default:
                 return super.onOptionsItemSelected(item);
         }

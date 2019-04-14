@@ -8,14 +8,12 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.CheckBox;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -53,37 +51,48 @@ public class ListActivity extends AppCompatActivity {
 //                    dbHelper.getListNameByID(listIds.get(i))));
 //        }
         items = Arrays.asList(
-                new GroceryItem(new Item(1, "Coco Puffs", 2, "Grains"), 2, "boxes"),
+                new GroceryItem(new Item(1, "Coco Puffs", 2, "Cereal"), 2, "boxes"),
                 new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
                 new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
         );
 
-        adapter = new ItemAdapter(items);
+        adapter = new ItemAdapter(items, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+                Log.d("LIST ACTIVITY", "on position clicked " + position);
+                adapter.notifyItemChanged(position);
+            }
+
+            @Override
+            public void onLongClicked(int position) {
+                Log.d("LIST ACTIVITY", "on long clicked " + position);
+            }
+        });
         rvItemList.setAdapter(adapter);
         rvItemList.setLayoutManager(new LinearLayoutManager(this));
 
-        rvItemList.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, rvItemList, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        // do whatever you want to do on item click
-//                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-//                        listIntent.setAction(Intent.ACTION_SEND);
-//                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-//                        startActivity(listIntent);
-                        boolean checked = ((CheckBox) view).isChecked();
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        // do whatever you want to do on long item click
-//                        GroceryList selectedList = lists.get(position);
-//                        selectedList.setSelected(!selectedList.isSelected());
-//                        adapter.notifyItemChanged(position);
-
-                    }
-                })
-        );
+//        rvItemList.addOnItemTouchListener(
+//                new RecyclerItemClickListener(this, rvItemList, new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        // do whatever you want to do on item click
+////                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+////                        listIntent.setAction(Intent.ACTION_SEND);
+////                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+////                        startActivity(listIntent);
+//                        boolean checked = ((CheckBox) view).isChecked();
+//                    }
+//
+//                    @Override
+//                    public void onLongItemClick(View view, int position) {
+//                        // do whatever you want to do on long item click
+////                        GroceryList selectedList = lists.get(position);
+////                        selectedList.setSelected(!selectedList.isSelected());
+////                        adapter.notifyItemChanged(position);
+//
+//                    }
+//                })
+//        );
     }
 
     /**

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.List;
@@ -24,11 +25,16 @@ public class GroceryListsAdapter extends android.support.v7.widget.RecyclerView.
 
         public TextView tvGroceryListName;
         public CheckBox cbIsSelected;
+        public ImageView ivDecreaseQuantity, ivIncreaseQuantity;
+
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvGroceryListName = itemView.findViewById(R.id.tvGroceryListName);
             cbIsSelected = itemView.findViewById(R.id.cbSelected);
+            ivDecreaseQuantity = itemView.findViewById(R.id.ivDecreaseQuantity);
+            ivIncreaseQuantity = itemView.findViewById(R.id.ivIncreaseQuantity);
+
         }
     }
 

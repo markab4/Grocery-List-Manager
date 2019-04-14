@@ -1,28 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:drawable="@android:color/background_dark"
+    android:orientation="horizontal"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="10dp">
+
     <CheckBox
         android:id="@+id/cbItemSelected"
         android:layout_width="36dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
+        android:drawable="?attr/actionMenuTextColor"
+        android:buttonTint="?attr/colorBackgroundFloating"
         android:checked="false"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp" />
+        android:paddingRight="16dp"
+        android:textColor="?attr/actionMenuTextColor" />
 
     <TextView
         android:id="@+id/tvItemName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="10dp"
+        android:paddingStart="10dp"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         tools:text="Coco Puffs" />
 
@@ -31,9 +36,24 @@
         android:layout_width="20dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingRight="10dp"
+        android:paddingEnd="10dp"
         android:textAlignment="textEnd"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         tools:text="1 box" />
+
+    <ImageView
+        android:id="@+id/ivDecreaseQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
+        app:srcCompat="@drawable/ic_group_collapse_15" />
+
+    <ImageView
+        android:id="@+id/ivIncreaseQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight=".3"
+        app:srcCompat="@drawable/ic_group_expand_15" />
 
 </LinearLayout>

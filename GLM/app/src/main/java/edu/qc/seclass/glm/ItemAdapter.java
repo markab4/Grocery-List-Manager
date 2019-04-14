@@ -21,7 +21,7 @@ import java.util.List;
  */
 
 // Create the basic adapter extending from RecyclerView.Adapter
-// Note that we specify the custom ViewHolder which gives us access to our views
+// the custom ViewHolder gives us access to our views
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
 
     private final ClickListener listener;

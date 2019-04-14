@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.View;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,30 +44,45 @@ public class AddItemActivity extends AppCompatActivity {
                 new ItemType((long) 1234, "Fruit"),
                 new ItemType((long) 1738, "Vegetables"),
                 new ItemType((long) 6969, "Personal Care")));
-        adapter = new ItemTypeAdapter(itemTypes);
+        adapter = new ItemTypeAdapter(itemTypes, new ClickListener() {
+            @Override
+            public void onPositionClicked(int position) {
+
+            }
+
+            @Override
+            public void onLongClicked(int position) {
+
+            }
+
+            @Override
+            public void switchActivities(int position) {
+
+            }
+        });
         rvItemTypes.setAdapter(adapter);
         rvItemTypes.setLayoutManager(new LinearLayoutManager(this));
 
-        rvItemTypes.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, rvItemTypes, new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        // do whatever you want to do on item click
-//                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-//                        listIntent.setAction(Intent.ACTION_SEND);
-//                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-//                        startActivity(listIntent);
-                    }
-
-                    @Override
-                    public void onLongItemClick(View view, int position) {
-                        // do whatever you want to do on long item click
-//                        GroceryList selectedList = lists.get(position);
-//                        selectedList.setSelected(!selectedList.isSelected());
-//                        adapter.notifyItemChanged(position);
-                    }
-                })
-        );
+//        rvItemTypes.addOnItemTouchListener(
+//                new RecyclerItemClickListener(this, rvItemTypes, new RecyclerItemClickListener.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(View view, int position) {
+//                        // do whatever you want to do on item click
+////                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
+////                        listIntent.setAction(Intent.ACTION_SEND);
+////                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+////                        startActivity(listIntent);
+//                    }
+//an
+//                    @Override
+//                    public void onLongItemClick(View view, int position) {
+//                        // do whatever you want to do on long item click
+////                        GroceryList selectedList = lists.get(position);
+////                        selectedList.setSelected(!selectedList.isSelected());
+////                        adapter.notifyItemChanged(position);
+//                    }
+//                })
+//        );
     }
 
     /**

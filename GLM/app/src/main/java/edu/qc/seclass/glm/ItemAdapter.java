@@ -108,10 +108,9 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             GroceryItem selectedItem = mGroceryItems.get(getAdapterPosition());
-            if (v.getId() == ivDecreaseQuantity.getId()) {
+            if (v.getId() == ivDecreaseQuantity.getId() && selectedItem.getQuantity() > 0) {
                 Toast.makeText(v.getContext(), "Decrease Quantity", Toast.LENGTH_SHORT).show();
                 selectedItem.setQuantity(selectedItem.getQuantity() - 1);
-
             } else if (v.getId() == ivIncreaseQuantity.getId()) {
                 Toast.makeText(v.getContext(), "Increase Quantity", Toast.LENGTH_SHORT).show();
                 selectedItem.setQuantity(selectedItem.getQuantity() + 1);

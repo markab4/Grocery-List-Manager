@@ -7,24 +7,23 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:paddingTop="10dp"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="10dp">
 
     <TextView
         android:id="@+id/tvItemTypeName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingLeft="20dp"
+        android:paddingStart="20dp"
         android:textSize="18sp"
         tools:text="Cereal" />
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="0.2"
+        android:layout_weight="0.1"
         android:visibility="visible"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        app:srcCompat="@drawable/ic_media_play_light" />
 
 </LinearLayout>

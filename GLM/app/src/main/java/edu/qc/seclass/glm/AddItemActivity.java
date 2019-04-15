@@ -8,8 +8,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -45,15 +47,15 @@ public class AddItemActivity extends AppCompatActivity {
         itemTypes = new ArrayList<>(Arrays.asList(
                 new ItemType((long) 1234, "Beverages"),
                 new ItemType((long) 1738, "Bread/Bakery"),
-                new ItemType((long) 6969, "Canned/Jarred Goods"),
+                new ItemType( (long) 6969, "Canned/Jarred Goods"),
                 new ItemType((long) 696969, "Dairy"),
-                new ItemType((long) 12345, "Dry/Baking Goods"),
+                new ItemType( (long) 12345, "Dry/Baking Goods"),
                 new ItemType((long) 19, "Frozen Foods"),
-                new ItemType((long) 1492, "Meat"),
+                new ItemType( (long) 1492, "Meat"),
                 new ItemType((long) 14, "Produce"),
-                new ItemType((long) 1997, "Cleaners"),
+                new ItemType( (long) 1997, "Cleaners"),
                 new ItemType((long) 56788, "Paper Goods"),
-                new ItemType((long) 8008, "Personal Care"),
+                new ItemType( (long) 8008, "Personal Care"),
                 new ItemType((long) 80085, "Other")
         ));
         adapter = new ItemTypeAdapter(itemTypes, new ClickListener() {
@@ -109,6 +111,36 @@ public class AddItemActivity extends AppCompatActivity {
         builder.setPositiveButton(R.string.custom_item, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(AddItemActivity.this);
+                builder.setTitle("Add Your Own Item");
+
+                // Set up the input
+                final EditText input = new EditText(AddItemActivity.this);
+                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                builder.setView(input);
+
+                // Set up the buttons
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        String newItem = input.getText().toString();
+                        Intent listActivityIntent = new Intent(AddItemActivity.this, ListActivity.class);
+                        listActivityIntent.putExtra("item", newItem);
+                        listActivityIntent.putExtra("item type", itemTypeName);
+                        startActivity(listActivityIntent);
+                    }
+                });
+                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+
+                builder.show();
+
+
                 // TODO: Add item and quantity to the database
             }
         });
@@ -126,7 +158,7 @@ public class AddItemActivity extends AppCompatActivity {
 
     private ArrayList<String> getItemsInCategory(String itemTypeName) {
         ArrayList<String> itemsInCategory;
-        switch (itemTypeName){
+        switch (itemTypeName) {
             case "Beverages":
                 itemsInCategory = new ArrayList<>(Arrays.asList(
                         "Coffee",

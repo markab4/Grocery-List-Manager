@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -50,11 +51,11 @@ public class ListActivity extends AppCompatActivity {
 //                    listIds.get(i),
 //                    dbHelper.getListNameByID(listIds.get(i))));
 //        }
-        items = Arrays.asList(
+        items = new ArrayList<>(Arrays.asList(
                 new GroceryItem(new Item(1, "Coco Puffs", 2, "Cereal"), 2, "boxes"),
                 new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
                 new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
-        );
+        ));
 
         adapter = new ItemAdapter(items, new ClickListener() {
             @Override
@@ -183,8 +184,63 @@ public class ListActivity extends AppCompatActivity {
                     selectedItem.setChecked(false);
                     adapter.notifyItemChanged(i);
                 }
+            case R.id.action_delete:
+                ArrayList<GroceryItem> selectedItems = new ArrayList<>();
+                for (int i=0; i<items.size(); i++) {
+                    if (items.get(i).isChecked()) {
+                        selectedItems.add(items.get(i));
+                    }
+                }
+                for (int i=0; i<selectedItems.size(); i++) {
+                    if (items.contains(selectedItems.get(i))) {
+                        Log.d("LIST ACTIVITY", "contains " + selectedItems.get(i).toString());
+                        items.remove(selectedItems.get(i));
+                    }
+                }
+                adapter.notifyDataSetChanged();
+//                ArrayList<Long> selectedItems = new ArrayList();
+//                for (int i = 0; i < items.size(); i++) {
+//                    if (items.get(i).isChecked())
+//                        selectedItems.add((long)i);
+////                    this would impact the database:
+////                        selectedItems.add(items.get(i).getItem().getID());
+//                }
+//                if (!selectedItems.isEmpty())
+//                    deleteDialog(selectedItems).show();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
+
+//    private Dialog deleteDialog(final ArrayList<Long> itemIDs) {
+//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+//        builder.setTitle(R.string.delete_items_title);
+//        builder.setMessage(R.string.delete_items);
+//        builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                for (int i = 0; i < itemIDs.size(); i++) {
+////                    this would impact the database:
+////                    dbHelper.deleteListByID(itemIDs.get(i));
+////                    for (int j = 0; j < items.size(); j++) {
+////                        if (items.get(j).getItem().getID() == itemIDs.get(i)) {
+////                            items.remove(j);
+////                        }
+////                    }
+//                }
+//                adapter.notifyDataSetChanged();
+//                dialog.dismiss();
+//            }
+//        });
+//
+//        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialog, int which) {
+//                dialog.dismiss();
+//            }
+//        });
+//        return builder.create();
+//
+//    }
 }

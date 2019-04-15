@@ -58,6 +58,14 @@ public class ListActivity extends AppCompatActivity {
                 new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
         ));
 
+        Bundle extras = getIntent().getExtras();
+        if (extras!=null && extras.getString("item") != null){
+            Log.v("EXTRAS STRING", extras.getString("item"));
+            items.add(new GroceryItem(
+                    new Item(4, extras.getString("item"), 1, extras.getString("item type")),
+                    1, "units"));
+        }
+
         adapter = new ItemAdapter(items, new ClickListener() {
             @Override
             public void onPositionClicked(int position) {

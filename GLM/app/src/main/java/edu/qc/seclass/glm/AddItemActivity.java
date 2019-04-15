@@ -2,6 +2,7 @@ package edu.qc.seclass.glm;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -75,33 +76,37 @@ public class AddItemActivity extends AppCompatActivity {
         rvItemTypes.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private Dialog selectItemDialog(String itemTypeName) {
+    private Dialog selectItemDialog(final String itemTypeName) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Item");
 
         ArrayList<String> itemsInCategory = getItemsInCategory(itemTypeName);
 
-        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.select_dialog_singlechoice);
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_singlechoice);
         arrayAdapter.addAll(itemsInCategory);
 
         builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                String strName = arrayAdapter.getItem(which);
+                final String selectedItemIs = arrayAdapter.getItem(which);
                 AlertDialog.Builder builderInner = new AlertDialog.Builder(AddItemActivity.this);
-                builderInner.setMessage(strName);
-                builderInner.setTitle("Your Selected Item is");
-                builderInner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                builderInner.setMessage(selectedItemIs);
+                builderInner.setTitle("You added the item");
+                builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
-                    public void onClick(DialogInterface dialog,int which) {
+                    public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();
+                        Intent listActivityIntent = new Intent(AddItemActivity.this, ListActivity.class);
+                        listActivityIntent.putExtra("item", selectedItemIs);
+                        listActivityIntent.putExtra("item type", itemTypeName);
+                        startActivity(listActivityIntent);
                     }
                 });
                 builderInner.show();
             }
         });
 
-        builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.custom_item, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 // TODO: Add item and quantity to the database

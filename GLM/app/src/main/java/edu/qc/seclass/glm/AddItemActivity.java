@@ -41,9 +41,19 @@ public class AddItemActivity extends AppCompatActivity {
 
         // Initialize item types
         itemTypes = new ArrayList<>(Arrays.asList(
-                new ItemType((long) 1234, "Fruit"),
-                new ItemType((long) 1738, "Vegetables"),
-                new ItemType((long) 6969, "Personal Care")));
+                new ItemType((long) 1234, "Beverages"),
+                new ItemType((long) 1738, "Bread Bakery"),
+                new ItemType((long) 6969, "Canned/Jarred Goods"),
+                new ItemType((long) 696969, "Dairy"),
+                new ItemType((long) 12345, "Dry/Baking Goods"),
+                new ItemType((long) 19, "Frozen Foods"),
+                new ItemType((long) 1492, "Meat"),
+                new ItemType((long) 14, "Produce"),
+                new ItemType((long) 1997, "Cleaners"),
+                new ItemType((long) 56788, "Paper Goods"),
+                new ItemType((long) 8008, "Personal Care"),
+                new ItemType((long) 80085, "Other")
+        ));
         adapter = new ItemTypeAdapter(itemTypes, new ClickListener() {
             @Override
             public void onPositionClicked(int position) {
@@ -62,27 +72,6 @@ public class AddItemActivity extends AppCompatActivity {
         });
         rvItemTypes.setAdapter(adapter);
         rvItemTypes.setLayoutManager(new LinearLayoutManager(this));
-
-//        rvItemTypes.addOnItemTouchListener(
-//                new RecyclerItemClickListener(this, rvItemTypes, new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-//                        // do whatever you want to do on item click
-////                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-////                        listIntent.setAction(Intent.ACTION_SEND);
-////                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-////                        startActivity(listIntent);
-//                    }
-//an
-//                    @Override
-//                    public void onLongItemClick(View view, int position) {
-//                        // do whatever you want to do on long item click
-////                        GroceryList selectedList = lists.get(position);
-////                        selectedList.setSelected(!selectedList.isSelected());
-////                        adapter.notifyItemChanged(position);
-//                    }
-//                })
-//        );
     }
 
     /**

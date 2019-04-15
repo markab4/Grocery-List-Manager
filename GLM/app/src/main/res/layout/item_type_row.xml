@@ -9,15 +9,6 @@
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
 
-    <TextView
-        android:id="@+id/tvItemTypeName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:paddingStart="20dp"
-        android:textSize="18sp"
-        tools:text="Cereal" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
@@ -25,5 +16,14 @@
         android:layout_weight="0.1"
         android:visibility="visible"
         app:srcCompat="@drawable/ic_media_play_light" />
+
+    <TextView
+        android:id="@+id/tvItemTypeName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:paddingStart="20dp"
+        android:textSize="18sp"
+        tools:text="Cereal" />
 
 </LinearLayout>

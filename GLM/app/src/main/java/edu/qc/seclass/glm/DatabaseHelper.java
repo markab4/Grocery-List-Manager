@@ -162,6 +162,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.delete(GroceryListContract.GroceryList.TABLE_NAME, selection, selectionArgs);
     }
 
+
     /**
      * Gets all item types from the database
      * @return A List of ItemType objects

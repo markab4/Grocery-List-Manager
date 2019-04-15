@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -191,22 +192,28 @@ public class ListActivity extends AppCompatActivity {
                         selectedItems.add(items.get(i));
                     }
                 }
-                for (int i=0; i<selectedItems.size(); i++) {
-                    if (items.contains(selectedItems.get(i))) {
-                        Log.d("LIST ACTIVITY", "contains " + selectedItems.get(i).toString());
-                        items.remove(selectedItems.get(i));
+                if (selectedItems.isEmpty()){
+                    Toast.makeText(this, "No items selected to delete.", Toast.LENGTH_SHORT).show();
+                    return true;
+                }
+                for (GroceryItem selectedItem : selectedItems) {
+                    if (items.contains(selectedItem)) {
+                        Log.d("LIST ACTIVITY", "contains " + selectedItem.toString());
+                        items.remove(selectedItem);
+                        adapter.notifyDataSetChanged();
                     }
                 }
-                adapter.notifyDataSetChanged();
 //                ArrayList<Long> selectedItems = new ArrayList();
 //                for (int i = 0; i < items.size(); i++) {
 //                    if (items.get(i).isChecked())
 //                        selectedItems.add((long)i);
 ////                    this would impact the database:
-////                        selectedItems.add(items.get(i).getItem().getID());
+//                        selectedItems.add(items.get(i).getItem().getID());
 //                }
-//                if (!selectedItems.isEmpty())
+//                if (!selectedItems.isEmpty()) {
 //                    deleteDialog(selectedItems).show();
+//                    adapter.notifyDataSetChanged();
+//                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -222,12 +229,12 @@ public class ListActivity extends AppCompatActivity {
 //            public void onClick(DialogInterface dialog, int which) {
 //                for (int i = 0; i < itemIDs.size(); i++) {
 ////                    this would impact the database:
-////                    dbHelper.deleteListByID(itemIDs.get(i));
-////                    for (int j = 0; j < items.size(); j++) {
-////                        if (items.get(j).getItem().getID() == itemIDs.get(i)) {
-////                            items.remove(j);
-////                        }
-////                    }
+//                    dbHelper.deleteListByID(itemIDs.get(i));
+//                    for (int j = 0; j < items.size(); j++) {
+//                        if (items.get(j).getItem().getID() == itemIDs.get(i)) {
+//                            items.remove(j);
+//                        }
+//                    }
 //                }
 //                adapter.notifyDataSetChanged();
 //                dialog.dismiss();

@@ -44,7 +44,7 @@ public class AddItemActivity extends AppCompatActivity {
         // Initialize item types
         itemTypes = new ArrayList<>(Arrays.asList(
                 new ItemType((long) 1234, "Beverages"),
-                new ItemType((long) 1738, "Bread Bakery"),
+                new ItemType((long) 1738, "Bread/Bakery"),
                 new ItemType((long) 6969, "Canned/Jarred Goods"),
                 new ItemType((long) 696969, "Dairy"),
                 new ItemType((long) 12345, "Dry/Baking Goods"),

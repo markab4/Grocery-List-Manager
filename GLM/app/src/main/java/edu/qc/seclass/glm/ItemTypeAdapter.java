@@ -3,6 +3,7 @@ package edu.qc.seclass.glm;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,13 +71,16 @@ public class ItemTypeAdapter extends RecyclerView.Adapter<ItemTypeAdapter.ViewHo
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
+            itemView.setOnClickListener(this);
             tvItemTypeName = (TextView) itemView.findViewById(R.id.tvItemTypeName);
+            tvItemTypeName.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            ItemType selectedItemType = mItemTypes.get(getAdapterPosition());
-
+//            ItemType selectedItemType = mItemTypes.get(getAdapterPosition());
+            listener.switchActivities(getAdapterPosition());
+            Log.d("ON CLICK", "Adapter position " + getAdapterPosition());
         }
 
         @Override

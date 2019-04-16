@@ -24,10 +24,18 @@ After intially loading up the GLM application, you will be taken to the launcher
 ## Creating a List
 After selecting the + icon in the launcher menu, you have initiated the process for creating your first list. Enter a name for your new list. You may now select the option "OK"  to finish, which will create your list and add it to the launcher menu, or you may add items to the list before finishing, by selecting "Add items".
 
+![Creating a List](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/NAMING_LIST.png)
+
 ## Creating Items and Adding Them to Your List
 Now that you have created a list, you can begin to add items to it. Select your list to begin adding an item. When using the application for the first time, you will have default items available. To create a new item, select the + symbol located at the top right of the screen, then select an item type. After selecting an item type, select "Custom Item". This will allow you to create a new item. Choose a name for your new item. Once you have your desired name and category, press the "Create" button to finish creating your new item.
 
-You will be returned to the previous menu, with your new item now available to add to your list. To add this item to your list, select the + icon located to the right of the item you wish to add. Increase or decrease the quantity of the item by selecting the arrows next to the item. Once you are satisfied with your entry, press Confirm. The item will now be saved to your list.
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM1.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM2.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM3.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM4.png)
+
+You will be returned to the previous menu, with your new item now added to your list. Increase or decrease the quantity of the item by selecting the arrows next to the item. Once you are satisfied with your entry, press Confirm. The item will now be saved to your list.
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/QUANTITYITEM.png)
 
 ## Searching for an Item
 
@@ -38,22 +46,35 @@ After you have created multiple items, you may find it to your advantage to util
 ## Selecting Lists
 Perhaps you need to make trips to multiple groceries, or you may find it to your advantage to have multiple lists for each store. With the Grocery List Manager you have the ability to create multiple lists which contain their own items. You can create a new list by going back to the launcher menu at any time, and selecting the option to create a new list once again. After you have set the name and finished creating the list, you can now select which list you wish to view when revisiting the launcher. To do this, from the launcher menu, click on the list you wish to view. Select the "Pencil" button located at the top right of the screen, to the left of the "Trash" button. This will allow you to view and edit the list.
 
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/SELECTLISTS.png)
+
 ## Grouping Items in a List
 To group items in a list, enter the list, then select the three dotted button at the top right of the screen. You will be presented with an option to "Group by Type". Once you select this option, it will group the list by item types.
+
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/GROUPINGITEMS.png)
 
 ## Deleting Lists
 Deleting lists once they are no longer needed will allow you to keep your Grocery List Manager in check, allowing you to efficiently shop without the hassle of worrying of finding the list you need. To delete a list, simply click on a list from the launcher menu, then select the "Trash" button at the top right of the screen. You will be presented with an option to confirm your desicion before your list is deleted, in case of any error. Once you have verified that this is the list you intend to delete, select "Delete".
 
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/DELETINGLISTS.png)
+
 ## Deleting Items
 Deleting items from a list follows a similar process. After entering the list, select the item you wish to delete. Click on the "Trash" button located to the top right of the screen, and confirm your decision to delete the item from the list.
+
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/DELETINGITEMS.png)
 
 ## Renaming a List
 To rename a list, enter the list you wish to rename. Select the pencil button at the top right of the screen which will present you with the option to rename your list. Select Rename List, then enter a new name for your list and confirm.
 
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/RENAMINGLISTS.png)
+
 ## Checking Off Items
 To maximize the utility of the Grocery List Manager, you might want to make use of the feature which allows you to check off items. This will allow you to track what you have purchased during your grocery trip, which will prevent you from repeatedly grabbing the same item when shopping. It'll also benefit you in making it clear once you have completed your grocery shopping needs. To check off items in your list, enter your list then press the box to the left of the item you wish to check off. This will now put a check in the box, indicating that you have put the item in your shopping cart.
 
+
 You can clear all check boxes from a list by selecting the three dotted button at the top right of the screen, then selecting the "Clear All Boxes" option. This will clear all the check boxes, allowing you to convienently reuse the list as needed.
+
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CLEARCHECKS.png)
 
 ## Frequently Asked Questions
 >I created a list and created new items, but I do not want to have to create these items every time when I shop. Will my items remain in the system?

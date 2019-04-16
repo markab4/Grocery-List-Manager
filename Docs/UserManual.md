@@ -34,7 +34,7 @@ Now that you have created a list, you can begin to add items to it. Select your 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM3.png)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM4.png)
 
-You will be returned to the previous menu, with your new item now added to your list. Increase or decrease the quantity of the item by selecting the arrows next to the item. Once you are satisfied with your entry, press Confirm. The item will now be saved to your list.
+You will be returned to the previous menu, with your new item now added to your list. Increase or decrease the quantity of the item by selecting the arrows next to the item. The item will now be saved to your list.
 
 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/QUANTITYITEM.png)

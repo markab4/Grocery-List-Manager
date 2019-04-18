@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -256,6 +257,9 @@ public class MainActivity extends AppCompatActivity {
 
                 if (selectedList.size() == 1)
                     renameListDialog(selectedList.get(0), index).show();
+                else
+                    Toast.makeText(this, "Only one list can be selected to be renamed.",
+                            Toast.LENGTH_SHORT).show();
 
                 return true;
             case R.id.action_delete:
@@ -266,6 +270,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if (selectedLists.size() >= 1)
                     deleteDialog(selectedLists).show();
+                else
+                    Toast.makeText(this, "No list are selected to be deleted",
+                            Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

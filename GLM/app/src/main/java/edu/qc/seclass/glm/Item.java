@@ -30,11 +30,9 @@ public class Item {
     public long getID() {
         return ID;
     }
-
     public String getName() {
         return name;
     }
-
     public ItemType getType() {
         return type;
     }

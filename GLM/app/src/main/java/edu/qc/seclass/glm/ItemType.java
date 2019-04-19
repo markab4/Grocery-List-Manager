@@ -13,7 +13,7 @@ public class ItemType {
     private long ID;
     private String name;
 
-    public ItemType(Long ID, String name) {
+    public ItemType(long ID, String name) {
         this.name = name;
         this.ID = ID;
     }
@@ -25,25 +25,4 @@ public class ItemType {
     public String getName() {
         return name;
     }
-
-//    public ItemType(String typeName) {
-//        this(typeName, "");
-//    }
-
-//    public ItemType() {
-//        this("Default", "");
-//    }
-
-
-//    public void setTypeName(String typeName) {
-//        this.typeName = typeName;
-//    }
-//
-//    public String getQuantityType() {
-//        return quantityType;
-//    }
-//
-//    public void setQuantityType(String quantityType) {
-//        this.quantityType = quantityType;
-//    }
 }

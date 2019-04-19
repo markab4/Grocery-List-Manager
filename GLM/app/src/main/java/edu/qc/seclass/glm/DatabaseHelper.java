@@ -55,6 +55,77 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     GroceryListContract.DEFAULT_UNIT_TYPES[i]);
             db.insert(GroceryListContract.UnitType.TABLE_NAME, null, values);
         }
+
+        Item[] items = {
+                new Item(1, "Apples", 1, ""),
+                new Item(1, "Bananas", 1, ""),
+                new Item(1, "Strawberries", 1, ""),
+                new Item(1, "Grapes", 1, ""),
+                new Item(1, "Pineapple", 1, ""),
+                new Item(1, "Mango", 1, ""),
+
+                new Item(1, "Broccoli", 2, ""),
+                new Item(1, "Celery", 2, ""),
+                new Item(1, "Lettuce", 2, ""),
+                new Item(1, "Artichoke", 2, ""),
+                new Item(1, "Beets", 2, ""),
+                new Item(1, "Green Beans", 2, ""),
+                new Item(1, "Bok Choy", 2, ""),
+                new Item(1, "Carrots", 2, ""),
+
+
+                new Item(1, "Rice", 3, ""),
+                new Item(1, "Bagels", 3, ""),
+                new Item(1, "Noodles", 3, ""),
+                new Item(1, "Pasta", 3, ""),
+                new Item(1, "Crackers", 3, ""),
+                new Item(1, "Bread", 3, ""),
+                new Item(1, "Tortilla", 3, ""),
+                new Item(1, "Oatmeal", 3, ""),
+
+                new Item(1, "Milk", 4, ""),
+                new Item(1, "Yogurt", 4, ""),
+                new Item(1, "Ice Cream", 4, ""),
+                new Item(1, "Cheddar Cheese", 4, ""),
+                new Item(1, "Ricotta Cheese", 4, ""),
+                new Item(1, "Cottage Cheese", 4, ""),
+                new Item(1, "Soy Milk", 4, ""),
+
+                new Item(1, "Chicken", 5, ""),
+                new Item(1, "Chicken Wings", 5, ""),
+                new Item(1, "Steak", 5, ""),
+                new Item(1, "Pork Chops", 5, ""),
+                new Item(1, "Ham", 5, ""),
+                new Item(1, "Turkey", 5, ""),
+                new Item(1, "Ground Beef", 5, ""),
+                new Item(1, "Eggs", 5, ""),
+
+                new Item(1, "Water", 6, ""),
+                new Item(1, "Apple Juice", 6, ""),
+                new Item(1, "Ice Tea", 6, ""),
+                new Item(1, "Soda", 6, ""),
+                new Item(1, "Wine", 6, ""),
+                new Item(1, "Beer", 6, ""),
+                new Item(1, "Coffee", 6, ""),
+                new Item(1, "Tea", 6, ""),
+
+                new Item(1, "Shrimp", 7, ""),
+                new Item(1, "Tilapia", 7, ""),
+                new Item(1, "Lobster", 7, ""),
+                new Item(1, "Crab", 7, ""),
+                new Item(1, "Oyster", 7, ""),
+                new Item(1, "Sushi", 7, ""),
+                new Item(1, "Seaweed", 7, ""),
+                new Item(1, "Tuna", 7, ""),
+        };
+
+        // Insert all default items
+        for(int i = 0; i < items.length; i++) {
+            ContentValues values = new ContentValues();
+            values.put(GroceryListContract.Item.COLUMN_NAME, items[i].getName());
+            values.put(GroceryListContract.Item.COLUMN_TYPE_ID, items[i].getType().getID());
+            db.insert(GroceryListContract.Item.TABLE_NAME, null, values);
+        }
     }
 
     /**
@@ -222,8 +293,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null
         );
 
-        cursor.moveToNext();
-        String itemTypeName = cursor.getString(
+        String itemTypeName = "";
+        if(cursor.moveToNext())
+            itemTypeName = cursor.getString(
                 cursor.getColumnIndexOrThrow(GroceryListContract.ItemType.COLUMN_NAME));
 
         cursor.close();
@@ -256,7 +328,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 null
         );
 
-        List items = new ArrayList<>();
+        List items = new ArrayList();
         while(cursor.moveToNext()) {
             long id = cursor.getLong(
                     cursor.getColumnIndexOrThrow(GroceryListContract.ItemType._ID));
@@ -271,4 +343,194 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return items;
     }
 
+    /**
+     * Get all Items that match the item name given
+     * @param search the item name specified
+     * @return List of items that match the search
+     */
+    public List getSearchResultsByItemName(String search) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String projection[] = {
+                BaseColumns._ID,
+                GroceryListContract.Item.COLUMN_NAME,
+                GroceryListContract.Item.COLUMN_TYPE_ID,
+        };
+
+        String selection = GroceryListContract.Item.COLUMN_NAME + " LIKE ?";
+        String[] selectionArgs = { search };
+
+        Cursor cursor = db.query(
+                GroceryListContract.Item.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        List items = new ArrayList();
+        while(cursor.moveToNext()) {
+            long id = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.Item._ID));
+
+            String name = cursor.getString(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.Item.COLUMN_NAME));
+
+            long typeID = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.Item.COLUMN_TYPE_ID));
+
+            items.add(new Item(id, name, typeID, getItemTypeByID(typeID)));
+        }
+
+        return items;
+    }
+
+    /**
+     * Add a item to a list with the quantity and unit type ID
+     * @param itemID Item that is being added
+     * @param quantity The amount of the specified item
+     * @param unitTypeID The unit type ID the quantity is by
+     * @param listID The list ID the item is being added to
+     * @return The id of the item in the list
+     */
+    public long addItemToList(long itemID, int quantity, long unitTypeID, long listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GroceryListContract.ListItem.COLUMN_ITEM_ID, itemID);
+        values.put(GroceryListContract.ListItem.COLUMN_QUANTITY, quantity);
+        values.put(GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID, unitTypeID);
+        values.put(GroceryListContract.ListItem.COLUMN_LIST_ID, listID);
+
+        return db.insert(GroceryListContract.ListItem.TABLE_NAME, null, values);
+    }
+
+    /**
+     * Get the Item ID by the specified name
+     * @param name The name of the item
+     * @return The id of the item
+     */
+    public Long getItemIdByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String projection[] = {
+                BaseColumns._ID,
+        };
+
+        String selection = GroceryListContract.Item.COLUMN_NAME + " = ?";
+        String[] selectionArgs = { name };
+
+        Cursor cursor = db.query(
+                GroceryListContract.Item.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        long id = -1;
+        if(cursor.moveToNext()) {
+            id = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.Item._ID));
+        }
+
+        return id;
+    }
+
+    /**
+     * Get all the unit types
+     * @return A list of all the unit types
+     */
+    public List getAllUnitTypes() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String projection[] = {
+                BaseColumns._ID,
+                GroceryListContract.UnitType.COLUMN_NAME
+        };
+
+        Cursor cursor = db.query(
+                GroceryListContract.UnitType.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
+
+        List unitTypes = new ArrayList();
+
+        while(cursor.moveToNext()) {
+            long id = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.UnitType._ID));
+            String name = cursor.getString(cursor.getColumnIndexOrThrow(GroceryListContract.UnitType.COLUMN_NAME));
+
+            unitTypes.add(new UnitType(id, name));
+        }
+
+        return unitTypes;
+    }
+
+    /**
+     * Get the unit type name by the specified ID
+     * @param UnitTypeID The ID of the unit type
+     * @return The name of the unit type
+     */
+    public String getUnitTypeNameByID(long UnitTypeID) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String projection[] = {
+                GroceryListContract.UnitType.COLUMN_NAME
+        };
+
+        String selection = GroceryListContract.UnitType._ID + " = ?";
+        String[] selectionArgs = { Long.toString(UnitTypeID) };
+
+        Cursor cursor = db.query(
+                GroceryListContract.UnitType.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        String name = "";
+        if(cursor.moveToNext()) {
+            name = cursor.getString(cursor.getColumnIndexOrThrow(GroceryListContract.UnitType.COLUMN_NAME));
+        }
+
+        return name;
+    }
+
+    /**
+     * Get the unit type ID by the specified name
+     * @param name The name of the unit type
+     * @return The ID of the unit type
+     */
+    public long getUnitTypeIdByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String projection[] = {
+                BaseColumns._ID
+        };
+
+        String selection = GroceryListContract.UnitType.COLUMN_NAME + " = ?";
+        String[] selectionArgs = { name };
+
+        Cursor cursor = db.query(
+                GroceryListContract.UnitType.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        long id = -1;
+        if(cursor.moveToNext()) {
+            id = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.UnitType._ID));
+        }
+
+        return id;
+    }
 }

@@ -2,19 +2,22 @@ package edu.qc.seclass.glm;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.InputType;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -35,113 +38,60 @@ public class AddItemActivity extends AppCompatActivity {
 
     List<ItemType> itemTypes;
     ItemTypeAdapter adapter;
+    DatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
-        // Lookup the recyclerview in activity layout
-        RecyclerView rvItemTypes = (RecyclerView) findViewById(R.id.rvItemTypes);
 
-        // Initialize item types
-        itemTypes = new ArrayList<>(Arrays.asList(
-                new ItemType((long) 1234, "Beverages"),
-                new ItemType((long) 1738, "Bread/Bakery"),
-                new ItemType( (long) 6969, "Canned/Jarred Goods"),
-                new ItemType((long) 696969, "Dairy"),
-                new ItemType( (long) 12345, "Dry/Baking Goods"),
-                new ItemType((long) 19, "Frozen Foods"),
-                new ItemType( (long) 1492, "Meat"),
-                new ItemType((long) 14, "Produce"),
-                new ItemType( (long) 1997, "Cleaners"),
-                new ItemType((long) 56788, "Paper Goods"),
-                new ItemType( (long) 8008, "Personal Care"),
-                new ItemType((long) 80085, "Other")
-        ));
+        RecyclerView rvItemTypes = findViewById(R.id.rvItemTypes);
+        dbHelper = new DatabaseHelper(this);
+        itemTypes = dbHelper.getAllItemTypes();
+
+
         adapter = new ItemTypeAdapter(itemTypes, new ClickListener() {
             @Override
-            public void onPositionClicked(int position) {
-
-            }
+            public void onPositionClicked(int position) {}
 
             @Override
-            public void onLongClicked(int position) {
-
-            }
+            public void onLongClicked(int position) {}
 
             @Override
             public void switchActivities(int position) {
-                selectItemDialog(itemTypes.get(position).getName()).show();
+                selectItemDialog(itemTypes.get(position).getID()).show();
             }
         });
         rvItemTypes.setAdapter(adapter);
         rvItemTypes.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    private Dialog selectItemDialog(final String itemTypeName) {
+    /**
+     *
+     *
+     * @param id
+     * @return
+     */
+    private Dialog selectItemDialog(final long id) {
+        final DatabaseHelper dbHelper = new DatabaseHelper(this);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Select Item");
 
-        ArrayList<String> itemsInCategory = getItemsInCategory(itemTypeName);
+        List<Item> items = dbHelper.getItemsFromItemTypeID(id);
+        ArrayList<String> itemsInCategory = new ArrayList<>();
+
+        for(int i = 0; i < items.size(); i++) {
+            itemsInCategory.add(items.get(i).getName());
+        }
 
         final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_singlechoice);
         arrayAdapter.addAll(itemsInCategory);
 
+        // Inline Adapter for Items
         builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                final String selectedItemIs = arrayAdapter.getItem(which);
-                AlertDialog.Builder builderInner = new AlertDialog.Builder(AddItemActivity.this);
-                builderInner.setMessage(selectedItemIs);
-                builderInner.setTitle("You added the item");
-                builderInner.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.dismiss();
-                        Intent listActivityIntent = new Intent(AddItemActivity.this, ListActivity.class);
-                        listActivityIntent.putExtra("item", selectedItemIs);
-                        listActivityIntent.putExtra("item type", itemTypeName);
-                        startActivity(listActivityIntent);
-                    }
-                });
-                builderInner.show();
-            }
-        });
-
-        builder.setPositiveButton(R.string.custom_item, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddItemActivity.this);
-                builder.setTitle("Add Your Own Item");
-
-                // Set up the input
-                final EditText input = new EditText(AddItemActivity.this);
-                // Specify the type of input expected; this, for example, sets the input as a password, and will mask the text
-                input.setInputType(InputType.TYPE_CLASS_TEXT);
-                builder.setView(input);
-
-                // Set up the buttons
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        String newItem = input.getText().toString();
-                        Intent listActivityIntent = new Intent(AddItemActivity.this, ListActivity.class);
-                        listActivityIntent.putExtra("item", newItem);
-                        listActivityIntent.putExtra("item type", itemTypeName);
-                        startActivity(listActivityIntent);
-                    }
-                });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
-                    }
-                });
-
-                builder.show();
-
-
-                // TODO: Add item and quantity to the database
+                quantityDialog(dbHelper.getItemIdByName(arrayAdapter.getItem(which))).show();
             }
         });
 
@@ -156,114 +106,42 @@ public class AddItemActivity extends AppCompatActivity {
 
     }
 
-    private ArrayList<String> getItemsInCategory(String itemTypeName) {
-        ArrayList<String> itemsInCategory;
-        switch (itemTypeName) {
-            case "Beverages":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Coffee",
-                        "Tea",
-                        "Juice",
-                        "Soda"));
-                break;
-            case "Bread/Bakery":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Sandwich Loaves",
-                        "Dinner Rolls",
-                        "Tortillas",
-                        "Bagels"));
-                break;
-            case "Canned/Jarred Goods":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Vegetables",
-                        "Spaghetti Sauce",
-                        "Ketchup",
-                        "Mayonaisse"));
-                break;
-            case "Dairy":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Cheeses",
-                        "Eggs",
-                        "Milk",
-                        "Butter",
-                        "Yogurt"));
-                break;
-            case "Dry/Baking Goods":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Cereals",
-                        "Flour",
-                        "Sugar",
-                        "Pasta",
-                        "Mixes"));
-                break;
-            case "Frozen Foods":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Waffles",
-                        "Vegetables",
-                        "Individual Meals",
-                        "Ice Cream"));
-                break;
-            case "Meat":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Lunch Meat",
-                        "Poultry",
-                        "Beef",
-                        "Pork"));
-                break;
-            case "Produce":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Fruits",
-                        "Vegetables"));
-                break;
-            case "Cleaners":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "All-Purpose",
-                        "Laundry Detergent",
-                        "Dishwashing Liquid",
-                        "Dishwashing Detergent"));
-                break;
-            case "Paper Goods":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Paper Towels",
-                        "Toilet Paper",
-                        "Aluminum Foil",
-                        "Sandwich Bags"));
-                break;
-            case "Personal Care":
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Shampoo",
-                        "Soap",
-                        "Hand Soap",
-                        "Shaving Cream"));
-                break;
-            default:
-                itemsInCategory = new ArrayList<>(Arrays.asList(
-                        "Baby Items",
-                        "Pet Items",
-                        "Batteries",
-                        "Greeting Cards"));
-                break;
-        }
-        return itemsInCategory;
-    }
-
     /**
      * Creates a dialog box to select the quantity
      *
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
-    private Dialog quantityDialog(Bundle savedInstanceState, int itemID) {
+    private Dialog quantityDialog(final long itemID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.quantity_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_quantity, null));
+        final View dialogLayout = inflater.inflate(R.layout.dialog_quantity, null);
+        builder.setView(dialogLayout);
+
+        final Spinner unitTypeSpinner = dialogLayout.findViewById(R.id.unit_type_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        List<UnitType> allUnitTypes = dbHelper.getAllUnitTypes();
+        final List<String> unitTypes = new ArrayList();
+        for(int i = 0; i < allUnitTypes.size(); i++) {
+            unitTypes.add(allUnitTypes.get(i).getName());
+        }
+
+        adapter.addAll(unitTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitTypeSpinner.setAdapter(adapter);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Add item and quantity to the database
+                String selectedUnitType = unitTypeSpinner.getSelectedItem().toString();
+                EditText editText = dialogLayout.findViewById(R.id.quantity_et);
+                dbHelper.addItemToList(itemID,
+                        Integer.parseInt(editText.getText().toString()),
+                        dbHelper.getUnitTypeIdByName(selectedUnitType), 1);
+
+                Toast.makeText(AddItemActivity.this, "Item added to list", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -280,10 +158,9 @@ public class AddItemActivity extends AppCompatActivity {
     /**
      * Creates a dialog box to select the quantity
      *
-     * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
-    private Dialog newItemDialog(int itemID) {
+    private Dialog newItemDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         //builder.setTitle(R.string.new_item_title);
 
@@ -305,6 +182,25 @@ public class AddItemActivity extends AppCompatActivity {
         });
 
         return builder.create();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.activity_add_items_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_add:
+                newItemDialog().show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

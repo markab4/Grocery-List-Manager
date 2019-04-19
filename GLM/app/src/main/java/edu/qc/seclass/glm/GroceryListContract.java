@@ -78,17 +78,6 @@ public final class GroceryListContract {
             "Seafood"
     };
 
-    public static final String[] DEFAULT_ITEMS = {
-            "Apples",
-            "Bananas",
-            "Pizza",
-            "Apple Juice",
-            "Milk",
-            "Peas",
-            "Chicken",
-            "Water"
-    };
-
     private GroceryListContract() {}
 
     public static class ItemType implements BaseColumns {

@@ -44,27 +44,12 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         rvItemList = findViewById(R.id.rvItemList);
-//        // Could need refactoring
-//        List<Long> listIds = dbHelper.getAllListIDs();
-//        for (int i = 0; i < listIds.size(); i++) {
-//            System.out.println(i);
-//            lists.add(new GroceryList(
-//                    listIds.get(i),
-//                    dbHelper.getListNameByID(listIds.get(i))));
-//        }
+
         items = new ArrayList<>(Arrays.asList(
                 new GroceryItem(new Item(1, "Coco Puffs", 2, "Cereal"), 2, "boxes"),
                 new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
                 new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
         ));
-
-        Bundle extras = getIntent().getExtras();
-        if (extras!=null && extras.getString("item") != null){
-            Log.v("EXTRAS STRING", extras.getString("item"));
-            items.add(new GroceryItem(
-                    new Item(4, extras.getString("item"), 1, extras.getString("item type")),
-                    1, "units"));
-        }
 
         adapter = new ItemAdapter(items, new ClickListener() {
             @Override
@@ -84,29 +69,6 @@ public class ListActivity extends AppCompatActivity {
         });
         rvItemList.setAdapter(adapter);
         rvItemList.setLayoutManager(new LinearLayoutManager(this));
-
-//        rvItemList.addOnItemTouchListener(
-//                new RecyclerItemClickListener(this, rvItemList, new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-//                        // do whatever you want to do on item click
-////                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-////                        listIntent.setAction(Intent.ACTION_SEND);
-////                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-////                        startActivity(listIntent);
-//                        boolean checked = ((CheckBox) view).isChecked();
-//                    }
-//
-//                    @Override
-//                    public void onLongItemClick(View view, int position) {
-//                        // do whatever you want to do on long item click
-////                        GroceryList selectedList = lists.get(position);
-////                        selectedList.setSelected(!selectedList.isSelected());
-////                        adapter.notifyItemChanged(position);
-//
-//                    }
-//                })
-//        );
     }
 
     /**
@@ -211,51 +173,10 @@ public class ListActivity extends AppCompatActivity {
                         adapter.notifyDataSetChanged();
                     }
                 }
-//                ArrayList<Long> selectedItems = new ArrayList();
-//                for (int i = 0; i < items.size(); i++) {
-//                    if (items.get(i).isChecked())
-//                        selectedItems.add((long)i);
-////                    this would impact the database:
-//                        selectedItems.add(items.get(i).getItem().getID());
-//                }
-//                if (!selectedItems.isEmpty()) {
-//                    deleteDialog(selectedItems).show();
-//                    adapter.notifyDataSetChanged();
-//                }
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    private Dialog deleteDialog(final ArrayList<Long> itemIDs) {
-//        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-//        builder.setTitle(R.string.delete_items_title);
-//        builder.setMessage(R.string.delete_items);
-//        builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                for (int i = 0; i < itemIDs.size(); i++) {
-////                    this would impact the database:
-//                    dbHelper.deleteListByID(itemIDs.get(i));
-//                    for (int j = 0; j < items.size(); j++) {
-//                        if (items.get(j).getItem().getID() == itemIDs.get(i)) {
-//                            items.remove(j);
-//                        }
-//                    }
-//                }
-//                adapter.notifyDataSetChanged();
-//                dialog.dismiss();
-//            }
-//        });
-//
-//        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-//                dialog.dismiss();
-//            }
-//        });
-//        return builder.create();
-//
-//    }
 }

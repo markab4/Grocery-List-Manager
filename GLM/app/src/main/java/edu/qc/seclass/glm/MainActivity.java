@@ -32,7 +32,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView rvLists;
     private List<GroceryList> lists;
     private DatabaseHelper dbHelper;
     GroceryListsAdapter adapter;
@@ -43,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvLists = findViewById(R.id.rvItemTypes);
+        RecyclerView rvLists = findViewById(R.id.rvItemTypes);
         lists = new ArrayList<>();
         dbHelper = new DatabaseHelper(MainActivity.this);
 
@@ -78,25 +77,6 @@ public class MainActivity extends AppCompatActivity {
         });
         rvLists.setAdapter(adapter);
         rvLists.setLayoutManager(new LinearLayoutManager(this));
-
-//        rvLists.addOnItemTouchListener(
-//                new RecyclerItemClickListener(this, rvLists, new RecyclerItemClickListener.OnItemClickListener() {
-//                    @Override
-//                    public void onItemClick(View view, int position) {
-//                        Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-//                        listIntent.setAction(Intent.ACTION_SEND);
-//                        listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
-//                        startActivity(listIntent);
-//                    }
-//
-//                    @Override
-//                    public void onLongItemClick(View view, int position) {
-//                        GroceryList selectedList = lists.get(position);
-//                        selectedList.setSelected(!selectedList.isSelected());
-//                        adapter.notifyItemChanged(position);
-//                    }
-//                })
-//        );
     }
 
 
@@ -105,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
      *
      * @return the dialog box that was created
      */
+    @SuppressWarnings("InflateParams")
     private Dialog createListDialog() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -162,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
+    @SuppressWarnings("InflateParams")
     private Dialog renameListDialog(final long listID, final int index) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.rename_list_title);
@@ -209,12 +191,11 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 for (int i = 0; i < listIDs.size(); i++) {
                     dbHelper.deleteListByID(listIDs.get(i));
-                    for (int j = 0; j < lists.size(); j++) {
-                        if (lists.get(j).getListID() == listIDs.get(i)) {
+                    for (int j = 0; j < lists.size(); j++)
+                        if (lists.get(j).getListID() == listIDs.get(i))
                             lists.remove(j);
-                        }
-                    }
                 }
+
                 adapter.notifyDataSetChanged();
                 dialog.dismiss();
             }
@@ -226,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
                 dialog.dismiss();
             }
         });
+
         return builder.create();
     }
 

@@ -44,12 +44,9 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
         rvItemList = findViewById(R.id.rvItemList);
+        dbHelper = new DatabaseHelper(this);
 
-        items = new ArrayList<>(Arrays.asList(
-                new GroceryItem(new Item(1, "Coco Puffs", 2, "Cereal"), 2, "boxes"),
-                new GroceryItem(new Item(2, "Eggs", 1, "Meat"), 2, "cartons"),
-                new GroceryItem(new Item(3, "Bananas", 4, "Fruits"), 2, "units")
-        ));
+        items = dbHelper.getGroceryItemsByListID(1);
 
         adapter = new ItemAdapter(items, new ClickListener() {
             @Override
@@ -104,7 +101,7 @@ public class ListActivity extends AppCompatActivity {
      * Creates a dialog box to select the quantity
      *
      * @param savedInstanceState
-     * @param itemID             The ID of the item that the quantity is being changed
+     * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
     private Dialog quantityDialog(Bundle savedInstanceState, int itemID) {

@@ -177,7 +177,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to delete the selected lists from the database
-     *
      * @param listIDs The IDs of the lists in the database being deleted
      * @return The dialog box that was created
      */
@@ -226,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
                 createListDialog().show();
                 return true;
             case R.id.action_edit:
-                ArrayList<Long> selectedList = new ArrayList();
+                ArrayList<Long> selectedList = new ArrayList<>();
                 int index = -1;
 
                 for (int i = 0; i < lists.size(); i++) {
@@ -245,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_delete:
-                ArrayList<Long> selectedLists = new ArrayList();
+                ArrayList<Long> selectedLists = new ArrayList<>();
                 for (int i = 0; i < lists.size(); i++) {
                     if (lists.get(i).isSelected())
                         selectedLists.add(lists.get(i).getListID());

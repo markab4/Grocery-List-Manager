@@ -356,14 +356,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 GroceryListContract.Item.COLUMN_TYPE_ID,
         };
 
-        String selection = GroceryListContract.Item.COLUMN_NAME + " LIKE ?";
-        String[] selectionArgs = { search };
+        String selection = GroceryListContract.Item.COLUMN_NAME.toLowerCase() + " LIKE '% " + search.toLowerCase() + "' " +
+                "OR " + GroceryListContract.Item.COLUMN_NAME.toLowerCase() + " LIKE '" + search.toLowerCase() + "%' " +
+                "OR " + GroceryListContract.Item.COLUMN_NAME.toLowerCase() + " LIKE '% " + search.toLowerCase() + "%' " +
+                "OR " + GroceryListContract.Item.COLUMN_NAME.toLowerCase() + " LIKE '" + search.toLowerCase() + "'";
 
         Cursor cursor = db.query(
                 GroceryListContract.Item.TABLE_NAME,
                 projection,
                 selection,
-                selectionArgs,
+                null,
                 null,
                 null,
                 null

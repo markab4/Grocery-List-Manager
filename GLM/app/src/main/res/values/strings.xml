@@ -20,7 +20,9 @@
 
     <string name="list_name_input">Enter list name</string>
     <string name="quantity_input">Enter quantity</string>
+    <string name="item_input">Enter item name</string>
     <string name="delete_items">Permanently delete these items from the list?</string>
     <string name="delete_items_title">Delete Item(s)</string>
     <string name="custom_item">Custom Item</string>
+    <string name="new_item_title">Create new Item</string>
 </resources>

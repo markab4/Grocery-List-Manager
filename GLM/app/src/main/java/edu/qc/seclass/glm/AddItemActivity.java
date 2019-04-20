@@ -67,10 +67,9 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     /**
-     *
-     *
-     * @param id
-     * @return
+     * Creates a dialog box to select items to add
+     * @param id the id of the item type selected
+     * @return the dialog box
      */
     private Dialog selectItemDialog(final long id) {
         final DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -108,7 +107,6 @@ public class AddItemActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to select the quantity
-     *
      * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
@@ -156,21 +154,37 @@ public class AddItemActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a dialog box to select the quantity
-     *
+     * Creates a new item for catalog
      * @return The dialog box that was created
      */
     private Dialog newItemDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        //builder.setTitle(R.string.new_item_title);
+        builder.setTitle(R.string.new_item_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        //builder.setView(inflater.inflate(R.layout.dialog_new_item, null));
+        final View dialogLayout = inflater.inflate(R.layout.dialog_new_item, null);
+        builder.setView(dialogLayout);
+
+        final Spinner unitTypeSpinner = dialogLayout.findViewById(R.id.unit_type_spinner);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
+        List<UnitType> allUnitTypes = dbHelper.getAllUnitTypes();
+        final List<String> unitTypes = new ArrayList();
+        for(int i = 0; i < allUnitTypes.size(); i++) {
+            unitTypes.add(allUnitTypes.get(i).getName());
+        }
+
+        adapter.addAll(unitTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        unitTypeSpinner.setAdapter(adapter);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Create new item, refresh list
+                EditText itemInput = dialogLayout.findViewById(R.id.item_et);
+                String selectedUnitType = unitTypeSpinner.getSelectedItem().toString();
+
+                dbHelper.createNewItem(itemInput.getText().toString(),
+                        dbHelper.getUnitTypeIdByName(selectedUnitType));
             }
         });
 
@@ -195,7 +209,7 @@ public class AddItemActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         switch (item.getItemId()) {
-            case R.id.action_add:
+            case R.id.add_item:
                 newItemDialog().show();
                 return true;
             default:

@@ -13,6 +13,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
@@ -39,6 +40,7 @@ public class AddItemActivity extends AppCompatActivity {
     List<ItemType> itemTypes;
     ItemTypeAdapter adapter;
     DatabaseHelper dbHelper;
+    Button searchButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,9 +48,22 @@ public class AddItemActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_item);
 
         RecyclerView rvItemTypes = findViewById(R.id.rvItemTypes);
+        searchButton = findViewById(R.id.search_button);
         dbHelper = new DatabaseHelper(this);
         itemTypes = dbHelper.getAllItemTypes();
 
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText searchInput = findViewById(R.id.search_input);
+                List<Item> items = dbHelper.getSearchResultsByItemName(searchInput.getText().toString());
+
+                if(items.isEmpty())
+                    Toast.makeText(AddItemActivity.this, "No results found", Toast.LENGTH_SHORT).show();
+                else selectItemDialog(items).show();
+
+            }
+        });
 
         adapter = new ItemTypeAdapter(itemTypes, new ClickListener() {
             @Override
@@ -77,6 +92,44 @@ public class AddItemActivity extends AppCompatActivity {
         builder.setTitle("Select Item");
 
         List<Item> items = dbHelper.getItemsFromItemTypeID(id);
+        ArrayList<String> itemsInCategory = new ArrayList<>();
+
+        for(int i = 0; i < items.size(); i++) {
+            itemsInCategory.add(items.get(i).getName());
+        }
+
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.select_dialog_singlechoice);
+        arrayAdapter.addAll(itemsInCategory);
+
+        // Inline Adapter for Items
+        builder.setAdapter(arrayAdapter, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                quantityDialog(dbHelper.getItemIdByName(arrayAdapter.getItem(which))).show();
+            }
+        });
+
+        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        return builder.create();
+
+    }
+
+    /**
+     * Creates a dialog box displaying the search results of the query
+     * @param items the search query for the item
+     * @return the dialog box
+     */
+    private Dialog selectItemDialog(List<Item> items) {
+        final DatabaseHelper dbHelper = new DatabaseHelper(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Select Item");
+
         ArrayList<String> itemsInCategory = new ArrayList<>();
 
         for(int i = 0; i < items.size(); i++) {
@@ -167,10 +220,10 @@ public class AddItemActivity extends AppCompatActivity {
 
         final Spinner unitTypeSpinner = dialogLayout.findViewById(R.id.unit_type_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
-        List<UnitType> allUnitTypes = dbHelper.getAllUnitTypes();
+        List<ItemType> allItemTypes = dbHelper.getAllItemTypes();
         final List<String> unitTypes = new ArrayList();
-        for(int i = 0; i < allUnitTypes.size(); i++) {
-            unitTypes.add(allUnitTypes.get(i).getName());
+        for(int i = 0; i < allItemTypes.size(); i++) {
+            unitTypes.add(allItemTypes.get(i).getName());
         }
 
         adapter.addAll(unitTypes);

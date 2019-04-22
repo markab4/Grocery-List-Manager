@@ -13,10 +13,11 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -28,26 +29,29 @@ import java.util.List;
  * Users can move back to MainActivity by using the back button on the action menu. Users can go to
  * the AddItemActivity when clicking the add items button on the action menu.
  * <p>
- * IMPORTANT: An ID of a list should be supplied when entering this activity.
  * @version 1.0
  * @since 1.0
  */
 
 public class ListActivity extends AppCompatActivity {
     private RecyclerView rvItemList;
-    private List<GroceryItem> items; //
+    private List<GroceryItem> items;
     private DatabaseHelper dbHelper;
+    private long listID;
     ItemAdapter adapter;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
+
         rvItemList = findViewById(R.id.rvItemList);
         dbHelper = new DatabaseHelper(this);
+        listID = getIntent().getLongExtra("id", -1);
 
-        items = dbHelper.getGroceryItemsByListID(1);
+        setTitle(dbHelper.getListNameByID(listID));
 
+        items = dbHelper.getGroceryItemsByListID(listID, false);
         adapter = new ItemAdapter(items, new ClickListener() {
             @Override
             public void onPositionClicked(int position) {
@@ -68,22 +72,31 @@ public class ListActivity extends AppCompatActivity {
         rvItemList.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        items.clear();
+        items.addAll(dbHelper.getGroceryItemsByListID(listID, false));
+        adapter.notifyDataSetChanged();
+    }
+
+
     /**
-     * Creates a dialog box to delete the list from the database
-     *
-     * @param savedInstanceState
-     * @param listID             The ID of the list being deleted from the database
+     * Creates a dialog box to select the quantity
+     * @param itemID The ID of the item that the quantity is being changed
      * @return The dialog box that was created
      */
-    private Dialog deleteDialog(Bundle savedInstanceState, int listID) {
+    private Dialog quantityDialog(int itemID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.delete_list_title);
-        builder.setMessage(R.string.delete_list_message);
+        builder.setTitle(R.string.quantity_title);
+
+        LayoutInflater inflater = this.getLayoutInflater();
+        builder.setView(inflater.inflate(R.layout.dialog_quantity, null));
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Delete list from database, go to MainActivity
+                // TODO: Change quantity in the database
             }
         });
 
@@ -98,23 +111,28 @@ public class ListActivity extends AppCompatActivity {
     }
 
     /**
-     * Creates a dialog box to select the quantity
-     *
-     * @param savedInstanceState
-     * @param itemID The ID of the item that the quantity is being changed
+     * Creates a dialog box to rename the given list
+     * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */
-    private Dialog quantityDialog(Bundle savedInstanceState, int itemID) {
+    @SuppressWarnings("InflateParams")
+    private Dialog renameListDialog(final long listID) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.quantity_title);
+        builder.setTitle(R.string.rename_list_title);
 
         LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_quantity, null));
+        final View dialogLayout = inflater.inflate(R.layout.dialog_create_list, null);
+        builder.setView(dialogLayout);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                // TODO: Change quantity in the database, return to ListActivity
+                EditText input = dialogLayout.findViewById(R.id.new_list_name);
+
+                dbHelper.renameListByID(listID, input.getText().toString());
+                ListActivity.this.setTitle(input.getText().toString());
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
             }
         });
 
@@ -142,7 +160,7 @@ public class ListActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_add:
                 Intent addItemIntent = new Intent(ListActivity.this, AddItemActivity.class);
-                addItemIntent.putExtra(Intent.EXTRA_TEXT, 0);
+                addItemIntent.putExtra("id", listID);
                 startActivity(addItemIntent);
                 return true;
             //Sets all checks to false
@@ -172,6 +190,13 @@ public class ListActivity extends AppCompatActivity {
                 }
 
                 return true;
+            case R.id.groupByType:
+                items.clear();
+                items.addAll(dbHelper.getGroceryItemsByListID(listID, true));
+                adapter.notifyDataSetChanged();
+                return true;
+            case R.id.renameList:
+                renameListDialog(listID).show();
             default:
                 return super.onOptionsItemSelected(item);
         }

@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -62,8 +61,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         TextView tvQuantity = viewHolder.tvQuantity;
         String quantity = String.format("%d %s", item.getQuantity(), item.getUnitType());
         tvQuantity.setText(quantity);
-        ImageView ivIncreaseQuantity = viewHolder.ivIncreaseQuantity,
-                ivDecreaseQuantity = viewHolder.ivDecreaseQuantity;
     }
 
     @Override
@@ -79,7 +76,6 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         private TextView tvItemName;
         private CheckBox cbSelected;
         private TextView tvQuantity;
-        private ImageView ivIncreaseQuantity, ivDecreaseQuantity;
         private WeakReference<ClickListener> listenerRef;
 
 
@@ -91,15 +87,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
             super(itemView);
 
             listenerRef = new WeakReference<>(listener);
-            tvItemName = (TextView) itemView.findViewById(R.id.tvItemName);
-            cbSelected = (CheckBox) itemView.findViewById(R.id.cbItemSelected);
+            tvItemName = itemView.findViewById(R.id.tvItemName);
+            cbSelected = itemView.findViewById(R.id.cbItemSelected);
             tvQuantity = itemView.findViewById(R.id.tvQuantity);
-            ivIncreaseQuantity = itemView.findViewById(R.id.ivIncreaseQuantity);
-            ivDecreaseQuantity = itemView.findViewById(R.id.ivDecreaseQuantity);
 
             itemView.setOnClickListener(this);
-            ivIncreaseQuantity.setOnClickListener(this);
-            ivDecreaseQuantity.setOnClickListener(this);
             cbSelected.setOnClickListener(this);
 
         }
@@ -108,14 +100,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
         @Override
         public void onClick(View v) {
             GroceryItem selectedItem = mGroceryItems.get(getAdapterPosition());
-            if (v.getId() == ivDecreaseQuantity.getId() && selectedItem.getQuantity() > 0) {
-                Toast.makeText(v.getContext(), "Decrease Quantity", Toast.LENGTH_SHORT).show();
-                selectedItem.setQuantity(selectedItem.getQuantity() - 1);
-            } else if (v.getId() == ivIncreaseQuantity.getId()) {
-                Toast.makeText(v.getContext(), "Increase Quantity", Toast.LENGTH_SHORT).show();
-                selectedItem.setQuantity(selectedItem.getQuantity() + 1);
-            } else if (v.getId() == cbSelected.getId()){
-                Toast.makeText(v.getContext(), "Checked!", Toast.LENGTH_SHORT).show();
+            if  (v.getId() == cbSelected.getId()){
                 selectedItem.setChecked(!selectedItem.isChecked());
             }
             notifyDataSetChanged();

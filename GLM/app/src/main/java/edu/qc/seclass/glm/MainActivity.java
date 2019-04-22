@@ -70,8 +70,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void switchActivities(int position) {
                 Intent listIntent = new Intent(MainActivity.this, ListActivity.class);
-                listIntent.setAction(Intent.ACTION_SEND);
-                listIntent.putExtra(Intent.EXTRA_TEXT, lists.get(position).getListID());
+                listIntent.putExtra("id", lists.get(position).getListID());
                 startActivity(listIntent);
             }
         });
@@ -79,10 +78,22 @@ public class MainActivity extends AppCompatActivity {
         rvLists.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        lists.clear();
+        List<Long> listIds = dbHelper.getAllListIDs();
+        for (int i = 0; i < listIds.size(); i++) {
+            System.out.println(i);
+            lists.add(new GroceryList(
+                    listIds.get(i),
+                    dbHelper.getListNameByID(listIds.get(i))));
+        }
+        adapter.notifyDataSetChanged();
+    }
 
     /**
      * Creates a dialog box to create a new list
-     *
      * @return the dialog box that was created
      */
     @SuppressWarnings("InflateParams")
@@ -129,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
 
                 Intent addItemIntent = new Intent(MainActivity.this, AddItemActivity.class);
-                addItemIntent.putExtra(Intent.EXTRA_TEXT, id);
+                addItemIntent.putExtra("id", id);
                 startActivity(addItemIntent);
             }
         });
@@ -139,7 +150,6 @@ public class MainActivity extends AppCompatActivity {
 
     /**
      * Creates a dialog box to rename the given list
-     *
      * @param listID The ID of the list in the database being renamed
      * @return The dialog box that was created
      */

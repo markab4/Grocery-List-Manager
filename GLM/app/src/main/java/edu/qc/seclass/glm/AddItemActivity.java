@@ -30,7 +30,6 @@ import java.util.List;
  * can create a new item using the add button on the action menu, and be prompted with a 'New Item'
  * Dialog box.
  * <p>
- * IMPORTANT: An ID of a list should be supplied when entering this activity.
  * @version 1.0
  * @since 1.0
  */
@@ -41,11 +40,13 @@ public class AddItemActivity extends AppCompatActivity {
     ItemTypeAdapter adapter;
     DatabaseHelper dbHelper;
     Button searchButton;
+    long listID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_item);
+        listID = getIntent().getLongExtra("id", -1);
 
         RecyclerView rvItemTypes = findViewById(R.id.rvItemTypes);
         searchButton = findViewById(R.id.search_button);
@@ -190,7 +191,7 @@ public class AddItemActivity extends AppCompatActivity {
                 EditText editText = dialogLayout.findViewById(R.id.quantity_et);
                 dbHelper.addItemToList(itemID,
                         Integer.parseInt(editText.getText().toString()),
-                        dbHelper.getUnitTypeIdByName(selectedUnitType), 1);
+                        dbHelper.getUnitTypeIdByName(selectedUnitType), listID);
 
                 Toast.makeText(AddItemActivity.this, "Item added to list", Toast.LENGTH_SHORT).show();
             }
@@ -218,26 +219,26 @@ public class AddItemActivity extends AppCompatActivity {
         final View dialogLayout = inflater.inflate(R.layout.dialog_new_item, null);
         builder.setView(dialogLayout);
 
-        final Spinner unitTypeSpinner = dialogLayout.findViewById(R.id.unit_type_spinner);
+        final Spinner itemTypeSpinner = dialogLayout.findViewById(R.id.item_type_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item);
         List<ItemType> allItemTypes = dbHelper.getAllItemTypes();
-        final List<String> unitTypes = new ArrayList();
+        final List<String> itemTypes = new ArrayList();
         for(int i = 0; i < allItemTypes.size(); i++) {
-            unitTypes.add(allItemTypes.get(i).getName());
+            itemTypes.add(allItemTypes.get(i).getName());
         }
 
-        adapter.addAll(unitTypes);
+        adapter.addAll(itemTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        unitTypeSpinner.setAdapter(adapter);
+        itemTypeSpinner.setAdapter(adapter);
 
         builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 EditText itemInput = dialogLayout.findViewById(R.id.item_et);
-                String selectedUnitType = unitTypeSpinner.getSelectedItem().toString();
+                String selectedItemType = itemTypeSpinner.getSelectedItem().toString();
 
                 dbHelper.createNewItem(itemInput.getText().toString(),
-                        dbHelper.getUnitTypeIdByName(selectedUnitType));
+                        dbHelper.getItemTypeIDByName(selectedItemType));
             }
         });
 

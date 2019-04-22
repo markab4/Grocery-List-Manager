@@ -38,13 +38,13 @@ public final class GroceryListContract {
 
             //ListItem
             String.format("CREATE TABLE %s (%s INTEGER PRIMARY KEY, %s REAL, %s INTEGER," +
-                                "%s INTEGER, %s INTEGER," +
+                                "%s INTEGER, %s INTEGER, %s INTEGER," +
                                 "FOREIGN KEY (%s) REFERENCES %s(%s)," +
                                 "FOREIGN KEY (%s) REFERENCES %s(%s)," +
                                 "FOREIGN KEY (%s) REFERENCES %s(%s)" +
                             ");",
                     ListItem.TABLE_NAME, ListItem._ID, ListItem.COLUMN_QUANTITY,
-                    ListItem.COLUMN_UNIT_TYPE_ID, ListItem.COLUMN_ITEM_ID, ListItem.COLUMN_LIST_ID,
+                    ListItem.COLUMN_UNIT_TYPE_ID, ListItem.COLUMN_ITEM_ID, ListItem.COLUMN_LIST_ID, ListItem.COLUMN_CHECKED,
                     ListItem.COLUMN_UNIT_TYPE_ID, UnitType.TABLE_NAME, UnitType._ID,
                     ListItem.COLUMN_ITEM_ID, Item.TABLE_NAME, Item._ID,
                     ListItem.COLUMN_LIST_ID, GroceryList.TABLE_NAME, GroceryList._ID)
@@ -105,6 +105,7 @@ public final class GroceryListContract {
         public static final String TABLE_NAME = "ListItem";
         public static final String COLUMN_QUANTITY = "Quantity";
         public static final String COLUMN_UNIT_TYPE_ID = "UnitTypeId";
+        public static final String COLUMN_CHECKED = "Checked";
         public static final String COLUMN_ITEM_ID = "ItemId";
         public static final String COLUMN_LIST_ID = "ListId";
     }

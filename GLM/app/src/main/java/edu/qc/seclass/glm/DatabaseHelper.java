@@ -227,10 +227,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      */
     public void deleteListByID(Long id) {
         SQLiteDatabase db = this.getWritableDatabase();
+
         String selection = GroceryListContract.GroceryList._ID + " = ?";
         String[] selectionArgs = { id.toString() };
 
         db.delete(GroceryListContract.GroceryList.TABLE_NAME, selection, selectionArgs);
+
+        selection = GroceryListContract.ListItem.COLUMN_LIST_ID + " = ?";
+        String[] selectionArgs2 = { id.toString() };
+
+        db.delete(GroceryListContract.ListItem.TABLE_NAME, selection, selectionArgs2);
     }
 
 
@@ -300,6 +306,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return itemTypeName;
+    }
+
+    /**
+     * Get the name of the item type with the specified ID
+     * @param name The name of the item type
+     * @return The id of the item type
+     */
+    public long getItemTypeIDByName(String name) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] projection = {
+                BaseColumns._ID,
+                GroceryListContract.ItemType.COLUMN_NAME
+        };
+
+        String selection = GroceryListContract.ItemType.COLUMN_NAME + " = ?";
+        String[] selectionArgs = { name };
+
+        Cursor cursor = db.query(
+                GroceryListContract.ItemType.TABLE_NAME,
+                projection,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        long itemTypeID = -1;
+        if(cursor.moveToNext())
+            itemTypeID = cursor.getLong(
+                    cursor.getColumnIndexOrThrow(GroceryListContract.ItemType._ID));
+
+        cursor.close();
+        return itemTypeID;
     }
 
     /**
@@ -404,6 +444,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(GroceryListContract.ListItem.COLUMN_QUANTITY, quantity);
         values.put(GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID, unitTypeID);
         values.put(GroceryListContract.ListItem.COLUMN_LIST_ID, listID);
+        values.put(GroceryListContract.ListItem.COLUMN_CHECKED, false);
 
         return db.insert(GroceryListContract.ListItem.TABLE_NAME, null, values);
     }
@@ -634,7 +675,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param listID The list ID where the items are
      * @return A list of all the item from the list
      */
-    public List getGroceryItemsByListID(long listID) {
+    public List getGroceryItemsByListID(long listID, boolean sort) {
         SQLiteDatabase db = this.getReadableDatabase();
         String projection[] = {
                 BaseColumns._ID,
@@ -645,6 +686,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         String selection = GroceryListContract.ListItem.COLUMN_LIST_ID + " = ?";
         String[] selectionArgs = { Long.toString(listID) };
+        String order = null;
+        if(sort) order = GroceryListContract.ListItem.COLUMN_ITEM_ID;
 
         Cursor cursor = db.query(
                 GroceryListContract.ListItem.TABLE_NAME,
@@ -653,7 +696,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs,
                 null,
                 null,
-                null
+                order
         );
 
         List<GroceryItem> listItems = new ArrayList<>();
@@ -669,5 +712,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         cursor.close();
         return listItems;
+    }
+
+    public void setCheckedForListItem(long id, boolean check) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GroceryListContract.ListItem.COLUMN_CHECKED, check);
+
+        String selection = GroceryListContract.GroceryList._ID + " = ?";
+        String[] selectionArgs = { Long.toString(id) };
+
+        db.update(GroceryListContract.GroceryList.TABLE_NAME, values, selection, selectionArgs);
+
     }
 }

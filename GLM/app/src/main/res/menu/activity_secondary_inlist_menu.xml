@@ -10,18 +10,8 @@
         app:showAsAction="always">
 
     </item>
-    <item
-
-        android:id="@+id/action_delete"
-        android:icon="@mipmap/ic_delete"
-        android:title="Delete List"
-        app:showAsAction="always">
-
-
-    </item>
 
     <item
-
         android:id="@+id/action_dots"
         android:icon="@mipmap/ic_dots_white"
         android:title="Edit List"
@@ -34,7 +24,7 @@
         </item>
         <item
             android:title="Group By Type"
-            android:id="@+id/groupByTpe">
+            android:id="@+id/groupByType">
 
         </item>
         <item

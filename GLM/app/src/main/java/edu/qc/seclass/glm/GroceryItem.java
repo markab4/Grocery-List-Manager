@@ -11,22 +11,27 @@ package edu.qc.seclass.glm;
  */
 
 public class GroceryItem {
+    private long id;
     private int quantity;
     private String unitType;
     private boolean isChecked;
     private Item item;
 
-    public GroceryItem(Item item, int quantity, String unitType) {
+    public GroceryItem(long id, Item item, int quantity, String unitType, Boolean checked) {
+        this.id = id;
         this.item = item;
         this.quantity = quantity;
         this.unitType = unitType;
-        this.isChecked = false;
+        this.isChecked = checked;
+    }
+
+    public long getId() {
+        return id;
     }
 
     public Item getItem() {
         return item;
     }
-
 
     public int getQuantity() {
         return quantity;

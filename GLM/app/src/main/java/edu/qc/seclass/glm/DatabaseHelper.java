@@ -628,7 +628,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
      * @param name The name of the unit type
      * @return The ID of the unit type
      */
-    public long getUnitTypeIdByName(String name) {
+    public long getUnitTypeIDByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
         String projection[] = {
                 BaseColumns._ID
@@ -681,7 +681,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 BaseColumns._ID,
                 GroceryListContract.ListItem.COLUMN_ITEM_ID,
                 GroceryListContract.ListItem.COLUMN_QUANTITY,
-                GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID
+                GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID,
+                GroceryListContract.ListItem.COLUMN_CHECKED
         };
 
         String selection = GroceryListContract.ListItem.COLUMN_LIST_ID + " = ?";
@@ -701,12 +702,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         List<GroceryItem> listItems = new ArrayList<>();
         while(cursor.moveToNext()) {
+            long id = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.ListItem._ID));
             long itemID = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.ListItem.COLUMN_ITEM_ID));
             int quantity = cursor.getInt(cursor.getColumnIndexOrThrow(GroceryListContract.ListItem.COLUMN_QUANTITY));
             long unitTypeID = cursor.getLong(cursor.getColumnIndexOrThrow(GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID));
+            boolean checked = cursor.getInt(cursor.getColumnIndexOrThrow(GroceryListContract.ListItem.COLUMN_CHECKED)) != 0;
             Item item = getItemByID(itemID);
 
-            GroceryItem listItem = new GroceryItem(item, quantity, getUnitTypeNameByID(unitTypeID));
+            GroceryItem listItem = new GroceryItem(id, item, quantity, getUnitTypeNameByID(unitTypeID), checked);
             listItems.add(listItem);
         }
 
@@ -719,10 +722,43 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(GroceryListContract.ListItem.COLUMN_CHECKED, check);
 
-        String selection = GroceryListContract.GroceryList._ID + " = ?";
+        String selection = GroceryListContract.ListItem._ID + " = ?";
         String[] selectionArgs = { Long.toString(id) };
 
-        db.update(GroceryListContract.GroceryList.TABLE_NAME, values, selection, selectionArgs);
+        db.update(GroceryListContract.ListItem.TABLE_NAME, values, selection, selectionArgs);
+
+    }
+
+    public void updateQuantity(long id, int quantity, long unitTypeID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GroceryListContract.ListItem.COLUMN_QUANTITY, quantity);
+        values.put(GroceryListContract.ListItem.COLUMN_UNIT_TYPE_ID, unitTypeID);
+
+        String selection = GroceryListContract.ListItem._ID + " = ?";
+        String[] selectionArgs = { Long.toString(id) };
+
+        db.update(GroceryListContract.ListItem.TABLE_NAME, values, selection, selectionArgs);
+    }
+
+    public void deleteItemFromList(long id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String selection = GroceryListContract.ListItem._ID + " = ?";
+        String[] selectionArgs = { Long.toString(id) };
+
+        db.delete(GroceryListContract.ListItem.TABLE_NAME, selection, selectionArgs);
+    }
+
+    public void clearAllCheckboxesFromList(long listID) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(GroceryListContract.ListItem.COLUMN_CHECKED, false);
+
+        String selection = GroceryListContract.ListItem.COLUMN_LIST_ID + " = ?";
+        String[] selectionArgs = { Long.toString(listID) };
+
+        db.update(GroceryListContract.ListItem.TABLE_NAME, values, selection, selectionArgs);
 
     }
 }

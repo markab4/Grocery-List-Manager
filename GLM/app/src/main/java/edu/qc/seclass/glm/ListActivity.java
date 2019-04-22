@@ -81,34 +81,7 @@ public class ListActivity extends AppCompatActivity {
     }
 
 
-    /**
-     * Creates a dialog box to select the quantity
-     * @param itemID The ID of the item that the quantity is being changed
-     * @return The dialog box that was created
-     */
-    private Dialog quantityDialog(int itemID) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(R.string.quantity_title);
 
-        LayoutInflater inflater = this.getLayoutInflater();
-        builder.setView(inflater.inflate(R.layout.dialog_quantity, null));
-
-        builder.setPositiveButton(R.string.confirm_message, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                // TODO: Change quantity in the database
-            }
-        });
-
-        builder.setNegativeButton(R.string.cancel_message, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.dismiss();
-            }
-        });
-
-        return builder.create();
-    }
 
     /**
      * Creates a dialog box to rename the given list
@@ -168,27 +141,9 @@ public class ListActivity extends AppCompatActivity {
                 for (int i = 0; i < items.size(); i++) {
                     GroceryItem selectedItem = items.get(i);
                     selectedItem.setChecked(false);
+                    dbHelper.clearAllCheckboxesFromList(listID);
                     adapter.notifyItemChanged(i);
                 }
-            case R.id.action_delete:
-                ArrayList<GroceryItem> selectedItems = new ArrayList<>();
-                for (int i=0; i<items.size(); i++) {
-                    if (items.get(i).isChecked()) {
-                        selectedItems.add(items.get(i));
-                    }
-                }
-                if (selectedItems.isEmpty()){
-                    Toast.makeText(this, "No items selected to delete.", Toast.LENGTH_SHORT).show();
-                    return true;
-                }
-                for (GroceryItem selectedItem : selectedItems) {
-                    if (items.contains(selectedItem)) {
-                        Log.d("LIST ACTIVITY", "contains " + selectedItem.toString());
-                        items.remove(selectedItem);
-                        adapter.notifyDataSetChanged();
-                    }
-                }
-
                 return true;
             case R.id.groupByType:
                 items.clear();

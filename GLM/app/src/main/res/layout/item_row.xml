@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:drawable="@android:color/background_dark"
+    android:drawable="@android:color/background_light"
     android:orientation="horizontal"
     android:paddingTop="10dp"
     android:paddingBottom="10dp">
@@ -14,12 +14,9 @@
         android:layout_width="36dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
-        android:drawable="?attr/actionMenuTextColor"
-        android:buttonTint="?attr/colorBackgroundFloating"
         android:checked="false"
         android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textColor="?attr/actionMenuTextColor" />
+        android:paddingRight="16dp" />
 
     <TextView
         android:id="@+id/tvItemName"
@@ -27,7 +24,6 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:paddingStart="10dp"
-        android:textColor="@android:color/white"
         android:textSize="18sp"
         tools:text="Coco Puffs" />
 
@@ -38,22 +34,7 @@
         android:layout_weight="1"
         android:paddingEnd="10dp"
         android:textAlignment="textEnd"
-        android:textColor="@android:color/white"
         android:textSize="18sp"
         tools:text="1 box" />
-
-    <ImageView
-        android:id="@+id/ivDecreaseQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight=".3"
-        app:srcCompat="@drawable/ic_group_collapse_15" />
-
-    <ImageView
-        android:id="@+id/ivIncreaseQuantity"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight=".3"
-        app:srcCompat="@drawable/ic_group_expand_15" />
 
 </LinearLayout>

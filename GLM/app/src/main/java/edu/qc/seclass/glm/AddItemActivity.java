@@ -191,7 +191,7 @@ public class AddItemActivity extends AppCompatActivity {
                 EditText editText = dialogLayout.findViewById(R.id.quantity_et);
                 dbHelper.addItemToList(itemID,
                         Integer.parseInt(editText.getText().toString()),
-                        dbHelper.getUnitTypeIdByName(selectedUnitType), listID);
+                        dbHelper.getUnitTypeIDByName(selectedUnitType), listID);
 
                 Toast.makeText(AddItemActivity.this, "Item added to list", Toast.LENGTH_SHORT).show();
             }

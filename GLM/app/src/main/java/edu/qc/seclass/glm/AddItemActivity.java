@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * @author Sean Rodriguez <sean.rodriguez@outlook.com>
+ * @author Sean Rodriguez <sean.rodriguez@outlook.com>, Mark Abramov <markabramov01@gmail.com>
  * <p>
  * Add Item Activity class allows users to navigate through item types and see the items under a
  * specific item type. Users can add items to the List that they entered from and select a quantity

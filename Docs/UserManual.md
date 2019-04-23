@@ -27,7 +27,7 @@ After selecting the + icon in the launcher menu, you have initiated the process 
 ![Creating a List](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/NAMING_LIST.png)
 
 ## Creating Items and Adding Them to Your List
-Now that you have created a list, you can begin to add items to it. Select your list to begin adding an item. When using the application for the first time, you list will be empty. You can add generic items to your list, or create a new item. To create a new item, select the + symbol located at the top right of the screen, then name your item and select a type. This item will now appear under that type. To add this new item to your list, select that item type, then you will find the item. You can select the item and then select a quantity for the item. Once you hit OK, the item will be saved to your list.  
+Now that you have created a list, you can begin to add items to it. Select your list to begin adding an item. When using the application for the first time, you list will be empty. You can add pre-created items to your list, or create a new custom item. To create a new item, select the + symbol located at the top right of the screen, then name your item and select a type. This item will now appear under that type. To add this new item to your list, select that item type, then you will find the item. You can select the item and then select a quantity for the item. Once you hit OK, the item will be saved to your list.  
 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NCREATE1.png)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NCREATE2.png)
@@ -37,7 +37,7 @@ Now that you have created a list, you can begin to add items to it. Select your 
 
 ## Searching for an Item
 
-You may find it to your advantage to utilize the searching feature to quickly find the item you are looking for. When adding an item to a list, click on the Search bar located at the top of the screen, and then enter the name of the item you are looking for. If the item exists, you will find it displayed in a pop up. If the item does not exist, you will be notified that there are no results matching your entry. This will ease the process of creating new items if you do not know whether or not it exists in your application.
+You may find it to your advantage to utilize the searching feature to quickly find the item you are looking for. When adding an item to a list, click on the Search bar located at the top of the screen, and then enter the name of the item you are looking for. You may also enter partial queries and do not have to search on the full name of the item. If the item exists, you will find it displayed in a pop up. If the item does not exist, you will be notified that there are no results matching your entry. This will ease the process of creating new items if you do not know whether or not it exists in your application.
 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NSEARCH2.png)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NSEARCH3.png)

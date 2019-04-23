@@ -48,6 +48,7 @@ public class ListActivity extends AppCompatActivity {
         rvItemList = findViewById(R.id.rvItemList);
         dbHelper = new DatabaseHelper(this);
         listID = getIntent().getLongExtra("id", -1);
+        Toast.makeText(this, "To delete an item, long press on the item.", Toast.LENGTH_LONG).show();
 
         setTitle(dbHelper.getListNameByID(listID));
 

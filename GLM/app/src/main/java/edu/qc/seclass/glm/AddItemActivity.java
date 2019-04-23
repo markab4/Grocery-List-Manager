@@ -189,6 +189,11 @@ public class AddItemActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 String selectedUnitType = unitTypeSpinner.getSelectedItem().toString();
                 EditText editText = dialogLayout.findViewById(R.id.quantity_et);
+                if(editText.getText().toString().isEmpty()) {
+                    dialog.dismiss();
+                    return;
+                }
+
                 dbHelper.addItemToList(itemID,
                         Integer.parseInt(editText.getText().toString()),
                         dbHelper.getUnitTypeIDByName(selectedUnitType), listID);
@@ -236,6 +241,11 @@ public class AddItemActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 EditText itemInput = dialogLayout.findViewById(R.id.item_et);
                 String selectedItemType = itemTypeSpinner.getSelectedItem().toString();
+
+                if(itemInput.getText().toString().isEmpty()) {
+                    dialog.dismiss();
+                    return;
+                }
 
                 dbHelper.createNewItem(itemInput.getText().toString(),
                         dbHelper.getItemTypeIDByName(selectedItemType));

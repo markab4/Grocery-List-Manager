@@ -170,6 +170,11 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.ViewHolder> {
                     String selectedUnitType = unitTypeSpinner.getSelectedItem().toString();
                     EditText editText = dialogLayout.findViewById(R.id.quantity_et);
 
+                    if(editText.getText().toString().isEmpty()) {
+                        dialog.dismiss();
+                        return;
+                    }
+
                     dbHelper.updateQuantity(itemID, Integer.parseInt(editText.getText().toString()),
                             dbHelper.getUnitTypeIDByName(selectedUnitType));
 

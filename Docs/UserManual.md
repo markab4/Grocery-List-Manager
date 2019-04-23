@@ -29,10 +29,10 @@ After selecting the + icon in the launcher menu, you have initiated the process 
 ## Creating Items and Adding Them to Your List
 Now that you have created a list, you can begin to add items to it. Select your list to begin adding an item. When using the application for the first time, you will have default items available. To create a new item, select the + symbol located at the top right of the screen, then select an item type. After selecting an item type, select "Custom Item". This will allow you to create a new item. Choose a name for your new item. Once you have your desired name and category, press the "Create" button to finish creating your new item.
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM1.png)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM2.png)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM3.png)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CREATEITEM4.png)
+![]()
+![]()
+![]()
+![]()
 
 You will be returned to the previous menu, with your new item now added to your list. Increase or decrease the quantity of the item by selecting the arrows next to the item. The item will now be saved to your list.
 

@@ -52,7 +52,7 @@ Perhaps you need to make trips to multiple groceries, or you may find it to your
 ## Grouping Items in a List
 To group items in a list, enter the list, then select the three dotted button at the top right of the screen. You will be presented with an option to "Group by Type". Once you select this option, it will group the list by item types.
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/GROUPINGITEMS.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NGROUPBYTYPE.png)
 
 ## Deleting Lists
 Deleting lists once they are no longer needed will allow you to keep your Grocery List Manager in check, allowing you to efficiently shop without the hassle of worrying of finding the list you need. To delete a list, simply click on a list from the launcher menu, then select the "Trash" button at the top right of the screen. You will be presented with an option to confirm your desicion before your list is deleted, in case of any error. Once you have verified that this is the list you intend to delete, select "Delete".
@@ -73,7 +73,7 @@ To maximize the utility of the Grocery List Manager, you might want to make use 
 
 You can clear all check boxes from a list by selecting the three dotted button at the top right of the screen, then selecting the "Clear All Boxes" option. This will clear all the check boxes, allowing you to convienently reuse the list as needed.
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NGROUPBYTYPE.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NCHECKBOXES.png)
 
 ## Frequently Asked Questions
 >I created a list and created new items, but I do not want to have to create these items every time when I shop. Will my items remain in the system?

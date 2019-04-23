@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -147,8 +149,7 @@ public class ListActivity extends AppCompatActivity {
                 }
                 return true;
             case R.id.groupByType:
-                items.clear();
-                items.addAll(dbHelper.getGroceryItemsByListID(listID, true));
+                Collections.sort(items, new SortByItemTypeID());
                 adapter.notifyDataSetChanged();
                 return true;
             case R.id.renameList:

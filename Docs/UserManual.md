@@ -75,7 +75,7 @@ To maximize the utility of the Grocery List Manager, you might want to make use 
 
 You can clear all check boxes from a list by selecting the three dotted button at the top right of the screen, then selecting the "Clear All Boxes" option. This will clear all the check boxes, allowing you to convienently reuse the list as needed.
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/CLEARCHECKS.png)
+![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NGROUPBYTYPE.png)
 
 ## Frequently Asked Questions
 >I created a list and created new items, but I do not want to have to create these items every time when I shop. Will my items remain in the system?

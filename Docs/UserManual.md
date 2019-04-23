@@ -37,8 +37,6 @@ Now that you have created a list, you can begin to add items to it. Select your 
 
 ## Searching for an Item
 
-*THIS FEATURE IS CURRENTLY IN DEVELOPMENT*
-
 You may find it to your advantage to utilize the searching feature to quickly find the item you are looking for. When adding an item to a list, click on the Search bar located at the top of the screen, and then enter the name of the item you are looking for. If the item exists, you will find it displayed in a pop up. If the item does not exist, you will be notified that there are no results matching your entry. This will ease the process of creating new items if you do not know whether or not it exists in your application.
 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NSEARCH2.png)

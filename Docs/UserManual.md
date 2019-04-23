@@ -34,16 +34,16 @@ Now that you have created a list, you can begin to add items to it. Select your 
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NCREATE3.png)
 ![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/New%20User%20Manual%20Pics/NCREATE4.png)
 
-You will be returned to the previous menu, with your new item now added to your list. Increase or decrease the quantity of the item by selecting the arrows next to the item. The item will now be saved to your list.
-
-
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/UserManualPics/QUANTITYITEM.png)
 
 ## Searching for an Item
 
 *THIS FEATURE IS CURRENTLY IN DEVELOPMENT*
 
-After you have created multiple items, you may find it to your advantage to utilize the searching feature to quickly find the item you are looking for. When adding an item to a list, click on the Search bar located at the top of the screen, and then enter the name of the item you are looking for. If the item exists, you will find it listed below. If the item does not exist, you will be presented with the option to create a new item. This will ease the process of creating new items if you do not know whether or not it exists in your application.
+You may find it to your advantage to utilize the searching feature to quickly find the item you are looking for. When adding an item to a list, click on the Search bar located at the top of the screen, and then enter the name of the item you are looking for. If the item exists, you will find it displayed in a pop up. If the item does not exist, you will be notified that there are no results matching your entry. This will ease the process of creating new items if you do not know whether or not it exists in your application.
+
+![]()
+![]()
+
 
 ## Selecting Lists
 Perhaps you need to make trips to multiple groceries, or you may find it to your advantage to have multiple lists for each store. With the Grocery List Manager you have the ability to create multiple lists which contain their own items. You can create a new list by going back to the launcher menu at any time, and selecting the option to create a new list once again. After you have set the name and finished creating the list, you can now select which list you wish to view when revisiting the launcher. To do this, from the launcher menu, click on the list you wish to view. Select the "Pencil" button located at the top right of the screen, to the left of the "Trash" button. This will allow you to view and edit the list.

@@ -20,13 +20,13 @@ This application will only be developed for Android mobile phone devices (not ta
 
 ### 2.1 Component Diagram
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Component_diagram.png)
+![](Diagrams/Component_diagram.png)
 
 Our system contains four classes which will work together to provide the full functionality of the application. Our system maintains a hierarchy which enables us maintain the functionality of our application without the worry of classes not functioning together. The ListHolder class will contain our lists, while the GroceryList class will define the actual grocery list and its properties. Items will be contained within this list, which will have an associated item type for labeling purposes.
 
 ### 2.2 Deployment Diagram
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Deployment_Diagram.png)
+![](Diagrams/Deployment_Diagram.png)
 
 Given the simplicity of the application, our application contains a straightforward design which requires a user interface that displays the ability to create, modify, and view lists. From here, users will then be able to manage their lists and whatever items they may contain. The applications functionality ties to the applications SQLite database, which will allow for persistence as to save the users changes or modifications.
 
@@ -34,7 +34,7 @@ Given the simplicity of the application, our application contains a straightforw
 
 ### 3.1 Class Diagram
 
-![](../Design-Team/design-team.png)
+![](Diagrams/design.png)
 Our class diagram shows the necessary functions and attributes of the classes required for our system to function as intended. A ListHolder class may contain many GroceryLists. The GroceryList class shares a many-to-many relationship with the item class, as there can be many instances of items in many lists. 
 
 ### 3.2 Database Diagram
@@ -44,11 +44,11 @@ Our Database diagram shows the necessary tables and their relationships for our 
 ## 4 User Interface Design
 The main wireframes for our app are:
 
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Launcher.jpg)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/List%20Contents.jpg)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Creating%20a%20List.jpg)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/Search%20for%20Item.jpg)
-![](https://github.com/qc-se-spring2019/370Spring19Team2/blob/master/GroupProject/Docs/Diagrams/Mockup/New%20Item.jpg)
+![](Diagrams/Mockup/Launcher.jpg)
+![](Diagrams/Mockup/List%20Contents.jpg)
+![](Diagrams/Mockup/Creating%20a%20List.jpg)
+![](Diagrams/Mockup/Search%20for%20Item.jpg)
+![](Diagrams/Mockup/New%20Item.jpg)
 
 [The complete set of mockups for our app can be found here](https://github.com/qc-se-spring2019/370Spring19Team2/tree/master/GroupProject/Docs/Diagrams/Mockup)
 

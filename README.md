@@ -1,5 +1,5 @@
 # User Manual
-**Author**: Adnan Salimi, Revised by Mark Abramov
+**Author**: Mark Abramov & Adnan Salimi
 
 Welcome to our Android Grocery List Manager application! This user guide will help you get started in using our application to help you shop for groceries more efficiently using our application to help you keep track of your lists, and the various items you shop for on a day to day basis.
 
